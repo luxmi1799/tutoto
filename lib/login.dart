@@ -30,9 +30,12 @@ class _login_body extends State<_login> {
            children: [
        
              
-             Center(
-               child:Image.asset("assets/image/img.png",
-                 fit:BoxFit.cover,),
+             Padding(
+               padding: const EdgeInsets.all(60.0),
+               child: Center(
+                 child:Image.asset("assets/image/img.png",
+                   fit:BoxFit.cover,),
+               ),
              ),
              
            ],
