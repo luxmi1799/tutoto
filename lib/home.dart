@@ -68,7 +68,7 @@ class _home_body extends State<home> {
             ],
           )),
     ),
-  ))
+    ))
       .toList();
 
   void _onItemTapped(int index) {
@@ -130,10 +130,24 @@ class _home_body extends State<home> {
         ),
         body: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.only(top: 20.0),
+            padding: const EdgeInsets.only(top: 10.0),
             child: Column(children: [
               // Expanded(
               //   child:
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: TextField(
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.grey[200],
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    hintText: 'Search',
+                  // prefixIcon: Icon(Icons.search),
+                  ),
+                ),
+              ),
 
               Container(
                 width: MediaQuery.of(context).size.width,
