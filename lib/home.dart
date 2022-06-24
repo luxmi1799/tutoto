@@ -2,6 +2,7 @@
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:tutoro/college_listing.dart';
 import 'package:tutoro/colors/colors.dart';
 import 'package:tutoro/drawer.dart';
 
@@ -136,15 +137,19 @@ class _home_body extends State<home> {
               //   child:
               Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: TextField(
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.grey[200],
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
+                child: Container(
+                  height: 40,
+                  color: Colors.grey[200],
+                  child: TextField(
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.grey[200],
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      hintText: 'Search',
+                    // prefixIcon: Icon(Icons.search),
                     ),
-                    hintText: 'Search',
-                  // prefixIcon: Icon(Icons.search),
                   ),
                 ),
               ),
@@ -209,66 +214,72 @@ class _home_body extends State<home> {
                   children: [
 
                     Expanded(
-                      child: Container(
-                        //width:200,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(8),
-                          boxShadow: [BoxShadow(color: Color(int.parse("0xff${colors_color.main_theme}")), blurRadius: 8)],
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(8),
-                          child: Container(
-                            padding: EdgeInsets.all(20),
-                            decoration: BoxDecoration(
-                              color: Colors.black,
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(10.0),
-                                // radius
-                              ),
-                              // border: Border(
-                              //   left: BorderSide(color: Colors.indigo, width: 5),
-                              // ),
-                            ),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: <Widget>[
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Column(
-                                      children: [
-                                        Align(
-                                            child: Text("News",
-                                              textAlign: TextAlign.left,
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 12,
-                                              ),
-                                            )),
+                      child: InkWell(
+                        onTap: (){
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => college_list()));
 
-                                         Padding(
-                                           padding: EdgeInsets.only(top: 8),
-                                              child: Text("Get Latest Updates",
+                        },
+                        child: Container(
+                          //width:200,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(8),
+                            boxShadow: [BoxShadow(color: Color(int.parse("0xff${colors_color.main_theme}")), blurRadius: 8)],
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8),
+                            child: Container(
+                              padding: EdgeInsets.all(20),
+                              decoration: BoxDecoration(
+                                color: Colors.black,
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10.0),
+                                  // radius
+                                ),
+                                // border: Border(
+                                //   left: BorderSide(color: Colors.indigo, width: 5),
+                                // ),
+                              ),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Column(
+                                        children: [
+                                          Align(
+                                              child: Text("News",
                                                 textAlign: TextAlign.left,
                                                 style: TextStyle(
                                                   color: Colors.white,
-                                                  fontSize: 10
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 12,
                                                 ),
                                               )),
 
-                                      ],
-                                    ),
-                                   SizedBox(
-                                     width: 20,
-                                   ),
-                                    Icon(Icons.home,
-                                    color: Colors.white,),
-                                  ],
-                                ),
+                                           Padding(
+                                             padding: EdgeInsets.only(top: 8),
+                                                child: Text("Get Latest Updates",
+                                                  textAlign: TextAlign.left,
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 10
+                                                  ),
+                                                )),
 
-                              ],
+                                        ],
+                                      ),
+                                     SizedBox(
+                                       width: 20,
+                                     ),
+                                      Icon(Icons.home,
+                                      color: Colors.white,),
+                                    ],
+                                  ),
+
+                                ],
+                              ),
                             ),
                           ),
                         ),
