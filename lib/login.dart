@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:tutoro/colors/colors.dart';
+import 'package:tutoro/home.dart';
 
 class login extends StatelessWidget{
   @override
@@ -58,35 +59,42 @@ class _login_body extends State<_login> {
              Padding(
                padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 15),
                child: Container(
+                 height: 60,
                  color: Colors.grey[200],
                  child: Row(
                    children: [
                      Expanded(
-                       child: FlatButton(
-                         onPressed: (){},
-                         color: Color(int.parse("0xff${colors_color.main_theme}")),
-                         child: Text("mobile number",
-                           textAlign: TextAlign.center,
-                           style: TextStyle(
-                             color: Colors.white,
-                             fontSize: 14,
-                             fontWeight: FontWeight.bold,
-                             backgroundColor:  Color(int.parse("0xff${colors_color.main_theme}")),
-                           ),),
+                       child: Container(
+                         height: 50,
+                         child: FlatButton(
+                           onPressed: (){},
+                           color: Color(int.parse("0xff${colors_color.main_theme}")),
+                           child: Text("mobile number",
+                             textAlign: TextAlign.center,
+                             style: TextStyle(
+                               color: Colors.white,
+                               fontSize: 15,
+                               fontWeight: FontWeight.bold,
+                               backgroundColor:  Color(int.parse("0xff${colors_color.main_theme}")),
+                             ),),
+                         ),
                        ),
                      ),
                      Expanded(
-                       child: FlatButton(
-                         onPressed: (){},
-                         color: Color(int.parse("0xff${colors_color.main_theme}")),
-                         child: Text("email",
-                           textAlign: TextAlign.center,
-                           style: TextStyle(
-                             color: Colors.white,
-                             fontSize: 14,
-                             fontWeight: FontWeight.bold,
-                             backgroundColor:  Color(int.parse("0xff${colors_color.main_theme}")),
-                           ),),
+                       child: Container(
+                         height: 50,
+                         child: FlatButton(
+                           onPressed: (){},
+                           color: Color(int.parse("0xff${colors_color.main_theme}")),
+                           child: Text("email",
+                             textAlign: TextAlign.center,
+                             style: TextStyle(
+                               color: Colors.white,
+                               fontSize: 15,
+                               fontWeight: FontWeight.bold,
+                               backgroundColor:  Color(int.parse("0xff${colors_color.main_theme}")),
+                             ),),
+                         ),
                        ),
                      ),
                    ],
@@ -116,6 +124,8 @@ class _login_body extends State<_login> {
                padding: const EdgeInsets.all(10.0),
                child: InkWell(
                  onTap: (){
+                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => home()));
+
                  },
                  child: AnimatedContainer(
                    duration: Duration(seconds: 1),//empty container can use inside of widget
@@ -124,7 +134,7 @@ class _login_body extends State<_login> {
                    //changebtn?Icon(Icons.done,color: Colors.white,):
                    child:Text("Send OTP",style: TextStyle(
                      fontWeight: FontWeight.bold,
-                     fontSize: 14,
+                     fontSize: 15,
                      color: Colors.white,
                    ),
                    ),
@@ -145,16 +155,15 @@ class _login_body extends State<_login> {
                    children: [
                      Text("New to Tutoro?",
                        style: TextStyle(
-                         fontSize: 10,
+                         fontSize: 12,
                          color: Colors.grey,
                        ),
                      ),
                      InkWell(
                        child: Text("Signup for Free",
                          style: TextStyle(
-                           fontSize: 12,
+                           fontSize: 14,
                            fontWeight: FontWeight.bold,
-                           wordSpacing: 2,
                            color: Colors.black,
                          ),
                        ),
