@@ -57,7 +57,7 @@ class _login_body extends State<_login> {
              ),
 
              Padding(
-               padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 15),
+               padding: const EdgeInsets.symmetric(vertical: 20.0,horizontal: 15),
                child: Container(
                  height: 60,
                  color: Colors.grey[200],
@@ -103,7 +103,7 @@ class _login_body extends State<_login> {
              ),
 
              Padding(
-               padding: const EdgeInsets.all(10.0),
+               padding: const EdgeInsets.symmetric(vertical: 20.0,horizontal: 10),
                child: IntlPhoneField(
                  decoration: InputDecoration(
                    labelText: 'Phone Number',
@@ -121,7 +121,7 @@ class _login_body extends State<_login> {
              ),
 
              Padding(
-               padding: const EdgeInsets.all(10.0),
+               padding: const EdgeInsets.symmetric(vertical: 20.0,horizontal: 10),
                child: InkWell(
                  onTap: (){
                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => home()));
@@ -147,7 +147,7 @@ class _login_body extends State<_login> {
              ),
 
              Padding(
-               padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 10),
+               padding: const EdgeInsets.symmetric(vertical: 20.0,horizontal: 10),
                child: Center(
                  child: Row(
                    mainAxisAlignment: MainAxisAlignment.center,

@@ -1,5 +1,8 @@
+
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:tutoro/colors/colors.dart';
 import 'package:tutoro/drawer.dart';
 
 
@@ -23,6 +26,7 @@ class _home_body extends State<home> {
 
   int _current = 0;
   int _selectedIndex = 0;
+  int counter = 0;
   final CarouselController _controller = CarouselController();
 
   final List<Widget> imageSliders = imgList
@@ -79,49 +83,418 @@ class _home_body extends State<home> {
     final  List<Widget> _widgetOptions = <Widget>[
       //home..
       Scaffold(
+
         drawer: myDrawer(),
-       appBar: AppBar(title: Text(""),),
-        body: Padding(
-          padding: const EdgeInsets.only(top: 20.0),
-          child: Column(children: [
-            // Expanded(
-            //   child:
-
-            CarouselSlider(
-                items: imageSliders,
-                carouselController: _controller,
-                options: CarouselOptions(
-                    autoPlay: true,
-                    enlargeCenterPage: false,
-                    aspectRatio: 2.0,
-                    onPageChanged: (index, reason) {
-                      setState(() {
-                        _current = index;
-                      });
-                    }),
-              ),
-            //),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: imgList.asMap().entries.map((entry) {
-                return GestureDetector(
-                  onTap: () => _controller.animateToPage(entry.key),
-                  child: Container(
-                    width: 12.0,
-                    height: 12.0,
-                    margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: (Theme.of(context).brightness == Brightness.dark
-                            ? Colors.white
-                            : Colors.black)
-                            .withOpacity(_current == entry.key ? 0.9 : 0.4)),
-                  ),
-                );
-              }).toList(),
+        appBar: AppBar(title: Text(""),
+          iconTheme: IconThemeData(color: Colors.black),
+         backgroundColor: Colors.white,
+         elevation: 0.0,
+            actions: <Widget>[
+            // Using Stack to show Notification Badge
+            new Stack(
+            children: <Widget>[
+            new IconButton(
+                icon: Icon(
+                Icons.notifications_outlined), onPressed: () {
+                setState(() {
+               counter = 0;
+              });
+            }),
+            counter != 1 ? new Positioned(
+             right: 11,
+             top: 11,
+             child: new Container(
+             padding: EdgeInsets.all(2),
+             decoration: new BoxDecoration(
+              color: Colors.red,
+              borderRadius: BorderRadius.circular(6),
             ),
+             constraints: BoxConstraints(
+             minWidth: 14,
+             minHeight: 14,
+            ),
+            child: Text(
+             '$counter',
+             style: TextStyle(
+             color: Colors.white,
+              fontSize: 8,
+            ),
+            textAlign: TextAlign.center,
+            ),
+            ),
+             ) : new Container()
+             ],
+             ),
+           ],
 
-          ]),
+        ),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 20.0),
+            child: Column(children: [
+              // Expanded(
+              //   child:
+
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: 240,
+                child: CarouselSlider(
+                    items: imageSliders,
+                    carouselController: _controller,
+                    options: CarouselOptions(
+                        autoPlay: true,
+                        enlargeCenterPage: false,
+                        aspectRatio: 2.0,
+                        onPageChanged: (index, reason) {
+                          setState(() {
+                            _current = index;
+                          });
+                        }),
+                  ),
+              ),
+              //),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: imgList.asMap().entries.map((entry) {
+                  return GestureDetector(
+                    onTap: () => _controller.animateToPage(entry.key),
+                    child: Container(
+                      width: 9.0,
+                      height: 9.0,
+                      margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: (Theme.of(context).brightness == Brightness.dark
+                              ? Colors.white
+                              : Colors.black)
+                              .withOpacity(_current == entry.key ? 0.9 : 0.4)),
+                    ),
+                  );
+                }).toList(),
+              ),
+
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text("Categories",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+              ),
+
+
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+
+                    Expanded(
+                      child: Container(
+                        //width:200,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(8),
+                          boxShadow: [BoxShadow(color: Color(int.parse("0xff${colors_color.main_theme}")), blurRadius: 8)],
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Container(
+                            padding: EdgeInsets.all(20),
+                            decoration: BoxDecoration(
+                              color: Colors.black,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10.0),
+                                // radius
+                              ),
+                              // border: Border(
+                              //   left: BorderSide(color: Colors.indigo, width: 5),
+                              // ),
+                            ),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Column(
+                                      children: [
+                                        Align(
+                                            child: Text("News",
+                                              textAlign: TextAlign.left,
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 12,
+                                              ),
+                                            )),
+
+                                         Padding(
+                                           padding: EdgeInsets.only(top: 8),
+                                              child: Text("Get Latest Updates",
+                                                textAlign: TextAlign.left,
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 10
+                                                ),
+                                              )),
+
+                                      ],
+                                    ),
+                                   SizedBox(
+                                     width: 20,
+                                   ),
+                                    Icon(Icons.home,
+                                    color: Colors.white,),
+                                  ],
+                                ),
+
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Expanded(
+                      child: Container(
+                        //width:200,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(8),
+                          boxShadow: [BoxShadow(color: Color(int.parse("0xff${colors_color.main_theme}")), blurRadius: 8)],
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Container(
+                            padding: EdgeInsets.all(20),
+                            decoration: BoxDecoration(
+                              color: Colors.black,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10.0),
+                                // radius
+                              ),
+                              // border: Border(
+                              //   left: BorderSide(color: Colors.indigo, width: 5),
+                              // ),
+                            ),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Column(
+                                      children: [
+                                        Align(
+                                            alignment: Alignment.centerLeft,
+                                            child: Text("Colleges",
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 12,
+
+                                              ),
+                                            )),
+
+                                        Padding(
+                                          padding: EdgeInsets.only(top: 8),
+                                            child: Text("Top Colleges",
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 10
+                                              ),
+                                            )),
+
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      width: 20,
+                                    ),
+                                    Icon(Icons.home,
+                                      color: Colors.white,),
+                                  ],
+                                ),
+
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+
+                  ],
+                ),
+              ),
+
+
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+
+                    Expanded(
+                      child: Container(
+                        //width:200,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(8),
+                          boxShadow: [BoxShadow(color: Color(int.parse("0xff${colors_color.main_theme}")), blurRadius: 8)],
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Container(
+                            padding: EdgeInsets.all(20),
+                            decoration: BoxDecoration(
+                              color: Colors.black,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10.0),
+                                // radius
+                              ),
+                              // border: Border(
+                              //   left: BorderSide(color: Colors.indigo, width: 5),
+                              // ),
+                            ),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Column(
+                                      children: [
+                                        Align(
+                                          alignment: Alignment.centerLeft,
+                                            child: Text("Budget Predictor",
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 12,
+                                              ),
+                                            )),
+
+                                         Padding(
+                                              padding: EdgeInsets.only(top: 8),
+                                              child: Text("Control your money",
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 10
+                                                ),
+                                              )),
+
+                                      ],
+                                    ),
+                                   SizedBox(
+                                     width: 20,
+                                   ),
+                                    Icon(Icons.home,
+                                    color: Colors.white,),
+                                  ],
+                                ),
+
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Expanded(
+                      child: Container(
+                        //width:200,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(8),
+                          boxShadow: [BoxShadow(color: Color(int.parse("0xff${colors_color.main_theme}")), blurRadius: 8)],
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Container(
+                            padding: EdgeInsets.all(20),
+                            decoration: BoxDecoration(
+                              color: Colors.black,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10.0),
+                                // radius
+                              ),
+                              // border: Border(
+                              //   left: BorderSide(color: Colors.indigo, width: 5),
+                              // ),
+                            ),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Column(
+                                      children: [
+                                        Align(
+                                            alignment: Alignment.centerLeft,
+                                            child: Text("Support",
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 12
+                                              ),
+                                            )),
+
+                                        Padding(
+                                           padding: EdgeInsets.only(top: 8),
+                                            child: Text("How we help you!",
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 10
+                                              ),
+                                            )),
+
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      width: 20,
+                                    ),
+                                    Icon(Icons.home,
+                                      color: Colors.white,),
+                                  ],
+                                ),
+
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+
+                  ],
+                ),
+              ),
+
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text("Latest News",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+              ),
+
+            ]),
+          ),
         ),
       ),
 
@@ -134,7 +507,6 @@ class _home_body extends State<home> {
       //profile
       Text(
         'Index 2: School',
-
       ),
     ];
      return Scaffold(
@@ -160,43 +532,6 @@ class _home_body extends State<home> {
          selectedItemColor: Colors.amber[800],
          onTap: _onItemTapped,
        ),
-      /* body: Column(children: [
-         Expanded(
-           child: CarouselSlider(
-             items: imageSliders,
-             carouselController: _controller,
-             options: CarouselOptions(
-                 autoPlay: true,
-                 enlargeCenterPage: true,
-                 aspectRatio: 2.0,
-                 onPageChanged: (index, reason) {
-                   setState(() {
-                     _current = index;
-                   });
-                 }),
-           ),
-         ),
-         Row(
-           mainAxisAlignment: MainAxisAlignment.center,
-           children: imgList.asMap().entries.map((entry) {
-             return GestureDetector(
-               onTap: () => _controller.animateToPage(entry.key),
-               child: Container(
-                 width: 12.0,
-                 height: 12.0,
-                 margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
-                 decoration: BoxDecoration(
-                     shape: BoxShape.circle,
-                     color: (Theme.of(context).brightness == Brightness.dark
-                         ? Colors.white
-                         : Colors.black)
-                         .withOpacity(_current == entry.key ? 0.9 : 0.4)),
-               ),
-             );
-           }).toList(),
-         ),
-
-       ]),*/
      );
   }
 
