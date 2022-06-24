@@ -1,3 +1,3 @@
-class colors{
-  String main_theme = "ECAE0F";
+class colors_color{
+  static String main_theme = "ECAE0F";
 }
