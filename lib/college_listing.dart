@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tutoro/colors/colors.dart';
 
+List<String> college_name = ["All India Institute of Medical Sciences","Harvard University","university of cambride","harvard"];
+List<String> address  = ["Delhi,India","Cambrigde,United States","cambridge","cambridge"];
+
+
 class college_list extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
@@ -10,42 +14,56 @@ class college_list extends StatefulWidget{
 }
 
 class _college_list extends State<college_list> {
+
+  var _currencies = [
+    "Food",
+    "Transport",
+    "Personal",
+  ];
+  String? selectedValue;
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
      return Scaffold(
-       appBar: AppBar(backgroundColor: Colors.white,),
+       appBar: AppBar(
+         automaticallyImplyLeading: false,
+         backgroundColor: Colors.white,
+         title: Container(
+           width: double.infinity,
+           height: 40,
+           color: Colors.grey[200],
+           // child: Center(
+             child: TextField(
+               textAlign: TextAlign.start,
+               decoration: InputDecoration(
+
+                 contentPadding: EdgeInsets.only(top: 15),
+                 filled: true,
+                 // fillColor: Colors.grey[200],
+                 border: OutlineInputBorder(
+                   borderRadius: BorderRadius.circular(10.0),
+                 ),
+                 hintText: 'Search',
+                 hintStyle: TextStyle(fontSize: 18.0, color: Colors.black),
+                 hintTextDirection: TextDirection.ltr,
+                 suffixIcon: Icon(Icons.search,color: Colors.black,),
+                 prefixIcon: Icon(Icons.arrow_back,color: Colors.black,),
+               ),
+             ),
+          // ),
+         ),
+       ),
        body: SingleChildScrollView(
          child: Column(
            children: [
              Padding(
-               padding: const EdgeInsets.symmetric(vertical: 20.0,horizontal: 12),
-               child: Container(
-                 height: 40,
-                 color: Colors.grey[200],
-                 child: TextField(
-                   decoration: InputDecoration(
-                     filled: true,
-                     fillColor: Colors.grey[200],
-                     border: OutlineInputBorder(
-                       borderRadius: BorderRadius.circular(10.0),
-                     ),
-                     hintText: 'Search',
-                     hintTextDirection: TextDirection.ltr,
-                     suffixIcon: Icon(Icons.search),
-                     prefixIcon: Icon(Icons.arrow_back),
-                   ),
-                 ),
-               ),
-             ),
-
-             Padding(
-               padding: const EdgeInsets.all(10.0),
+               padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 20),
                child: Align(
                  alignment: Alignment.centerLeft,
                  child: Text("College Listing",
+                   textAlign: TextAlign.start,
                    style: TextStyle(
-                     fontSize: 20,
+                     fontSize: 22,
                      fontWeight: FontWeight.bold,
                      color: Colors.black,
                    ),
@@ -53,7 +71,8 @@ class _college_list extends State<college_list> {
                ),
              ),
 
-             Row(
+             Wrap(
+              // mainAxisAlignment: MainAxisAlignment.spaceAround,
                children: [
 
                  Container(
@@ -63,22 +82,194 @@ class _college_list extends State<college_list> {
                        border: Border.all(
                          color: Color(int.parse("0xff${colors_color.main_theme}")),
                        ),
-                     borderRadius: BorderRadius.circular(8),
+                     borderRadius: BorderRadius.circular(5),
                    ),
                    child: Text(' All ',
                      style: TextStyle(
                        fontSize: 17,
                        fontWeight: FontWeight.bold,
+                       color: Color(int.parse("0xff${colors_color.main_theme}")),
                      ),
                    ),
                  ),
 
+                 Container(
+                   margin: const EdgeInsets.all(10.0),
+                   padding: const EdgeInsets.all(3.0),
+                   decoration: BoxDecoration(
+                     border: Border.all(
+                       color: Color(int.parse("0xff${colors_color.main_theme}")),
+                     ),
+                     borderRadius: BorderRadius.circular(5),
+                   ),
+                   child: Text(' India ',
+                     style: TextStyle(
+                       fontSize: 17,
+                       fontWeight: FontWeight.bold,
+                       color: Color(int.parse("0xff${colors_color.main_theme}")),
+                     ),
+                   ),
+                 ),
+
+                 Container(
+                   margin: const EdgeInsets.all(10.0),
+                   padding: const EdgeInsets.all(3.0),
+                   decoration: BoxDecoration(
+                     border: Border.all(
+                       color: Color(int.parse("0xff${colors_color.main_theme}")),
+                     ),
+                     borderRadius: BorderRadius.circular(5),
+                   ),
+                   child: Text(' Abroad ',
+                     style: TextStyle(
+                       fontSize: 17,
+                       fontWeight: FontWeight.bold,
+                       color: Color(int.parse("0xff${colors_color.main_theme}")),
+                     ),
+                   ),
+                 ),
+
+                 Container(
+                   margin: const EdgeInsets.all(10.0),
+                   padding: const EdgeInsets.all(3.0),
+                   decoration: BoxDecoration(
+                     border: Border.all(
+                       color: Color(int.parse("0xff${colors_color.main_theme}")),
+                     ),
+                     borderRadius: BorderRadius.circular(5),
+                   ),
+                   child: Text('Advanced Filter',
+                     style: TextStyle(
+                       fontSize: 17,
+                       fontWeight: FontWeight.bold,
+                       color: Color(int.parse("0xff${colors_color.main_theme}")),
+                     ),
+                   ),
+                 ),
                ],
              ),
+
+             Padding(
+               padding: EdgeInsets.all(10),
+               // Center is a layout widget. It takes a single child and positions it
+               // in the middle of the parent.
+               child: ListView.builder(
+                   physics: NeverScrollableScrollPhysics(),
+                   scrollDirection: Axis.vertical,
+                   itemCount: 8,
+                   itemExtent: 110.0,
+                   shrinkWrap: true,
+                   itemBuilder: (context,index){
+                     return college_list();
+                   }),
+             ),
+
 
            ],
          ),
        ),
      );
+  }
+
+  Widget college_list(){
+    return IntrinsicHeight(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+
+        children: [
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                children: [
+
+                  Text("college_name",
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),),
+
+                  SizedBox(
+                    height: 5,
+                  ),
+
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text("address,India",
+                     // textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.grey,
+                        fontWeight: FontWeight.bold
+                      ),),
+                  ),
+
+                  SizedBox(
+                    height: 5,
+                  ),
+
+                  Wrap(
+                    children: [
+                      Text("4.5",
+                        style: TextStyle(
+                          fontSize: 10,
+                          color: Colors.grey,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Align(
+                        alignment: Alignment.center,
+                          child: Icon(Icons.star,
+                            color: Color(int.parse("0xff${colors_color.main_theme}")),
+                                  size: 15,
+                          )),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Text("Graduation rate 98%",
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Colors.grey,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  SizedBox(
+                    height: 5,
+                  ),
+
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text("Explore Details",
+                      // textAlign: TextAlign.left,
+                      style: TextStyle(
+                          fontSize: 12,
+                        color: Color(int.parse("0xff${colors_color.main_theme}")),
+                          fontWeight: FontWeight.bold,
+                      ),),
+                  ),
+
+
+                ],
+              ),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(20), // Image border
+                child: SizedBox.fromSize(
+                  size: Size.fromRadius(48), // Image radius
+                  child: Image.asset("assets/image/img_1.png", fit: BoxFit.cover),
+                ),
+              )
+            ],
+          ),
+        ],
+      ),
+    );
   }
 }
