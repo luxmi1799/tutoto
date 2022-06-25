@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tutoro/college_details.dart';
 import 'package:tutoro/colors/colors.dart';
 
 List<String> college_name = ["All India Institute of Medical Sciences","Harvard University","university of cambride","harvard"];
@@ -160,7 +161,11 @@ class _college_list extends State<college_list> {
                    itemExtent: 110.0,
                    shrinkWrap: true,
                    itemBuilder: (context,index){
-                     return college_list();
+                     return InkWell(
+                         onTap: (){
+                           Navigator.of(context).push(MaterialPageRoute(builder: (context) => college_details()));
+                         },
+                         child: college_list());
                    }),
              ),
 
