@@ -86,8 +86,8 @@ class _home_body extends State<home> {
       Scaffold(
 
         drawer: myDrawer(),
-        appBar: AppBar(title: Text(""),
-          iconTheme: IconThemeData(color: Colors.black),
+        appBar: AppBar(
+         iconTheme: IconThemeData(color: Colors.black),
          backgroundColor: Colors.white,
          elevation: 0.0,
             actions: <Widget>[
@@ -135,25 +135,33 @@ class _home_body extends State<home> {
             child: Column(children: [
               // Expanded(
               //   child:
+
               Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Container(
-                  height: 40,
-                  color: Colors.grey[200],
-                  child: TextField(
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Colors.grey[200],
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
+                padding: const EdgeInsets.all(8.0),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10.0),
+                  child: Container(
+                    width: double.infinity,
+                    height: 40,
+                    color: Colors.grey[200],
+                    // child: Center(
+                    child: TextField(
+                      textAlign: TextAlign.start,
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.symmetric(vertical: 5,horizontal: 5),
+                        //  filled: true,
+                        // fillColor: Colors.grey[200],
+                        // border: OutlineInputBorder(
+                        //   borderRadius: BorderRadius.circular(10.0),
+                        // ),
+                        hintText: 'Search',
+                        hintStyle: TextStyle(fontSize: 16.0, color: Colors.black),
                       ),
-                      hintText: 'Search',
-                    // prefixIcon: Icon(Icons.search),
                     ),
+                    // ),
                   ),
                 ),
               ),
-
               Container(
                 width: MediaQuery.of(context).size.width,
                 height: 240,

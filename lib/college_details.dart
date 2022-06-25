@@ -21,29 +21,32 @@ class _college_details extends State<college_details> {
            elevation: 0,
            automaticallyImplyLeading: false,
            backgroundColor: Colors.white,
-           title: Container(
-             width: double.infinity,
-             height: 40,
-             color: Colors.grey[200],
-             // child: Center(
-             child: TextField(
-               textAlign: TextAlign.start,
-               decoration: InputDecoration(
+           title: ClipRRect(
+             borderRadius: BorderRadius.circular(10.0),
+             child: Container(
+               width: double.infinity,
+               height: 40,
+               color: Colors.grey[200],
+               // child: Center(
+               child: TextField(
+                 textAlign: TextAlign.start,
+                 decoration: InputDecoration(
 
-                 contentPadding: EdgeInsets.only(top: 15),
-                 filled: true,
-                 // fillColor: Colors.grey[200],
-                 border: OutlineInputBorder(
-                   borderRadius: BorderRadius.circular(10.0),
+                   contentPadding: EdgeInsets.only(top: 5),
+                   filled: true,
+                   // fillColor: Colors.grey[200],
+                   // border: OutlineInputBorder(
+                   //   borderRadius: BorderRadius.circular(10.0),
+                   // ),
+                   hintText: 'Search',
+                   hintStyle: TextStyle(fontSize: 18.0, color: Colors.black),
+                   hintTextDirection: TextDirection.ltr,
+                   suffixIcon: Icon(Icons.search,color: Colors.black,),
+                   prefixIcon: Icon(Icons.arrow_back,color: Colors.black,),
                  ),
-                 hintText: 'Search',
-                 hintStyle: TextStyle(fontSize: 18.0, color: Colors.black),
-                 hintTextDirection: TextDirection.ltr,
-                 suffixIcon: Icon(Icons.search,color: Colors.black,),
-                 prefixIcon: Icon(Icons.arrow_back,color: Colors.black,),
                ),
+               // ),
              ),
-             // ),
            ),
          ),
          body: SingleChildScrollView(
