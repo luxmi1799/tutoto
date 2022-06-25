@@ -27,6 +27,7 @@ class _college_list extends State<college_list> {
     // TODO: implement build
      return Scaffold(
        appBar: AppBar(
+         elevation: 0,
          automaticallyImplyLeading: false,
          backgroundColor: Colors.white,
          title: Container(

@@ -18,6 +18,7 @@ class _college_details extends State<college_details> {
      return Material(
        child: Scaffold(
          appBar: AppBar(
+           elevation: 0,
            automaticallyImplyLeading: false,
            backgroundColor: Colors.white,
            title: Container(
