@@ -532,9 +532,148 @@ class _home_body extends State<home> {
       ),
 
       //news
-      Text(
-        'Index 1: Business',
+      Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          automaticallyImplyLeading: false,
+          backgroundColor: Colors.white,
+          title: ClipRRect(
+            borderRadius: BorderRadius.circular(10.0),
+            child: Container(
+              width: double.infinity,
+              height: 40,
+              color: Colors.grey[200],
+              // child: Center(
+              child: TextField(
+                textAlign: TextAlign.start,
+                decoration: InputDecoration(
 
+                  contentPadding: EdgeInsets.only(top: 5),
+                  //  filled: true,
+                  // fillColor: Colors.grey[200],
+                  // border: OutlineInputBorder(
+                  //   borderRadius: BorderRadius.circular(10.0),
+                  // ),
+                  hintText: 'Search',
+                  hintStyle: TextStyle(fontSize: 18.0, color: Colors.black),
+                  suffixIcon: Icon(Icons.search,color: Colors.black,),
+                  prefixIcon: Icon(Icons.arrow_back,color: Colors.black,),
+                ),
+              ),
+              // ),
+            ),
+          ),
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 20),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text("Blogs List",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+              ),
+
+
+
+              Padding(
+                padding: EdgeInsets.all(10),
+                // Center is a layout widget. It takes a single child and positions it
+                // in the middle of the parent.
+
+                  child: GridView.builder(
+                    gridDelegate:
+                    new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+                    scrollDirection: Axis.vertical,
+                    itemCount: 6,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 10.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            GestureDetector(
+                              onTap: () {
+                                // What do i do here?
+
+                                setState(() {
+
+                                });
+                              },
+                              child: Container(
+                                height: 350,
+                                width: 170,
+                                decoration: BoxDecoration(
+                                  // border: Border.all(color: Color(0xff940D5A)),
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(17.0),
+                                  boxShadow: <BoxShadow>[
+                                    BoxShadow(
+                                      color: Colors.grey,
+                                      offset: Offset(1.0, 15.0),
+                                      blurRadius: 20.0,
+                                    ),
+                                  ],
+                                ),
+                                child: Column(
+                                  children: <Widget>[
+                                      Image.asset("assets/image/img_1.png", fit: BoxFit.cover,height: 150,),
+                                      Text("Data Science",
+                                      style: TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 10,
+                                      ),),
+
+                                     SizedBox(
+                                       height: 5,
+                                     ),
+
+                                     Text("How to improve Excel Skills",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 10,
+                                      ),),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text("{U+1F441}20k",
+                                          style: TextStyle(
+                                            color: Colors.grey,
+                                            fontSize: 9,
+                                          ),),
+
+                                        Text("28 jan 2021",
+                                          style: TextStyle(
+                                            color: Colors.grey,
+                                            fontSize: 9,
+                                          ),),
+                                      ],
+                                    ),
+
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  )
+                ),
+            ],
+          ),
+        ),
       ),
 
       //profile
@@ -568,5 +707,20 @@ class _home_body extends State<home> {
      );
   }
 
+  Widget blogs_list(){
+    return IntrinsicHeight(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+
+        children: [
+
+          Column(
+
+          ),
+
+        ],
+      ),
+    );
+  }
 
 }

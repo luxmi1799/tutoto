@@ -171,8 +171,6 @@ class _college_list extends State<college_list> {
                          child: college_list());
                    }),
              ),
-
-
            ],
          ),
        ),
