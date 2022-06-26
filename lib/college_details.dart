@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:page_indicator/page_indicator.dart';
+import 'package:tutoro/colors/colors.dart';
 
 class college_details extends StatefulWidget{
   @override
@@ -107,6 +108,181 @@ class _college_details extends State<college_details> {
                //     key.currentState?.forceRefreshState();
                //   },
                // ),
+
+               Padding(
+                 padding: EdgeInsets.symmetric(vertical: 10.0,horizontal: 20),
+                 child: Align(
+                   alignment: Alignment.centerLeft,
+                   child: Text("All India Insitute of Medical Sciences",
+                     textAlign: TextAlign.start,
+                     style: TextStyle(
+                       fontSize: 18,
+                       fontWeight: FontWeight.bold,
+                       color: Colors.black,
+                     ),
+                   ),
+                 ),
+               ),
+
+               Padding(
+                 padding: EdgeInsets.symmetric(vertical: 10.0,horizontal: 20),
+                 child: Align(
+                   alignment: Alignment.centerLeft,
+                   child: Text("Delhi",
+                     textAlign: TextAlign.start,
+                     style: TextStyle(
+                       fontSize: 16,
+                       color: Colors.grey,
+                     ),
+                   ),
+                 ),
+               ),
+
+               Padding(
+                 padding: EdgeInsets.symmetric(vertical: 10.0,horizontal: 20),
+                 child: Align(
+                   alignment: Alignment.centerLeft,
+                   child: Text("4.5",
+                     textAlign: TextAlign.start,
+                     style: TextStyle(
+                       fontSize: 16,
+                       color: Colors.grey,
+                     ),
+                   ),
+                 ),
+               ),
+
+               Padding(
+                 padding: EdgeInsets.symmetric(vertical: 10.0,horizontal: 20),
+                 child: Align(
+                   alignment: Alignment.centerLeft,
+                   child: Column(
+                     mainAxisAlignment: MainAxisAlignment.spaceAround,
+                     children: [
+                       Row(
+                         mainAxisAlignment: MainAxisAlignment.spaceAround,
+                         children: [
+                           Text("World Ranking",
+                           style: TextStyle(
+                             color: Colors.black,
+                             fontSize: 16,
+                           ),),
+
+                           Text("873 Rank",
+                           style: TextStyle(
+                             color: Colors.black,
+                             fontSize: 16,
+                           ),),
+                         ],
+
+                       ),
+
+                       Row(
+                         mainAxisAlignment: MainAxisAlignment.spaceAround,
+                         children: [
+                           Text("Bond",
+                           style: TextStyle(
+                             color: Colors.black,
+                             fontSize: 16,
+                           ),),
+
+                           Text("-",
+                           style: TextStyle(
+                             color: Colors.black,
+                             fontSize: 16,
+                           ),),
+                         ],
+                       ),
+
+                       Row(
+                         mainAxisAlignment: MainAxisAlignment.spaceAround,
+                         children: [
+                           Text("Private/Government",
+                           style: TextStyle(
+                             color: Colors.black,
+                             fontSize: 16,
+                           ),),
+
+                           Text("Private",
+                           style: TextStyle(
+                             color: Colors.black,
+                             fontSize: 16,
+                           ),),
+                         ],
+                       ),
+
+                       Row(
+                         mainAxisAlignment: MainAxisAlignment.spaceAround,
+                         children: [
+                           Text("Institute Fee/Hostel Fee",
+                           style: TextStyle(
+                             color: Colors.black,
+                             fontSize: 16,
+                           ),),
+
+                           Text("2 Lakhs",
+                           style: TextStyle(
+                             color: Colors.black,
+                             fontSize: 16,
+                           ),),
+                         ],
+                       ),
+                     ],
+                   ),
+                 ),
+               ),
+
+               Padding(
+                 padding: EdgeInsets.symmetric(vertical: 10.0,horizontal: 20),
+                 child: Align(
+                   alignment: Alignment.centerLeft,
+                   child: Column(
+                     mainAxisAlignment: MainAxisAlignment.spaceAround,
+                     children: [
+                      Text("Description:",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                          fontSize: 16,
+                        ),
+                      ),
+
+                       SizedBox(
+                         height: 6,
+                       ),
+
+                       Text("All-India Institute of Medical Sciences was established as an institution of national importance by an Act of Parliament with the objects to develop patterns of teaching in Undergraduate and Post-graduate Medical Education in all its branches so as to demonstrate a high standard of Medical Education in India; to bring together in one place educational facilities of the highest order for the training of personnel in all important branches of health activity; and to attain self-sufficiency in Post-graduate Medical Education.",
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 14,
+                        ),
+                      ),
+
+                     ],
+                   ),
+                 ),
+               ),
+
+               Center(
+                 child: Container(
+                   width: 150,
+                   height: 50,
+                   child: RaisedButton(
+                     onPressed: (){},
+                     color: Color(int.parse("0xff${colors_color.main_theme}")),
+                     child: Text("Apply",
+                       textAlign: TextAlign.center,
+                       style: TextStyle(
+                         color: Colors.white,
+                         fontSize: 15,
+                         fontWeight: FontWeight.bold,
+                         backgroundColor:  Color(int.parse("0xff${colors_color.main_theme}")),
+                       ),),
+                   ),
+                 ),
+               ),
+
+
              ],
            ),
          ),
