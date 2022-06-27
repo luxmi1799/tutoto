@@ -587,7 +587,7 @@ class _home_body extends State<home> {
 
 
               Padding(
-                padding: EdgeInsets.all(10),
+                padding: EdgeInsets.only(top: 10),
                 // Center is a layout widget. It takes a single child and positions it
                 // in the middle of the parent.
 
