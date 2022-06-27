@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:splashscreen/splashscreen.dart';
+import 'package:tutoro/home.dart';
 
 import 'login.dart';
 
@@ -42,10 +44,23 @@ class MyHomePage extends StatelessWidget {
       darkTheme: ThemeData(
           brightness: Brightness.dark
       ),
-      initialRoute: "/login",
-      routes: {
-      "/" :(context) => login(),
-      }
+      // initialRoute: "/login",
+      // routes: {
+      // "/" :(context) => login(),
+      // }
+         home: SplashScreen(
+            seconds: 4,
+            navigateAfterSeconds: new login(),
+            title: new Text('',
+              style: new TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20.0
+              ),),
+            image: new Image.asset("assets/image/tutorologo.png"),
+            backgroundColor: Colors.white,
+            styleTextUnderTheLoader: new TextStyle(),
+            photoSize: 100.0,
+        )
     );
   }
 
