@@ -6,6 +6,8 @@ import 'package:tutoro/college_listing.dart';
 import 'package:tutoro/colors/colors.dart';
 import 'package:tutoro/drawer.dart';
 
+import 'blogs_details.dart';
+
 
 final List<String> imgList = [
   'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
@@ -594,6 +596,7 @@ class _home_body extends State<home> {
                     new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
                     scrollDirection: Axis.vertical,
                     itemCount: 6,
+                    shrinkWrap: true,
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: const EdgeInsets.only(bottom: 10.0),
@@ -604,8 +607,9 @@ class _home_body extends State<home> {
                               onTap: () {
                                 // What do i do here?
 
-                                setState(() {
-
+                                setState(()
+                                {
+                                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => blog_details()));
                                 });
                               },
                               child: Container(
@@ -625,7 +629,8 @@ class _home_body extends State<home> {
                                 ),
                                 child: Column(
                                   children: <Widget>[
-                                      Image.asset("assets/image/img_1.png", fit: BoxFit.cover,height: 150,),
+                                      Image.asset("assets/image/img_1.png",
+                                        fit: BoxFit.cover,height: 120,),
                                       Text("Data Science",
                                       style: TextStyle(
                                         color: Colors.grey,

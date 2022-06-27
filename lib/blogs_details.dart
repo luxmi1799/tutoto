@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tutoro/colors/colors.dart';
 
-class college_details extends StatefulWidget{
+class blog_details extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -9,8 +9,8 @@ class college_details extends StatefulWidget{
   }
 }
 
-class _college_details extends State<college_details> {
-  PageController? controller;
+class _college_details extends State<blog_details> {
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -69,18 +69,20 @@ class _college_details extends State<college_details> {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: Container(
+                   width: MediaQuery.of(context).size.width,
+                   height: 230,
                   //color: Colors.pink,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: Colors.orangeAccent
+                      color: Colors.white
                   ),
-                  child: Container(
-                    height: 200.0,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
+                  child:ClipRRect(
+                    borderRadius: BorderRadius.circular(20), // Image border
+                    child: SizedBox.fromSize(
+                      size: Size.fromRadius(48), // Image radius
+                      child: Image.asset("assets/image/img_1.png", fit: BoxFit.cover),
                     ),
-                    child:Image.asset("assets/image/img_1.png", fit: BoxFit.cover,height: 250,),
-                  ),
+                  )
                 ),
               ),
               // floatingActionButton: FloatingActionButton(
@@ -119,27 +121,6 @@ class _college_details extends State<college_details> {
                   ),
                 ),
               ),
-
-
-              Center(
-                child: Container(
-                  width: 150,
-                  height: 50,
-                  child: RaisedButton(
-                    onPressed: (){},
-                    color: Color(int.parse("0xff${colors_color.main_theme}")),
-                    child: Text("Apply",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                        backgroundColor:  Color(int.parse("0xff${colors_color.main_theme}")),
-                      ),),
-                  ),
-                ),
-              ),
-
 
             ],
           ),
