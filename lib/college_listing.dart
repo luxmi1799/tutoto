@@ -6,6 +6,7 @@ List<String> college_name = ["All India Institute of Medical Sciences","Harvard 
 List<String> address  = ["Delhi,India","Cambrigde,United States","cambridge","cambridge"];
 
 
+
 class college_list extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
