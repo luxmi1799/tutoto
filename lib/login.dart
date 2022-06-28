@@ -3,6 +3,7 @@ import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:tutoro/colors/colors.dart';
 import 'package:tutoro/create_account.dart';
 import 'package:tutoro/home.dart';
+import 'package:tutoro/otp_activity.dart';
 
 class login extends StatelessWidget{
   @override
@@ -174,10 +175,10 @@ class _login_body extends State<_login> {
                  onTap: (){
 
                    setState(() {
-                     phone_widget = false;
+                    // phone_widget = false;
                    });
 
-                  // Navigator.of(context).push(MaterialPageRoute(builder: (context) => home()));
+                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => otp_screen()));
 
                  },
                  child: AnimatedContainer(

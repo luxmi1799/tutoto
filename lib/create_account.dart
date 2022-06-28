@@ -93,7 +93,6 @@ class _login_body extends State<_login> {
                 onTap: (){
 
                   setState(() {
-                    phone_widget = false;
                     verified = true;
                   });
 

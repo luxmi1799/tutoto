@@ -85,453 +85,7 @@ class _home_body extends State<home> {
   Widget build(BuildContext context) {
     final  List<Widget> _widgetOptions = <Widget>[
       //home..
-      Scaffold(
-
-        drawer: myDrawer(),
-        appBar: AppBar(
-         iconTheme: IconThemeData(color: Colors.black),
-         backgroundColor: Colors.white,
-         elevation: 0.0,
-            actions: <Widget>[
-            // Using Stack to show Notification Badge
-            new Stack(
-            children: <Widget>[
-            new IconButton(
-                icon: Icon(
-                Icons.notifications_outlined), onPressed: () {
-                setState(() {
-               counter = 0;
-              });
-            }),
-            counter != 1 ? new Positioned(
-             right: 11,
-             top: 11,
-             child: new Container(
-             padding: EdgeInsets.all(2),
-             decoration: new BoxDecoration(
-              color: Colors.red,
-              borderRadius: BorderRadius.circular(6),
-            ),
-             constraints: BoxConstraints(
-             minWidth: 14,
-             minHeight: 14,
-            ),
-            child: Text(
-             '$counter',
-             style: TextStyle(
-             color: Colors.white,
-              fontSize: 8,
-            ),
-            textAlign: TextAlign.center,
-            ),
-            ),
-             ) : new Container()
-             ],
-             ),
-           ],
-
-        ),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.only(top: 10.0),
-            child: Column(children: [
-              // Expanded(
-              //   child:
-
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(10.0),
-                  child: Container(
-                    width: double.infinity,
-                    height: 40,
-                    color: Colors.grey[200],
-                    // child: Center(
-                    child: TextField(
-                      textAlign: TextAlign.start,
-                      decoration: InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(vertical: 5,horizontal: 5),
-                        //  filled: true,
-                        // fillColor: Colors.grey[200],
-                        // border: OutlineInputBorder(
-                        //   borderRadius: BorderRadius.circular(10.0),
-                        // ),
-                        hintText: 'Search',
-                        hintStyle: TextStyle(fontSize: 16.0, color: Colors.black),
-                      ),
-                    ),
-                    // ),
-                  ),
-                ),
-              ),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                height: 240,
-                child: CarouselSlider(
-                    items: imageSliders,
-                    carouselController: _controller,
-                    options: CarouselOptions(
-                        autoPlay: true,
-                        enlargeCenterPage: false,
-                        aspectRatio: 2.0,
-                        onPageChanged: (index, reason) {
-                          setState(() {
-                            _current = index;
-                          });
-                        }),
-                  ),
-              ),
-              //),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: imgList.asMap().entries.map((entry) {
-                  return GestureDetector(
-                    onTap: () => _controller.animateToPage(entry.key),
-                    child: Container(
-                      width: 9.0,
-                      height: 9.0,
-                      margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: (Theme.of(context).brightness == Brightness.dark
-                              ? Colors.white
-                              : Colors.black)
-                              .withOpacity(_current == entry.key ? 0.9 : 0.4)),
-                    ),
-                  );
-                }).toList(),
-              ),
-
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text("Categories",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-              ),
-
-
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-
-                    Expanded(
-                      child: InkWell(
-                        onTap: (){
-                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => college_list()));
-
-                        },
-                        child: Container(
-                          //width:200,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(8),
-                            boxShadow: [BoxShadow(color: Color(int.parse("0xff${colors_color.main_theme}")), blurRadius: 8)],
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(8),
-                            child: Container(
-                              padding: EdgeInsets.all(20),
-                              decoration: BoxDecoration(
-                                color: Colors.black,
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10.0),
-                                  // radius
-                                ),
-                                // border: Border(
-                                //   left: BorderSide(color: Colors.indigo, width: 5),
-                                // ),
-                              ),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: <Widget>[
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Column(
-                                        children: [
-                                          Align(
-                                              child: Text("News",
-                                                textAlign: TextAlign.left,
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 12,
-                                                ),
-                                              )),
-
-                                           Padding(
-                                             padding: EdgeInsets.only(top: 8),
-                                                child: Text("Get Latest Updates",
-                                                  textAlign: TextAlign.left,
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 10
-                                                  ),
-                                                )),
-
-                                        ],
-                                      ),
-                                     SizedBox(
-                                       width: 20,
-                                     ),
-                                      Icon(Icons.home,
-                                      color: Colors.white,),
-                                    ],
-                                  ),
-
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Expanded(
-                      child: Container(
-                        //width:200,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(8),
-                          boxShadow: [BoxShadow(color: Color(int.parse("0xff${colors_color.main_theme}")), blurRadius: 8)],
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(8),
-                          child: Container(
-                            padding: EdgeInsets.all(20),
-                            decoration: BoxDecoration(
-                              color: Colors.black,
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(10.0),
-                                // radius
-                              ),
-                              // border: Border(
-                              //   left: BorderSide(color: Colors.indigo, width: 5),
-                              // ),
-                            ),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: <Widget>[
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Column(
-                                      children: [
-                                        Align(
-                                            alignment: Alignment.centerLeft,
-                                            child: Text("Colleges",
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 12,
-
-                                              ),
-                                            )),
-
-                                        Padding(
-                                          padding: EdgeInsets.only(top: 8),
-                                            child: Text("Top Colleges",
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 10
-                                              ),
-                                            )),
-
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      width: 20,
-                                    ),
-                                    Icon(Icons.home,
-                                      color: Colors.white,),
-                                  ],
-                                ),
-
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-
-                  ],
-                ),
-              ),
-
-
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-
-                    Expanded(
-                      child: Container(
-                        //width:200,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(8),
-                          boxShadow: [BoxShadow(color: Color(int.parse("0xff${colors_color.main_theme}")), blurRadius: 8)],
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(8),
-                          child: Container(
-                            padding: EdgeInsets.all(20),
-                            decoration: BoxDecoration(
-                              color: Colors.black,
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(10.0),
-                                // radius
-                              ),
-                              // border: Border(
-                              //   left: BorderSide(color: Colors.indigo, width: 5),
-                              // ),
-                            ),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: <Widget>[
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Column(
-                                      children: [
-                                        Align(
-                                          alignment: Alignment.centerLeft,
-                                            child: Text("Budget Predictor",
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 12,
-                                              ),
-                                            )),
-
-                                         Padding(
-                                              padding: EdgeInsets.only(top: 8),
-                                              child: Text("Control your money",
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 10
-                                                ),
-                                              )),
-
-                                      ],
-                                    ),
-                                   SizedBox(
-                                     width: 20,
-                                   ),
-                                    Icon(Icons.home,
-                                    color: Colors.white,),
-                                  ],
-                                ),
-
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Expanded(
-                      child: Container(
-                        //width:200,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(8),
-                          boxShadow: [BoxShadow(color: Color(int.parse("0xff${colors_color.main_theme}")), blurRadius: 8)],
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(8),
-                          child: Container(
-                            padding: EdgeInsets.all(20),
-                            decoration: BoxDecoration(
-                              color: Colors.black,
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(10.0),
-                                // radius
-                              ),
-                              // border: Border(
-                              //   left: BorderSide(color: Colors.indigo, width: 5),
-                              // ),
-                            ),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: <Widget>[
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Column(
-                                      children: [
-                                        Align(
-                                            alignment: Alignment.centerLeft,
-                                            child: Text("Support",
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 12
-                                              ),
-                                            )),
-
-                                        Padding(
-                                           padding: EdgeInsets.only(top: 8),
-                                            child: Text("How we help you!",
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 10
-                                              ),
-                                            )),
-
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      width: 20,
-                                    ),
-                                    Icon(Icons.home,
-                                      color: Colors.white,),
-                                  ],
-                                ),
-
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-
-                  ],
-                ),
-              ),
-
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text("Latest News",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-              ),
-
-            ]),
-          ),
-        ),
-      ),
+      college_home(context),
 
       //news
       Scaffold(
@@ -682,9 +236,7 @@ class _home_body extends State<home> {
       ),
 
       //profile
-      Text(
-        'Index 2: School',
-      ),
+      profile(context)
     ];
      return Scaffold(
        body: Center(
@@ -712,18 +264,713 @@ class _home_body extends State<home> {
      );
   }
 
-  Widget blogs_list(){
-    return IntrinsicHeight(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+  Widget college_home(BuildContext context){
+    return Scaffold(
 
-        children: [
-
-          Column(
-
+      drawer: myDrawer(),
+      appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.black),
+        backgroundColor: Colors.white,
+        elevation: 0.0,
+        actions: <Widget>[
+          // Using Stack to show Notification Badge
+          new Stack(
+            children: <Widget>[
+              new IconButton(
+                  icon: Icon(
+                      Icons.notifications_outlined), onPressed: () {
+                setState(() {
+                  counter = 0;
+                });
+              }),
+              counter != 1 ? new Positioned(
+                right: 11,
+                top: 11,
+                child: new Container(
+                  padding: EdgeInsets.all(2),
+                  decoration: new BoxDecoration(
+                    color: Colors.red,
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  constraints: BoxConstraints(
+                    minWidth: 14,
+                    minHeight: 14,
+                  ),
+                  child: Text(
+                    '$counter',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 8,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ) : new Container()
+            ],
           ),
-
         ],
+
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.only(top: 10.0),
+          child: Column(children: [
+            // Expanded(
+            //   child:
+
+
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: 240,
+              child: CarouselSlider(
+                items: imageSliders,
+                carouselController: _controller,
+                options: CarouselOptions(
+                    autoPlay: true,
+                    enlargeCenterPage: false,
+                    aspectRatio: 2.0,
+                    onPageChanged: (index, reason) {
+                      setState(() {
+                        _current = index;
+                      });
+                    }),
+              ),
+            ),
+            //),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: imgList.asMap().entries.map((entry) {
+                return GestureDetector(
+                  onTap: () => _controller.animateToPage(entry.key),
+                  child: Container(
+                    width: 9.0,
+                    height: 9.0,
+                    margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: (Theme.of(context).brightness == Brightness.dark
+                            ? Colors.white
+                            : Colors.black)
+                            .withOpacity(_current == entry.key ? 0.9 : 0.4)),
+                  ),
+                );
+              }).toList(),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text("Categories",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+            ),
+
+
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+
+                  Expanded(
+                    child: InkWell(
+                      onTap: (){
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => college_list()));
+
+                      },
+                      child: Container(
+                        //width:200,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(8),
+                          boxShadow: [BoxShadow(color: Color(int.parse("0xff${colors_color.main_theme}")), blurRadius: 8)],
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Container(
+                            padding: EdgeInsets.all(20),
+                            decoration: BoxDecoration(
+                              color: Colors.black,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10.0),
+                                // radius
+                              ),
+                              // border: Border(
+                              //   left: BorderSide(color: Colors.indigo, width: 5),
+                              // ),
+                            ),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Column(
+                                      children: [
+                                        Align(
+                                            child: Text("News",
+                                              textAlign: TextAlign.left,
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 12,
+                                              ),
+                                            )),
+
+                                        Padding(
+                                            padding: EdgeInsets.only(top: 8),
+                                            child: Text("Get Latest Updates",
+                                              textAlign: TextAlign.left,
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 10
+                                              ),
+                                            )),
+
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      width: 20,
+                                    ),
+                                    Icon(Icons.home,
+                                      color: Colors.white,),
+                                  ],
+                                ),
+
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Expanded(
+                    child: Container(
+                      //width:200,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(8),
+                        boxShadow: [BoxShadow(color: Color(int.parse("0xff${colors_color.main_theme}")), blurRadius: 8)],
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Container(
+                          padding: EdgeInsets.all(20),
+                          decoration: BoxDecoration(
+                            color: Colors.black,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10.0),
+                              // radius
+                            ),
+                            // border: Border(
+                            //   left: BorderSide(color: Colors.indigo, width: 5),
+                            // ),
+                          ),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Column(
+                                    children: [
+                                      Align(
+                                          alignment: Alignment.centerLeft,
+                                          child: Text("Colleges",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 12,
+
+                                            ),
+                                          )),
+
+                                      Padding(
+                                          padding: EdgeInsets.only(top: 8),
+                                          child: Text("Top Colleges",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 10
+                                            ),
+                                          )),
+
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    width: 20,
+                                  ),
+                                  Icon(Icons.home,
+                                    color: Colors.white,),
+                                ],
+                              ),
+
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+
+                ],
+              ),
+            ),
+
+
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+
+                  Expanded(
+                    child: Container(
+                      //width:200,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(8),
+                        boxShadow: [BoxShadow(color: Color(int.parse("0xff${colors_color.main_theme}")), blurRadius: 8)],
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Container(
+                          padding: EdgeInsets.all(20),
+                          decoration: BoxDecoration(
+                            color: Colors.black,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10.0),
+                              // radius
+                            ),
+                            // border: Border(
+                            //   left: BorderSide(color: Colors.indigo, width: 5),
+                            // ),
+                          ),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Column(
+                                    children: [
+                                      Align(
+                                          alignment: Alignment.centerLeft,
+                                          child: Text("Budget Predictor",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 12,
+                                            ),
+                                          )),
+
+                                      Padding(
+                                          padding: EdgeInsets.only(top: 8),
+                                          child: Text("Control your money",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 10
+                                            ),
+                                          )),
+
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    width: 20,
+                                  ),
+                                  Icon(Icons.home,
+                                    color: Colors.white,),
+                                ],
+                              ),
+
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Expanded(
+                    child: Container(
+                      //width:200,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(8),
+                        boxShadow: [BoxShadow(color: Color(int.parse("0xff${colors_color.main_theme}")), blurRadius: 8)],
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Container(
+                          padding: EdgeInsets.all(20),
+                          decoration: BoxDecoration(
+                            color: Colors.black,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10.0),
+                              // radius
+                            ),
+                            // border: Border(
+                            //   left: BorderSide(color: Colors.indigo, width: 5),
+                            // ),
+                          ),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Column(
+                                    children: [
+                                      Align(
+                                          alignment: Alignment.centerLeft,
+                                          child: Text("Support",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 12
+                                            ),
+                                          )),
+
+                                      Padding(
+                                          padding: EdgeInsets.only(top: 8),
+                                          child: Text("How we help you!",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 10
+                                            ),
+                                          )),
+
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    width: 20,
+                                  ),
+                                  Icon(Icons.home,
+                                    color: Colors.white,),
+                                ],
+                              ),
+
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+
+                ],
+              ),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text("Latest News",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+            ),
+
+          ]),
+        ),
+      ),
+    );
+  }
+
+  Widget profile(BuildContext context){
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        elevation: 0,
+        title: Text("My Profile",style: TextStyle(
+            color: Colors.black,
+                fontSize: 16
+        ),),
+        backgroundColor: Colors.white,
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Container(
+                    width: 50,
+                    height: 50,
+                    child: FittedBox(
+                      fit: BoxFit.contain,
+                      alignment: Alignment.center,
+                      child: Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Color(int.parse("0xff${colors_color.main_theme}")),
+                          border: Border.all(color: Color(int.parse("0xff${colors_color.main_theme}")), width: 0.0),
+                        ),
+                        padding: EdgeInsets.all(8.0),
+                        child: Text("L", style: TextStyle(color: Colors.white)),
+                      ),
+                    ),
+                  ),
+                ),
+
+
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text("Liza Horllow",
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.bold,
+                      ),),
+                    ),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text("Lizaorllow@gmail.com",
+                      style: TextStyle(
+                        fontSize: 13,
+                      ),),
+                    ),
+                  ],
+                ),
+
+              ],
+            ),
+
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 10),
+                  child: Container(
+                    width: 50,
+                    height: 50,
+                      child: Container(
+                        child: Icon(Icons.home_outlined,
+                          size: 30,
+                          color: Color(int.parse("0xff${colors_color.main_theme}"),),
+                        ),
+                      ),
+
+                  ),
+                ),
+
+
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text("Home",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                      fontSize: 12,
+                    ),),
+                ),
+
+              ],
+            ),
+
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 10),
+                  child: Container(
+                    width: 50,
+                    height: 50,
+                    child: Container(
+                      child: Icon(Icons.home_outlined,
+                        size: 30,
+                        color: Color(int.parse("0xff${colors_color.main_theme}"),),
+                      ),
+                    ),
+
+                  ),
+                ),
+
+
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text("About us",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                      fontSize: 12,
+                    ),),
+                ),
+
+              ],
+            ),
+
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 10),
+                  child: Container(
+                    width: 50,
+                    height: 50,
+                    child: Container(
+                      child: Icon(Icons.person_outline,
+                        size: 30,
+                        color: Color(int.parse("0xff${colors_color.main_theme}"),),
+                      ),
+                    ),
+
+                  ),
+                ),
+
+
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text("Edit Profile",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                      fontSize: 12,
+                    ),),
+                ),
+
+              ],
+            ),
+
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 10),
+                  child: Container(
+                    width: 50,
+                    height: 50,
+                    child: Container(
+                      child: Icon(Icons.star_border_sharp,
+                        size: 30,
+                        color: Color(int.parse("0xff${colors_color.main_theme}"),),
+                      ),
+                    ),
+
+                  ),
+                ),
+
+
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text("Rate App",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                      fontSize: 12,
+                    ),),
+                ),
+
+              ],
+            ),
+
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 10),
+                  child: Container(
+                    width: 50,
+                    height: 50,
+                    child: Container(
+                      child: Icon(Icons.share,
+                        size: 30,
+                        color: Color(int.parse("0xff${colors_color.main_theme}"),),
+                      ),
+                    ),
+
+                  ),
+                ),
+
+
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text("Share App",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                      fontSize: 12,
+                    ),),
+                ),
+
+              ],
+            ),
+
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 10),
+                  child: Container(
+                    width: 50,
+                    height: 50,
+                    child: Container(
+                      child: Icon(Icons.privacy_tip_outlined,
+                        size: 30,
+                        color: Color(int.parse("0xff${colors_color.main_theme}"),),
+                      ),
+                    ),
+
+                  ),
+                ),
+
+
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text("Privacy Policy",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                      fontSize: 12,
+                    ),),
+                ),
+
+              ],
+            ),
+
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 10),
+                  child: Container(
+                    width: 50,
+                    height: 50,
+                    child: Container(
+                      child: Icon(Icons.logout,
+                        size: 30,
+                        color: Color(int.parse("0xff${colors_color.main_theme}"),),
+                      ),
+                    ),
+
+                  ),
+                ),
+
+
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text("Sign Out",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                      fontSize: 12,
+                    ),),
+                ),
+
+              ],
+            ),
+
+
+
+          ],
+        ),
       ),
     );
   }

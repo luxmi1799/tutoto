@@ -20,7 +20,7 @@ class _college_details extends State<blog_details> {
           elevation: 0,
           automaticallyImplyLeading: false,
           backgroundColor: Colors.white,
-          title: ClipRRect(
+          /*title: ClipRRect(
             borderRadius: BorderRadius.circular(10.0),
             child: Container(
               width: double.infinity,
@@ -46,7 +46,7 @@ class _college_details extends State<blog_details> {
               ),
               // ),
             ),
-          ),
+          ),*/
         ),
         body: SingleChildScrollView(
           child: Column(

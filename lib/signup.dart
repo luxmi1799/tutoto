@@ -68,7 +68,7 @@ class _login_body extends State<_login> {
             children: [
 
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20.0,horizontal: 10),
+                padding: const EdgeInsets.symmetric(vertical: 0.0,horizontal: 10),
                 child: IntlPhoneField(
                   decoration: InputDecoration(
                     labelText: 'Phone Number',
@@ -87,7 +87,7 @@ class _login_body extends State<_login> {
               ),
 
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 0),
                 child: TextFormField(
                   // controller: emailController,
                   decoration: InputDecoration(
