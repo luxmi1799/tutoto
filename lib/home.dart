@@ -461,8 +461,7 @@ class _home_body extends State<home> {
                                     SizedBox(
                                       width: 20,
                                     ),
-                                    Icon(Icons.home,
-                                      color: Colors.white,),
+                                    Image.asset("assets/image/college.png", fit: BoxFit.cover),
                                   ],
                                 ),
 
@@ -612,8 +611,7 @@ class _home_body extends State<home> {
                                   SizedBox(
                                     width: 20,
                                   ),
-                                  Icon(Icons.home,
-                                    color: Colors.white,),
+                                  Image.asset("assets/image/budget.png", fit: BoxFit.cover),
                                 ],
                               ),
 
@@ -682,8 +680,7 @@ class _home_body extends State<home> {
                                   SizedBox(
                                     width: 20,
                                   ),
-                                  Icon(Icons.home,
-                                    color: Colors.white,),
+                                  Image.asset("assets/image/support.png", fit: BoxFit.cover),
                                 ],
                               ),
 
@@ -729,6 +726,9 @@ class _home_body extends State<home> {
                           size: Size.fromRadius(45), // Image radius
                           child: Image.asset("assets/image/img_1.png", fit: BoxFit.cover),
                         ),
+                      ),
+                      SizedBox(
+                        width: 5,
                       ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -786,6 +786,9 @@ class _home_body extends State<home> {
                           size: Size.fromRadius(45), // Image radius
                           child: Image.asset("assets/image/img_1.png", fit: BoxFit.cover),
                         ),
+                      ),
+                      SizedBox(
+                        width: 5,
                       ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
