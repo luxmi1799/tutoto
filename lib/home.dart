@@ -273,6 +273,25 @@ class _home_body extends State<home> {
         backgroundColor: Colors.white,
         elevation: 0.0,
         actions: <Widget>[
+
+          Container(
+            width: 30,
+            height: 30,
+            child: FittedBox(
+              fit: BoxFit.contain,
+              alignment: Alignment.center,
+              child: Container(
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Color(int.parse("0xff${colors_color.main_theme}")),
+                  border: Border.all(color: Color(int.parse("0xff${colors_color.main_theme}")), width: 0.0),
+                ),
+                padding: EdgeInsets.all(8.0),
+                child: Icon(Icons.call,color: Colors.white),
+              ),
+            ),
+          ),
           // Using Stack to show Notification Badge
           new Stack(
             children: <Widget>[
@@ -375,7 +394,7 @@ class _home_body extends State<home> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
 
                   Expanded(
@@ -406,15 +425,19 @@ class _home_body extends State<home> {
                               // ),
                             ),
                             child: Column(
-                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start ,
                               children: <Widget>[
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start ,
                                       children: [
                                         Align(
-                                            child: Text("News",
+                                          alignment: Alignment.centerLeft,
+                                            child: Text("Colleges",
                                               textAlign: TextAlign.left,
                                               style: TextStyle(
                                                 color: Colors.white,
@@ -425,7 +448,7 @@ class _home_body extends State<home> {
 
                                         Padding(
                                             padding: EdgeInsets.only(top: 8),
-                                            child: Text("Get Latest Updates",
+                                            child: Text("Top Colleges",
                                               textAlign: TextAlign.left,
                                               style: TextStyle(
                                                   color: Colors.white,
@@ -482,10 +505,12 @@ class _home_body extends State<home> {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start ,
                                     children: [
                                       Align(
                                           alignment: Alignment.centerLeft,
-                                          child: Text("Colleges",
+                                          child: Text("News",
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontWeight: FontWeight.bold,
@@ -496,7 +521,7 @@ class _home_body extends State<home> {
 
                                       Padding(
                                           padding: EdgeInsets.only(top: 8),
-                                          child: Text("Top Colleges",
+                                          child: Text("Get Latest Updates",
                                             style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 10
@@ -560,6 +585,8 @@ class _home_body extends State<home> {
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start ,
                                     children: [
                                       Align(
                                           alignment: Alignment.centerLeft,
@@ -628,6 +655,8 @@ class _home_body extends State<home> {
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start ,
                                     children: [
                                       Align(
                                           alignment: Alignment.centerLeft,
@@ -670,7 +699,7 @@ class _home_body extends State<home> {
             ),
 
             Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.only(top: 15.0,left: 10),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text("Latest News",
@@ -683,6 +712,131 @@ class _home_body extends State<home> {
               ),
             ),
 
+            Container(
+              margin: EdgeInsets.symmetric(vertical: 10.0),
+              height: 200.0,
+              child:
+              ListView(
+                scrollDirection: Axis.horizontal,
+                shrinkWrap: true,
+                children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(18), // Image border
+                        child: SizedBox.fromSize(
+                          size: Size.fromRadius(45), // Image radius
+                          child: Image.asset("assets/image/img_1.png", fit: BoxFit.cover),
+                        ),
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start ,
+                        children: [
+                          Text("Clinical Doctor",
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.grey,
+                            ),),
+
+                          SizedBox(
+                            height: 4,
+                          ),
+
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text("A young doctor journey",
+                              // textAlign: TextAlign.left,
+                              style: TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.bold
+                              ),),
+                          ),
+
+                          SizedBox(
+                            height: 4,
+                          ),
+
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            // child: Expanded(
+                              child: Text("Lorem Ipsum. Lorem Ipsum is\n probably the most popular\n dummy text generator out there. ...",
+                                // textAlign: TextAlign.left,
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.black,
+                                ),),
+                          //  ),
+                          ),
+
+
+                        ],
+                      ),
+                    ],
+                  ),
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(18), // Image border
+                        child: SizedBox.fromSize(
+                          size: Size.fromRadius(45), // Image radius
+                          child: Image.asset("assets/image/img_1.png", fit: BoxFit.cover),
+                        ),
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start ,
+                        children: [
+                          Text("Clinical Doctor",
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.grey,
+                            ),),
+
+                          SizedBox(
+                            height: 4,
+                          ),
+
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text("A young doctor journey",
+                              // textAlign: TextAlign.left,
+                              style: TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.bold
+                              ),),
+                          ),
+
+                          SizedBox(
+                            height: 4,
+                          ),
+
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            // child: Expanded(
+                            child: Text("Lorem Ipsum. Lorem Ipsum is\n probably the most popular\n dummy text generator out there. ...",
+                              // textAlign: TextAlign.left,
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: Colors.black,
+                              ),),
+                            //  ),
+                          ),
+
+
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+
+              ),
+            ),
           ]),
         ),
       ),
@@ -780,7 +934,7 @@ class _home_body extends State<home> {
                   child: Text("Home",
                     textAlign: TextAlign.start,
                     style: TextStyle(
-                      fontSize: 12,
+                      fontSize: 14,
                     ),),
                 ),
 
@@ -795,7 +949,7 @@ class _home_body extends State<home> {
                     width: 50,
                     height: 50,
                     child: Container(
-                      child: Icon(Icons.home_outlined,
+                      child: Icon(Icons.info_outlined,
                         size: 30,
                         color: Color(int.parse("0xff${colors_color.main_theme}"),),
                       ),
@@ -810,7 +964,7 @@ class _home_body extends State<home> {
                   child: Text("About us",
                     textAlign: TextAlign.start,
                     style: TextStyle(
-                      fontSize: 12,
+                      fontSize: 14,
                     ),),
                 ),
 
@@ -840,7 +994,7 @@ class _home_body extends State<home> {
                   child: Text("Edit Profile",
                     textAlign: TextAlign.start,
                     style: TextStyle(
-                      fontSize: 12,
+                      fontSize: 14,
                     ),),
                 ),
 
@@ -870,7 +1024,7 @@ class _home_body extends State<home> {
                   child: Text("Rate App",
                     textAlign: TextAlign.start,
                     style: TextStyle(
-                      fontSize: 12,
+                      fontSize: 14,
                     ),),
                 ),
 
@@ -900,7 +1054,7 @@ class _home_body extends State<home> {
                   child: Text("Share App",
                     textAlign: TextAlign.start,
                     style: TextStyle(
-                      fontSize: 12,
+                      fontSize: 14,
                     ),),
                 ),
 
@@ -930,7 +1084,7 @@ class _home_body extends State<home> {
                   child: Text("Privacy Policy",
                     textAlign: TextAlign.start,
                     style: TextStyle(
-                      fontSize: 12,
+                      fontSize: 14,
                     ),),
                 ),
 
@@ -960,7 +1114,7 @@ class _home_body extends State<home> {
                   child: Text("Sign Out",
                     textAlign: TextAlign.start,
                     style: TextStyle(
-                      fontSize: 12,
+                      fontSize: 14,
                     ),),
                 ),
 

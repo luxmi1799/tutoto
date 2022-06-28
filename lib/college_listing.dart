@@ -188,8 +188,9 @@ class _college_list extends State<college_list> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start ,
                 children: [
-
                   Text("college_name",
                     style: TextStyle(
                       fontSize: 14,
