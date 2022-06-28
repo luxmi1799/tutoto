@@ -43,6 +43,8 @@ dependencies:
   splashscreen: ^1.3.5
   flutter_otp_text_field: ^1.0.0
   scrollable_positioned_list: ^0.2.3
+  scrolling_page_indicator: ^0.1.2
+  dot_pagination_swiper: ^0.1.1
 
 dev_dependencies:
   flutter_test:

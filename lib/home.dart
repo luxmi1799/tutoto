@@ -1,6 +1,7 @@
 
 
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:dot_pagination_swiper/dot_pagination_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:tutoro/college_listing.dart';
 import 'package:tutoro/colors/colors.dart';
@@ -336,9 +337,7 @@ class _home_body extends State<home> {
           child: Column(children: [
             // Expanded(
             //   child:
-
-
-            Container(
+           /* Container(
               width: MediaQuery.of(context).size.width,
               height: 240,
               child: CarouselSlider(
@@ -374,6 +373,22 @@ class _home_body extends State<home> {
                   ),
                 );
               }).toList(),
+            ), */
+
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10.0),
+              child: Container(
+                height: 220,
+                child: DotPaginationSwiper.builder(
+                  itemCount: imgList.length,
+                  itemBuilder: (context, i) =>
+                    //  Center(child:
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                        child: Image.asset("assets/image/img_1.png", fit: BoxFit.cover)),
+                 // ),
+                ),
+              ),
             ),
 
             Padding(
@@ -392,7 +407,7 @@ class _home_body extends State<home> {
 
 
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(12.0),
               child: Row(
                 // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -550,7 +565,7 @@ class _home_body extends State<home> {
 
 
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(12.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -720,11 +735,14 @@ class _home_body extends State<home> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(18), // Image border
-                        child: SizedBox.fromSize(
-                          size: Size.fromRadius(45), // Image radius
-                          child: Image.asset("assets/image/img_1.png", fit: BoxFit.cover),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(16), // Image border
+                          child: SizedBox.fromSize(
+                            size: Size.fromRadius(42), // Image radius
+                            child: Image.asset("assets/image/img_1.png", fit: BoxFit.cover),
+                          ),
                         ),
                       ),
                       SizedBox(
@@ -737,12 +755,9 @@ class _home_body extends State<home> {
                           Text("Clinical Doctor",
                             style: TextStyle(
                               fontSize: 12,
-                              color: Colors.grey,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold
                             ),),
-
-                          SizedBox(
-                            height: 4,
-                          ),
 
                           Align(
                             alignment: Alignment.centerLeft,
@@ -756,19 +771,24 @@ class _home_body extends State<home> {
                           ),
 
                           SizedBox(
-                            height: 4,
+                            height: 5,
                           ),
 
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            // child: Expanded(
-                              child: Text("Lorem Ipsum. Lorem Ipsum is\n probably the most popular\n dummy text generator out there. ...",
-                                // textAlign: TextAlign.left,
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  color: Colors.black,
-                                ),),
-                          //  ),
+                          SizedBox(
+                            width: 120,
+                            child: Align(
+                              alignment: Alignment.centerLeft,
+                                child: Text("Lorem Ipsum ispular dummy text generator most popular dummy text generator out there. ...",
+                                  // textAlign: TextAlign.left,
+                                  softWrap: true,
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.grey,
+                                  ),
+                                 maxLines: 10,
+                                 overflow: TextOverflow.ellipsis
+                                ),
+                            ),
                           ),
 
 
@@ -780,11 +800,14 @@ class _home_body extends State<home> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(18), // Image border
-                        child: SizedBox.fromSize(
-                          size: Size.fromRadius(45), // Image radius
-                          child: Image.asset("assets/image/img_1.png", fit: BoxFit.cover),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(16), // Image border
+                          child: SizedBox.fromSize(
+                            size: Size.fromRadius(42), // Image radius
+                            child: Image.asset("assets/image/img_1.png", fit: BoxFit.cover),
+                          ),
                         ),
                       ),
                       SizedBox(
@@ -797,12 +820,9 @@ class _home_body extends State<home> {
                           Text("Clinical Doctor",
                             style: TextStyle(
                               fontSize: 12,
-                              color: Colors.grey,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold
                             ),),
-
-                          SizedBox(
-                            height: 4,
-                          ),
 
                           Align(
                             alignment: Alignment.centerLeft,
@@ -816,19 +836,25 @@ class _home_body extends State<home> {
                           ),
 
                           SizedBox(
-                            height: 4,
+                            height: 5,
                           ),
 
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            // child: Expanded(
-                            child: Text("Lorem Ipsum. Lorem Ipsum is\n probably the most popular\n dummy text generator out there. ...",
-                              // textAlign: TextAlign.left,
-                              style: TextStyle(
-                                fontSize: 12,
-                                color: Colors.black,
-                              ),),
-                            //  ),
+                          SizedBox(
+                            width: 120,
+                            child: Align(
+                              alignment: Alignment.centerLeft,
+                              // child: Expanded(
+                              child: Text(" Lorem Ipsum is probably  dummy text generator out there. ...",
+                                // textAlign: TextAlign.left,
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.grey,
+                                ),
+                               maxLines: 6,
+                               overflow: TextOverflow.ellipsis
+                              ),
+                              //  ),
+                            ),
                           ),
 
 
