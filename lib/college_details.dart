@@ -122,7 +122,7 @@ class _college_details extends State<college_details> {
                ),
 
                Padding(
-                 padding: EdgeInsets.symmetric(vertical: 3.0,horizontal: 20),
+                 padding: EdgeInsets.symmetric(vertical: 0.0,horizontal: 20),
                  child: Align(
                    alignment: Alignment.centerLeft,
                    child: Text("Delhi",
@@ -130,6 +130,7 @@ class _college_details extends State<college_details> {
                      style: TextStyle(
                        fontSize: 16,
                        color: Colors.grey,
+                       fontWeight: FontWeight.bold
                      ),
                    ),
                  ),
@@ -144,13 +145,14 @@ class _college_details extends State<college_details> {
                      style: TextStyle(
                        fontSize: 16,
                        color: Colors.grey,
+                       fontWeight: FontWeight.bold
                      ),
                    ),
                  ),
                ),
 
                Padding(
-                 padding: const EdgeInsets.only(left: 10.0),
+                 padding: const EdgeInsets.only(left: 10.0,top: 5),
                  child: Table(
                      border: TableBorder.all(width: 0.001), // Allows to add a border decoration around your table
                      children: [
@@ -176,7 +178,7 @@ class _college_details extends State<college_details> {
                          Padding(
                            padding: const EdgeInsets.symmetric(horizontal: 10),
                            child: Text('Bond',style: TextStyle(
-                             fontSize: 18,
+                             fontSize: 15,
                              fontWeight: FontWeight.bold,
                            ),),
                          ),
@@ -184,7 +186,7 @@ class _college_details extends State<college_details> {
                            padding: const EdgeInsets.symmetric(horizontal: 10),
                            child: Text('-',
                              style: TextStyle(
-                               fontSize: 18,
+                               fontSize: 15,
                              ),),
                          ),
                        ]),

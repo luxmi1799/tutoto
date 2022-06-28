@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:tutoro/college_listing.dart';
 import 'package:tutoro/colors/colors.dart';
 import 'package:tutoro/drawer.dart';
+import 'package:tutoro/support_screen.dart';
 
 import 'blogs_details.dart';
 
@@ -89,152 +90,7 @@ class _home_body extends State<home> {
       college_home(context),
 
       //news
-      Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          automaticallyImplyLeading: false,
-          backgroundColor: Colors.white,
-          title: ClipRRect(
-            borderRadius: BorderRadius.circular(10.0),
-            child: Container(
-              width: double.infinity,
-              height: 40,
-              color: Colors.grey[200],
-              // child: Center(
-              child: TextField(
-                textAlign: TextAlign.start,
-                decoration: InputDecoration(
-
-                  contentPadding: EdgeInsets.only(top: 5),
-                  //  filled: true,
-                  // fillColor: Colors.grey[200],
-                  // border: OutlineInputBorder(
-                  //   borderRadius: BorderRadius.circular(10.0),
-                  // ),
-                  hintText: 'Search',
-                  hintStyle: TextStyle(fontSize: 18.0, color: Colors.black),
-                  suffixIcon: Icon(Icons.search,color: Colors.black,),
-                  prefixIcon: Icon(Icons.arrow_back,color: Colors.black,),
-                ),
-              ),
-              // ),
-            ),
-          ),
-        ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 20),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text("Blogs List",
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-              ),
-
-
-
-              Padding(
-                padding: EdgeInsets.only(top: 10),
-                // Center is a layout widget. It takes a single child and positions it
-                // in the middle of the parent.
-
-                  child: GridView.builder(
-                    gridDelegate:
-                    new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-                    scrollDirection: Axis.vertical,
-                    itemCount: 6,
-                    shrinkWrap: true,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.only(bottom: 10.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: <Widget>[
-                            GestureDetector(
-                              onTap: () {
-                                // What do i do here?
-
-                                setState(()
-                                {
-                                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => blog_details()));
-                                });
-                              },
-                              child: Container(
-                                height: 350,
-                                width: 170,
-                                decoration: BoxDecoration(
-                                  // border: Border.all(color: Color(0xff940D5A)),
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(17.0),
-                                  boxShadow: <BoxShadow>[
-                                    BoxShadow(
-                                      color: Colors.grey,
-                                      offset: Offset(1.0, 15.0),
-                                      blurRadius: 20.0,
-                                    ),
-                                  ],
-                                ),
-                                child: Column(
-                                  children: <Widget>[
-                                      Image.asset("assets/image/img_1.png",
-                                        fit: BoxFit.cover,height: 120,),
-                                      Text("Data Science",
-                                      style: TextStyle(
-                                        color: Colors.grey,
-                                        fontSize: 10,
-                                      ),),
-
-                                     SizedBox(
-                                       height: 5,
-                                     ),
-
-                                     Text("How to improve Excel Skills",
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 10,
-                                      ),),
-                                    SizedBox(
-                                      height: 5,
-                                    ),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text("{U+1F441}20k",
-                                          style: TextStyle(
-                                            color: Colors.grey,
-                                            fontSize: 9,
-                                          ),),
-
-                                        Text("28 jan 2021",
-                                          style: TextStyle(
-                                            color: Colors.grey,
-                                            fontSize: 9,
-                                          ),),
-                                      ],
-                                    ),
-
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  )
-                ),
-            ],
-          ),
-        ),
-      ),
+      blog_detail(context),
 
       //profile
       profile(context)
@@ -547,8 +403,8 @@ class _home_body extends State<home> {
                                   SizedBox(
                                     width: 20,
                                   ),
-                                  Icon(Icons.home,
-                                    color: Colors.white,),
+                              Image.asset("assets/image/Vector.png", fit: BoxFit.cover),
+
                                 ],
                               ),
 
@@ -640,66 +496,71 @@ class _home_body extends State<home> {
                     width: 20,
                   ),
                   Expanded(
-                    child: Container(
-                      //width:200,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(8),
-                        boxShadow: [BoxShadow(color: Color(int.parse("0xff${colors_color.main_theme}")), blurRadius: 8)],
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: Container(
-                          padding: EdgeInsets.all(20),
-                          decoration: BoxDecoration(
-                            color: Colors.black,
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(10.0),
-                              // radius
-                            ),
-                            // border: Border(
-                            //   left: BorderSide(color: Colors.indigo, width: 5),
-                            // ),
-                          ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment.start ,
-                                    children: [
-                                      Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Text("Support",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 12
-                                            ),
-                                          )),
-
-                                      Padding(
-                                          padding: EdgeInsets.only(top: 8),
-                                          child: Text("How we help you!",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 10
-                                            ),
-                                          )),
-
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                  Image.asset("assets/image/support.png", fit: BoxFit.cover),
-                                ],
+                    child: InkWell(
+                      onTap: (){
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => support_s()));
+                      },
+                      child: Container(
+                        //width:200,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(8),
+                          boxShadow: [BoxShadow(color: Color(int.parse("0xff${colors_color.main_theme}")), blurRadius: 8)],
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Container(
+                            padding: EdgeInsets.all(20),
+                            decoration: BoxDecoration(
+                              color: Colors.black,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10.0),
+                                // radius
                               ),
+                              // border: Border(
+                              //   left: BorderSide(color: Colors.indigo, width: 5),
+                              // ),
+                            ),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start ,
+                                      children: [
+                                        Align(
+                                            alignment: Alignment.centerLeft,
+                                            child: Text("Support",
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 12
+                                              ),
+                                            )),
 
-                            ],
+                                        Padding(
+                                            padding: EdgeInsets.only(top: 8),
+                                            child: Text("How we help you!",
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 10
+                                              ),
+                                            )),
+
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      width: 20,
+                                    ),
+                                    Image.asset("assets/image/support.png", fit: BoxFit.cover),
+                                  ],
+                                ),
+
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -785,7 +646,7 @@ class _home_body extends State<home> {
                                     fontSize: 12,
                                     color: Colors.grey,
                                   ),
-                                 maxLines: 10,
+                                 maxLines: 3,
                                  overflow: TextOverflow.ellipsis
                                 ),
                             ),
@@ -850,7 +711,7 @@ class _home_body extends State<home> {
                                   fontSize: 12,
                                   color: Colors.grey,
                                 ),
-                               maxLines: 6,
+                               maxLines: 3,
                                overflow: TextOverflow.ellipsis
                               ),
                               //  ),
@@ -1152,6 +1013,146 @@ class _home_body extends State<home> {
 
 
 
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget blog_detail(BuildContext context){
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        automaticallyImplyLeading: false,
+        backgroundColor: Colors.white,
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 0.0,horizontal: 20),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text("Blogs List",
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+            ),
+
+
+
+            Padding(
+                padding: EdgeInsets.only(top: 10),
+                // Center is a layout widget. It takes a single child and positions it
+                // in the middle of the parent.
+
+                child: GridView.builder(
+                  gridDelegate:
+                  new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+                  scrollDirection: Axis.vertical,
+                  itemCount: 8,
+                  physics: ScrollPhysics(),
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 10.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          GestureDetector(
+                            onTap: () {
+                              // What do i do here?
+
+                              setState(()
+                              {
+                                Navigator.of(context).push(MaterialPageRoute(builder: (context) => blog_details()));
+                              });
+                            },
+                            child: Container(
+                              height: 350,
+                              width: MediaQuery.of(context).size.width*0.45,
+                              decoration: BoxDecoration(
+                                // border: Border.all(color: Color(0xff940D5A)),
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(14.0),
+                                boxShadow: <BoxShadow>[
+                                  BoxShadow(
+                                    color: Colors.grey,
+                                    offset: Offset(1.0, 15.0),
+                                    blurRadius: 20.0,
+                                  ),
+                                ],
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.vertical(top: Radius.circular(10)), // Image border
+                                    child: Image.asset("assets/image/img_1.png",
+                                      fit: BoxFit.fitWidth,
+                                      width: MediaQuery.of(context).size.width*0.45,
+                                    ),
+                                  ),
+
+                                  Padding(
+                                    padding: const EdgeInsets.all(5.0),
+                                    child: Text("Data Science",
+                                      textAlign: TextAlign.left,
+                                      style: TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 10,
+                                      ),),
+                                  ),
+
+
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 5.0),
+                                    child: Text("How to improve Excel Skills",
+                                      textAlign: TextAlign.left,
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 12,
+                                      ),),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(5.0),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text("20k",
+                                          textAlign: TextAlign.left,
+                                          style: TextStyle(
+                                            color: Colors.grey,
+                                            fontSize: 9,
+                                          ),),
+
+                                        Text("28 jan 2021",
+                                          textAlign: TextAlign.left,
+                                          style: TextStyle(
+                                            color: Colors.grey,
+                                            fontSize: 9,
+                                          ),),
+                                      ],
+                                    ),
+                                  ),
+
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                )
+            ),
           ],
         ),
       ),

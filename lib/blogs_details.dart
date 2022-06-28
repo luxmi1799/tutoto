@@ -17,6 +17,10 @@ class _college_details extends State<blog_details> {
     return Material(
       child: Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back, color: Colors.black),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
           elevation: 0,
           automaticallyImplyLeading: false,
           backgroundColor: Colors.white,
