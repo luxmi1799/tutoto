@@ -70,7 +70,6 @@ class _login_body extends State<_login> {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 0.0,horizontal: 10),
                 child: IntlPhoneField(
-                  initialValue: "in",
                   decoration: InputDecoration(
                     labelText: 'Phone Number',
                     border: UnderlineInputBorder(
@@ -92,7 +91,7 @@ class _login_body extends State<_login> {
                 child: TextFormField(
                   // controller: emailController,
                   decoration: InputDecoration(
-                    hintText: "full name",
+                    hintText: "Full name",
                     // labelText: "OTP",
                     labelStyle: TextStyle(
                       fontWeight: FontWeight.bold,
@@ -112,7 +111,7 @@ class _login_body extends State<_login> {
                 child: TextFormField(
                   // controller: emailController,
                   decoration: InputDecoration(
-                    hintText: "email",
+                    hintText: "Email Id",
                     // labelText: "OTP",
                     labelStyle: TextStyle(
                       fontWeight: FontWeight.bold,

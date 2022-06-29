@@ -72,7 +72,7 @@ class _otp_screen extends State<otp_screen>{
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: OtpTextField(
-                numberOfFields: 4,
+                numberOfFields: 6,
                 borderColor: Colors.amber,
                 //set to true to show as box or false to show as dash
                 showFieldAsBox: true,
@@ -96,15 +96,13 @@ class _otp_screen extends State<otp_screen>{
             ),
 
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20.0,horizontal: 10),
+              padding: const EdgeInsets.symmetric(vertical: 25.0,horizontal: 10),
               child: InkWell(
                 onTap: (){
 
                   setState(() {
                     Navigator.of(context).push(MaterialPageRoute(builder: (context) => home()));
                   });
-
-
 
                 },
                 child: AnimatedContainer(

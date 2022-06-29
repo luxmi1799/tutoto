@@ -41,10 +41,12 @@ class _login_body extends State<_login> {
              Padding(
                padding: const EdgeInsets.only(top: 50.0),
                child: Center(
-                 child:Image.asset("assets/image/tutorologo.png",
+                 child:Container(
                    width: 200,
                    height: 180,
+                   child: Image.asset("assets/image/tutorologo.png",
                    // fit:BoxFit.fill,
+                   ),
                  ),
                ),
              ),

@@ -4,6 +4,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dot_pagination_swiper/dot_pagination_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:tutoro/about_us.dart';
+import 'package:tutoro/budget_predictor.dart';
 import 'package:tutoro/college_listing.dart';
 import 'package:tutoro/colors/colors.dart';
 import 'package:tutoro/drawer.dart';
@@ -95,7 +96,8 @@ class _home_body extends State<home> {
       blog_detail(context),
 
       //profile
-      profile(context)
+      edit_profile()
+
     ];
      return Scaffold(
        body: Center(
@@ -108,7 +110,7 @@ class _home_body extends State<home> {
              label: 'Home',
            ),
            BottomNavigationBarItem(
-             icon: Icon(Icons.business),
+             icon: Icon(Icons.newspaper_sharp),
              label: 'News',
            ),
            BottomNavigationBarItem(
@@ -345,72 +347,78 @@ class _home_body extends State<home> {
                       ),
                     ),
                   ),
+
                   SizedBox(
                     width: 20,
                   ),
                   Expanded(
-                    child: Container(
-                      //width:200,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(8),
-                        boxShadow: [BoxShadow(color: Color(int.parse("0xff${colors_color.main_theme}")), blurRadius: 8)],
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: Container(
-                          padding: EdgeInsets.all(20),
-                          decoration: BoxDecoration(
-                            color: Colors.black,
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(10.0),
-                              // radius
-                            ),
-                            // border: Border(
-                            //   left: BorderSide(color: Colors.indigo, width: 5),
-                            // ),
-                          ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment.start ,
-                                    children: [
-                                      Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Text("News",
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 12,
-
-                                            ),
-                                          )),
-
-                                      Padding(
-                                          padding: EdgeInsets.only(top: 8),
-                                          child: Text("Get Latest Updates",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 10
-                                            ),
-                                          )),
-
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                              Image.asset("assets/image/Vector.png", fit: BoxFit.cover),
-
-                                ],
+                    child: InkWell(
+                      onTap: (){
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => blog_details()));
+                      },
+                      child: Container(
+                        //width:200,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(8),
+                          boxShadow: [BoxShadow(color: Color(int.parse("0xff${colors_color.main_theme}")), blurRadius: 8)],
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Container(
+                            padding: EdgeInsets.all(20),
+                            decoration: BoxDecoration(
+                              color: Colors.black,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10.0),
+                                // radius
                               ),
+                              // border: Border(
+                              //   left: BorderSide(color: Colors.indigo, width: 5),
+                              // ),
+                            ),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start ,
+                                      children: [
+                                        Align(
+                                            alignment: Alignment.centerLeft,
+                                            child: Text("News",
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 12,
 
-                            ],
+                                              ),
+                                            )),
+
+                                        Padding(
+                                            padding: EdgeInsets.only(top: 8),
+                                            child: Text("Get Latest Updates",
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 10
+                                              ),
+                                            )),
+
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      width: 20,
+                                    ),
+                                Image.asset("assets/image/Vector.png", fit: BoxFit.cover),
+
+                                  ],
+                                ),
+
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -429,66 +437,71 @@ class _home_body extends State<home> {
                 children: [
 
                   Expanded(
-                    child: Container(
-                      //width:200,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(8),
-                        boxShadow: [BoxShadow(color: Color(int.parse("0xff${colors_color.main_theme}")), blurRadius: 8)],
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: Container(
-                          padding: EdgeInsets.all(20),
-                          decoration: BoxDecoration(
-                            color: Colors.black,
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(10.0),
-                              // radius
-                            ),
-                            // border: Border(
-                            //   left: BorderSide(color: Colors.indigo, width: 5),
-                            // ),
-                          ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment.start ,
-                                    children: [
-                                      Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Text("Budget Predictor",
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 12,
-                                            ),
-                                          )),
-
-                                      Padding(
-                                          padding: EdgeInsets.only(top: 8),
-                                          child: Text("Control your money",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 10
-                                            ),
-                                          )),
-
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                  Image.asset("assets/image/budget.png", fit: BoxFit.cover),
-                                ],
+                    child: InkWell(
+                      onTap: (){
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => budget_predictor()));
+                      },
+                      child: Container(
+                        //width:200,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(8),
+                          boxShadow: [BoxShadow(color: Color(int.parse("0xff${colors_color.main_theme}")), blurRadius: 8)],
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Container(
+                            padding: EdgeInsets.all(20),
+                            decoration: BoxDecoration(
+                              color: Colors.black,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10.0),
+                                // radius
                               ),
+                              // border: Border(
+                              //   left: BorderSide(color: Colors.indigo, width: 5),
+                              // ),
+                            ),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start ,
+                                      children: [
+                                        Align(
+                                            alignment: Alignment.centerLeft,
+                                            child: Text("Budget Predictor",
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 12,
+                                              ),
+                                            )),
 
-                            ],
+                                        Padding(
+                                            padding: EdgeInsets.only(top: 8),
+                                            child: Text("Control your money",
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 10
+                                              ),
+                                            )),
+
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      width: 20,
+                                    ),
+                                    Image.asset("assets/image/budget.png", fit: BoxFit.cover),
+                                  ],
+                                ),
+
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -1023,8 +1036,6 @@ class _home_body extends State<home> {
               ],
             ),
 
-
-
           ],
         ),
       ),
@@ -1124,7 +1135,7 @@ class _home_body extends State<home> {
 
 
                                   Padding(
-                                    padding: const EdgeInsets.only(left: 5.0),
+                                    padding: const EdgeInsets.only(left: 5.0,bottom: 5),
                                     child: Text("How to improve Excel Skills",
                                       textAlign: TextAlign.left,
                                       style: TextStyle(

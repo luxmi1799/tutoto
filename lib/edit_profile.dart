@@ -58,7 +58,7 @@ class _edit_profile extends State<edit_profile> {
                padding: const EdgeInsets.symmetric(vertical: 15.0,horizontal: 12),
                child: TextFormField(
                  decoration: InputDecoration(
-                   hintText: "full name",
+                   hintText: "Full name",
                    hintStyle: TextStyle(
                      color: Colors.grey,
                      fontSize: 13,
@@ -77,7 +77,7 @@ class _edit_profile extends State<edit_profile> {
                padding: const EdgeInsets.symmetric(vertical: 15.0,horizontal: 12),
                child: TextFormField(
                  decoration: InputDecoration(
-                   hintText: "email",
+                   hintText: "Email Id",
                    hintStyle: TextStyle(
                      color: Colors.grey,
                      fontSize: 13,
@@ -112,7 +112,7 @@ class _edit_profile extends State<edit_profile> {
                padding: const EdgeInsets.symmetric(vertical: 15.0,horizontal: 12),
                child: TextFormField(
                  decoration: InputDecoration(
-                   hintText: "address",
+                   hintText: "Address",
                    hintStyle: TextStyle(
                      color: Colors.grey,
                      fontSize: 13,

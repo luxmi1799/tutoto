@@ -57,7 +57,7 @@ class _college_details extends State<blog_details> {
                     borderRadius: BorderRadius.circular(7.0),
                     boxShadow: <BoxShadow>[
                       BoxShadow(
-                        color: Colors.grey,
+                        color: Colors.white,
                         offset: Offset(1.0, 15.0),
                         blurRadius: 20.0,
                       ),
