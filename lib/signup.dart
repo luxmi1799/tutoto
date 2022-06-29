@@ -70,6 +70,7 @@ class _login_body extends State<_login> {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 0.0,horizontal: 10),
                 child: IntlPhoneField(
+                  initialValue: "in",
                   decoration: InputDecoration(
                     labelText: 'Phone Number',
                     border: UnderlineInputBorder(

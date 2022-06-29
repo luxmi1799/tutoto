@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:tutoro/college_listing.dart';
 import 'package:tutoro/colors/colors.dart';
 import 'package:tutoro/drawer.dart';
+import 'package:tutoro/edit_profile.dart';
 import 'package:tutoro/support_screen.dart';
 
 import 'blogs_details.dart';
@@ -263,7 +264,7 @@ class _home_body extends State<home> {
 
 
             Padding(
-              padding: const EdgeInsets.all(12.0),
+              padding: const EdgeInsets.symmetric(horizontal: 12.0,vertical: 7),
               child: Row(
                 // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -421,7 +422,7 @@ class _home_body extends State<home> {
 
 
             Padding(
-              padding: const EdgeInsets.all(12.0),
+              padding: const EdgeInsets.symmetric(horizontal: 12.0,vertical: 5),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -572,7 +573,7 @@ class _home_body extends State<home> {
             ),
 
             Padding(
-              padding: const EdgeInsets.only(top: 15.0,left: 10),
+              padding: const EdgeInsets.only(top: 30.0,left: 10),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text("Latest News",
@@ -587,7 +588,7 @@ class _home_body extends State<home> {
 
             Container(
               margin: EdgeInsets.symmetric(vertical: 10.0),
-              height: 200.0,
+              height: 180.0,
               child:
               ListView(
                 scrollDirection: Axis.horizontal,
@@ -861,34 +862,39 @@ class _home_body extends State<home> {
               ],
             ),
 
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 10),
-                  child: Container(
-                    width: 50,
-                    height: 50,
+            InkWell(
+              onTap: (){
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => edit_profile()));
+              },
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 10),
                     child: Container(
-                      child: Icon(Icons.person_outline,
-                        size: 30,
-                        color: Color(int.parse("0xff${colors_color.main_theme}"),),
+                      width: 50,
+                      height: 50,
+                      child: Container(
+                        child: Icon(Icons.person_outline,
+                          size: 30,
+                          color: Color(int.parse("0xff${colors_color.main_theme}"),),
+                        ),
                       ),
+
                     ),
-
                   ),
-                ),
 
 
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text("Edit Profile",
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                      fontSize: 14,
-                    ),),
-                ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text("Edit Profile",
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        fontSize: 14,
+                      ),),
+                  ),
 
-              ],
+                ],
+              ),
             ),
 
             Row(

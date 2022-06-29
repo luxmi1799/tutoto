@@ -16,41 +16,17 @@ class _college_details extends State<blog_details> {
     // TODO: implement build
     return Material(
       child: Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: Colors.black),
-            onPressed: () => Navigator.of(context).pop(),
-          ),
-          elevation: 0,
-          automaticallyImplyLeading: false,
-          backgroundColor: Colors.white,
-          /*title: ClipRRect(
-            borderRadius: BorderRadius.circular(10.0),
-            child: Container(
-              width: double.infinity,
-              height: 40,
-              color: Colors.grey[200],
-              // child: Center(
-              child: TextField(
-                textAlign: TextAlign.start,
-                decoration: InputDecoration(
-
-                  contentPadding: EdgeInsets.only(top: 5),
-                  filled: true,
-                  // fillColor: Colors.grey[200],
-                  // border: OutlineInputBorder(
-                  //   borderRadius: BorderRadius.circular(10.0),
-                  // ),
-                  hintText: 'Search',
-                  hintStyle: TextStyle(fontSize: 18.0, color: Colors.black),
-                  hintTextDirection: TextDirection.ltr,
-                  suffixIcon: Icon(Icons.search,color: Colors.black,),
-                  prefixIcon: Icon(Icons.arrow_back,color: Colors.black,),
-                ),
-              ),
-              // ),
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(50.0), // here the desired height
+          child: AppBar(
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back, color: Colors.black),
+              onPressed: () => Navigator.of(context).pop(),
             ),
-          ),*/
+            backgroundColor: Colors.white,
+            elevation: 0,
+            // ...
+          ),
         ),
         body: SingleChildScrollView(
           child: Column(
@@ -71,22 +47,108 @@ class _college_details extends State<blog_details> {
               ),
 
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                padding: const EdgeInsets.only(top: 8.0,left: 10,right: 10),
                 child: Container(
-                   width: MediaQuery.of(context).size.width,
-                   height: 230,
-                  //color: Colors.pink,
+                  height: MediaQuery.of(context).size.height*0.75,
+                  width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.white
+                    // border: Border.all(color: Color(0xff940D5A)),
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(7.0),
+                    boxShadow: <BoxShadow>[
+                      BoxShadow(
+                        color: Colors.grey,
+                        offset: Offset(1.0, 15.0),
+                        blurRadius: 20.0,
+                      ),
+                    ],
                   ),
-                  child:ClipRRect(
-                    borderRadius: BorderRadius.circular(20), // Image border
-                    child: SizedBox.fromSize(
-                      size: Size.fromRadius(48), // Image radius
-                      child: Image.asset("assets/image/img_1.png", fit: BoxFit.cover),
-                    ),
-                  )
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      ClipRRect(
+                        borderRadius: BorderRadius.vertical(top: Radius.circular(10)), // Image border
+                        child: Image.asset("assets/image/img_1.png",
+                          fit: BoxFit.fill,
+                          width: MediaQuery.of(context).size.width,
+                        ),
+                      ),
+
+                      Padding(
+                        padding: EdgeInsets.symmetric(vertical: 10.0,horizontal: 10),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text("Clinical Data",
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                              fontSize: 13,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text("A Young Doctor's Journey",
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                fontSize: 13,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold
+                              ),
+                            ),
+
+                            Row(
+                              children: [
+                                Text("20k",
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.black,
+                                  ),
+                                ),
+
+                                SizedBox(
+                                  width: 5,
+                                ),
+
+                                Text("28 jan 2021",
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 10),
+                        child: SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          child: Text("All-India Institute of Medical Sciences was established as an institution of national importance by an Act of Parliament with the objects to develop patterns of teaching in Undergraduate and Post-graduate Medical Education in all its branches so as to demonstrate a high standard of Medical Education in India; to bring together in one place educational facilities of the highest order for the training of personnel in all important branches of health activity; and to attain self-sufficiency in Post-graduate Medical Education.",
+                              softWrap: true,
+                              style: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 14,
+                              ),
+                              maxLines: 10,
+                              overflow: TextOverflow.ellipsis
+                          ),
+                        ),
+                      ),
+
+                    ],
+                  ),
                 ),
               ),
               // floatingActionButton: FloatingActionButton(
@@ -96,36 +158,6 @@ class _college_details extends State<blog_details> {
               //     key.currentState?.forceRefreshState();
               //   },
               // ),
-
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: 10.0,horizontal: 20),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text("All India Insitute of Medical Sciences",
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-              ),
-
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: 10.0,horizontal: 20),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text("Delhi",
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.grey,
-                    ),
-                  ),
-                ),
-              ),
-
             ],
           ),
         ),

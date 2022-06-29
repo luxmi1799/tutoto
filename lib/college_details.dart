@@ -30,37 +30,17 @@ class _college_details extends State<college_details> {
     // TODO: implement build
      return Material(
        child: Scaffold(
-         appBar: AppBar(
-           elevation: 0,
-           automaticallyImplyLeading: false,
-           backgroundColor: Colors.white,
-           /*title: ClipRRect(
-             borderRadius: BorderRadius.circular(10.0),
-             child: Container(
-               width: double.infinity,
-               height: 40,
-               color: Colors.grey[200],
-               // child: Center(
-               child: TextField(
-                 textAlign: TextAlign.start,
-                 decoration: InputDecoration(
-
-                   contentPadding: EdgeInsets.only(top: 5),
-                   filled: true,
-                   // fillColor: Colors.grey[200],
-                   // border: OutlineInputBorder(
-                   //   borderRadius: BorderRadius.circular(10.0),
-                   // ),
-                   hintText: 'Search',
-                   hintStyle: TextStyle(fontSize: 18.0, color: Colors.black),
-                   hintTextDirection: TextDirection.ltr,
-                   suffixIcon: Icon(Icons.search,color: Colors.black,),
-                   prefixIcon: Icon(Icons.arrow_back,color: Colors.black,),
-                 ),
-               ),
-               // ),
+         appBar: PreferredSize(
+           preferredSize: Size.fromHeight(50.0), // here the desired height
+           child: AppBar(
+             leading: IconButton(
+               icon: Icon(Icons.arrow_back, color: Colors.black),
+               onPressed: () => Navigator.of(context).pop(),
              ),
-           ),*/
+             backgroundColor: Colors.white,
+             elevation: 0,
+             // ...
+           ),
          ),
          body: SingleChildScrollView(
            child: Column(
@@ -212,14 +192,14 @@ class _college_details extends State<college_details> {
 
                        TableRow(children :[
                          Padding(
-                           padding: const EdgeInsets.all(10),
+                           padding: const EdgeInsets.symmetric(horizontal: 10),
                            child: Text('Institute Fee/Hostel Fee',style: TextStyle(
                              fontSize: 15,
                              fontWeight: FontWeight.bold,
                            ),),
                          ),
                          Padding(
-                           padding: const EdgeInsets.all(10),
+                           padding: const EdgeInsets.symmetric(horizontal: 10),
                            child: Text('2 Lakhs',
                              style: TextStyle(
                                fontSize: 15,

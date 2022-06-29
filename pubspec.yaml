@@ -45,6 +45,7 @@ dependencies:
   scrollable_positioned_list: ^0.2.3
   scrolling_page_indicator: ^0.1.2
   dot_pagination_swiper: ^0.1.1
+  avatar_view: ^1.0.1
 
 dev_dependencies:
   flutter_test:
