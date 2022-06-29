@@ -3,6 +3,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dot_pagination_swiper/dot_pagination_swiper.dart';
 import 'package:flutter/material.dart';
+import 'package:tutoro/about_us.dart';
 import 'package:tutoro/college_listing.dart';
 import 'package:tutoro/colors/colors.dart';
 import 'package:tutoro/drawer.dart';
@@ -832,34 +833,39 @@ class _home_body extends State<home> {
               ],
             ),
 
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 10),
-                  child: Container(
-                    width: 50,
-                    height: 50,
+            InkWell(
+              onTap: (){
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => about_us()));
+              },
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 10),
                     child: Container(
-                      child: Icon(Icons.info_outlined,
-                        size: 30,
-                        color: Color(int.parse("0xff${colors_color.main_theme}"),),
+                      width: 50,
+                      height: 50,
+                      child: Container(
+                        child: Icon(Icons.info_outlined,
+                          size: 30,
+                          color: Color(int.parse("0xff${colors_color.main_theme}"),),
+                        ),
                       ),
+
                     ),
-
                   ),
-                ),
 
 
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text("About us",
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                      fontSize: 14,
-                    ),),
-                ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text("About us",
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        fontSize: 14,
+                      ),),
+                  ),
 
-              ],
+                ],
+              ),
             ),
 
             InkWell(

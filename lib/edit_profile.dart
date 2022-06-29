@@ -1,6 +1,7 @@
 import 'package:avatar_view/avatar_view.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:tutoro/colors/colors.dart';
 
 class edit_profile extends StatefulWidget{
   @override
@@ -16,7 +17,9 @@ class _edit_profile extends State<edit_profile> {
        appBar: PreferredSize(
          preferredSize: Size.fromHeight(50.0), // here the desired height
          child: AppBar(
-           title: Text("Edit Profile"),
+           title: Text("Edit Profile",style: TextStyle(
+             color: Colors.black,
+           ),),
            leading: IconButton(
              icon: Icon(Icons.arrow_back, color: Colors.black),
              onPressed: () => Navigator.of(context).pop(),
@@ -91,7 +94,6 @@ class _edit_profile extends State<edit_profile> {
              Padding(
                padding: const EdgeInsets.symmetric(vertical: 0.0,horizontal: 12),
                child: IntlPhoneField(
-                 initialValue: "in",
                  decoration: InputDecoration(
                    labelText: 'Phone Number',
                    border: UnderlineInputBorder(
@@ -121,6 +123,28 @@ class _edit_profile extends State<edit_profile> {
                      fontSize:20,
                    ),
                    //prefixIcon: new Icon(Icons.lock),
+                 ),
+               ),
+             ),
+
+             Padding(
+               padding: const EdgeInsets.all(30.0),
+               child: Center(
+                 child: Container(
+                   width: 150,
+                   height: 50,
+                   child: RaisedButton(
+                     onPressed: (){},
+                     color: Color(int.parse("0xff${colors_color.main_theme}")),
+                     child: Text("Submit",
+                       textAlign: TextAlign.center,
+                       style: TextStyle(
+                         color: Colors.white,
+                         fontSize: 15,
+                         fontWeight: FontWeight.bold,
+                         backgroundColor:  Color(int.parse("0xff${colors_color.main_theme}")),
+                       ),),
+                   ),
                  ),
                ),
              ),

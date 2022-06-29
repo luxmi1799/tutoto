@@ -75,7 +75,7 @@ class _college_details extends State<blog_details> {
                         ),
                       ),
 
-                      Padding(
+                     /* Padding(
                         padding: EdgeInsets.symmetric(vertical: 10.0,horizontal: 10),
                         child: Align(
                           alignment: Alignment.centerLeft,
@@ -88,10 +88,10 @@ class _college_details extends State<blog_details> {
                             ),
                           ),
                         ),
-                      ),
+                      ),*/
 
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 10),
+                        padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 20),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -132,7 +132,7 @@ class _college_details extends State<blog_details> {
                       ),
 
                       Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 10),
+                        padding: const EdgeInsets.symmetric(vertical: 15.0,horizontal: 10),
                         child: SizedBox(
                           width: MediaQuery.of(context).size.width,
                           child: Text("All-India Institute of Medical Sciences was established as an institution of national importance by an Act of Parliament with the objects to develop patterns of teaching in Undergraduate and Post-graduate Medical Education in all its branches so as to demonstrate a high standard of Medical Education in India; to bring together in one place educational facilities of the highest order for the training of personnel in all important branches of health activity; and to attain self-sufficiency in Post-graduate Medical Education.",
@@ -141,7 +141,23 @@ class _college_details extends State<blog_details> {
                                 color: Colors.grey,
                                 fontSize: 14,
                               ),
-                              maxLines: 10,
+                              maxLines: 6,
+                              overflow: TextOverflow.ellipsis
+                          ),
+                        ),
+                      ),
+
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 15.0,horizontal: 10),
+                        child: SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          child: Text("All-India Institn institution Parliament with the objects to develop patterns of teaching in Undergraduate and Post-graduate Medical Education in all its branches so as to demonstrate a high standard of Medical Education in India; to bring together in one place educational facilities of the highest order for the training of personnel in all important branches of health activity; and to attain self-sufficiency in Post-graduate Medical Education.",
+                              softWrap: true,
+                              style: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 14,
+                              ),
+                              maxLines: 6,
                               overflow: TextOverflow.ellipsis
                           ),
                         ),
