@@ -10,6 +10,7 @@ class login extends StatelessWidget{
   Widget build(BuildContext context) {
 
     return Scaffold(
+      backgroundColor: Colors.white,
       body: _login(),
     );
     // TODO: implement build
@@ -39,7 +40,7 @@ class _login_body extends State<_login> {
            children: [
 
              Padding(
-               padding: const EdgeInsets.only(top: 50.0),
+               padding: const EdgeInsets.only(top: 50.0,bottom: 10),
                child: Center(
                  child:Container(
                    width: 200,
@@ -64,7 +65,7 @@ class _login_body extends State<_login> {
              ),
 
              Padding(
-               padding: const EdgeInsets.symmetric(vertical: 20.0,horizontal: 15),
+               padding: const EdgeInsets.symmetric(vertical: 25.0,horizontal: 15),
                child: Container(
                  height: 60,
                  color: Colors.grey[200],
@@ -130,6 +131,7 @@ class _login_body extends State<_login> {
               child: phone_widget == true? Padding(
                  padding: const EdgeInsets.symmetric(vertical: 20.0,horizontal: 10),
                  child: IntlPhoneField(
+                   initialCountryCode: 'IN',
                    decoration: InputDecoration(
                      labelText: 'Phone Number',
                      border: UnderlineInputBorder(
@@ -172,7 +174,7 @@ class _login_body extends State<_login> {
 
 
              Padding(
-               padding: const EdgeInsets.symmetric(vertical: 20.0,horizontal: 10),
+               padding: const EdgeInsets.symmetric(vertical: 20.0,horizontal: 30),
                child: InkWell(
                  onTap: (){
 

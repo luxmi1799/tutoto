@@ -100,6 +100,7 @@ class _home_body extends State<home> {
 
     ];
      return Scaffold(
+       backgroundColor: Colors.white,
        body: Center(
          child: _widgetOptions.elementAt(_selectedIndex),
        ),
@@ -127,7 +128,7 @@ class _home_body extends State<home> {
 
   Widget college_home(BuildContext context){
     return Scaffold(
-
+      backgroundColor: Colors.white,
       drawer: myDrawer(),
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.black),
@@ -750,6 +751,7 @@ class _home_body extends State<home> {
 
   Widget profile(BuildContext context){
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.black),

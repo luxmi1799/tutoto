@@ -27,6 +27,7 @@ class _college_list extends State<college_list> {
   Widget build(BuildContext context) {
     // TODO: implement build
      return Scaffold(
+       backgroundColor: Colors.white,
        appBar: AppBar(
          elevation: 0,
          automaticallyImplyLeading: false,

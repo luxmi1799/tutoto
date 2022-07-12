@@ -10,6 +10,7 @@ class sign_up extends StatelessWidget{
   Widget build(BuildContext context) {
 
     return Scaffold(
+      backgroundColor: Colors.white,
       body: _login(),
     );
     // TODO: implement build
@@ -70,6 +71,7 @@ class _login_body extends State<_login> {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 0.0,horizontal: 10),
                 child: IntlPhoneField(
+                  initialCountryCode: 'IN',
                   decoration: InputDecoration(
                     labelText: 'Phone Number',
                     border: UnderlineInputBorder(
@@ -131,7 +133,7 @@ class _login_body extends State<_login> {
         ),
 
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20.0,horizontal: 10),
+              padding: const EdgeInsets.symmetric(vertical: 20.0,horizontal: 30),
               child: InkWell(
                 onTap: (){
 

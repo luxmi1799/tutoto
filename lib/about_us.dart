@@ -13,6 +13,7 @@ class _about_us extends State<about_us> {
   Widget build(BuildContext context) {
     // TODO: implement build
      return Scaffold(
+       backgroundColor: Colors.white,
        appBar: PreferredSize(
          preferredSize: Size.fromHeight(50.0), // here the desired height
          child: AppBar(

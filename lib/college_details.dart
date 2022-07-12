@@ -30,6 +30,7 @@ class _college_details extends State<college_details> {
     // TODO: implement build
      return Material(
        child: Scaffold(
+         backgroundColor: Colors.white,
          appBar: PreferredSize(
            preferredSize: Size.fromHeight(50.0), // here the desired height
            child: AppBar(

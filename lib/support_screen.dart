@@ -35,7 +35,7 @@ class _support extends State<support_s> {
               padding: EdgeInsets.symmetric(vertical: 10.0,horizontal: 10),
               child: Align(
                 alignment: Alignment.centerLeft,
-                child: Text("Support Screen",
+                child: Text("Support",
                   textAlign: TextAlign.start,
                   style: TextStyle(
                     fontSize: 23,

@@ -17,6 +17,7 @@ class _otp_screen extends State<otp_screen>{
   Widget build(BuildContext context) {
     // TODO: implement build
       return Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
           leading: IconButton(
             icon: Icon(Icons.arrow_back, color: Colors.black),
@@ -47,7 +48,7 @@ class _otp_screen extends State<otp_screen>{
             ),
 
             const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+              padding: EdgeInsets.symmetric(horizontal: 10,vertical: 20),
               child: Center(
                 child: Text("We have sent you a 4 digit verification code on",
                   style: TextStyle(
@@ -70,7 +71,7 @@ class _otp_screen extends State<otp_screen>{
             ),
 
             Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.symmetric(horizontal: 0.0,vertical: 20),
               child: OtpTextField(
                 numberOfFields: 6,
                 borderColor: Colors.amber,
@@ -96,7 +97,7 @@ class _otp_screen extends State<otp_screen>{
             ),
 
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 25.0,horizontal: 10),
+              padding: const EdgeInsets.symmetric(vertical: 30.0,horizontal: 30),
               child: InkWell(
                 onTap: (){
 
