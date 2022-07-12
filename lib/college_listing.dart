@@ -161,6 +161,10 @@ class _college_list extends State<college_list> {
                                    fontWeight: FontWeight.bold,
                                    color: Color(int.parse("0xff${colors_color.main_theme}")),
                                  ),),
+                                 icon: Icon(                // Add this
+                                   Icons.arrow_drop_down,  // Add this
+                                   color: Color(int.parse("0xff${colors_color.main_theme}")),  // Add this
+                                 ),
                                  value: selectedValue,
                                  isDense: true,
                                  onChanged: (newValue) {
@@ -237,9 +241,7 @@ class _college_list extends State<college_list> {
     return IntrinsicHeight(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
-
         children: [
-
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -247,9 +249,9 @@ class _college_list extends State<college_list> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start ,
                 children: [
-                  Text("College_name",
+                  Text("All india institute of medical sciences",
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 15,
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
                     ),),
@@ -260,7 +262,7 @@ class _college_list extends State<college_list> {
 
                   Align(
                     alignment: Alignment.centerLeft,
-                    child: Text("Address,India",
+                    child: Text("Delhi,India",
                      // textAlign: TextAlign.left,
                       style: TextStyle(
                         fontSize: 13,
@@ -313,7 +315,7 @@ class _college_list extends State<college_list> {
                     child: Text("Explore Details",
                       // textAlign: TextAlign.left,
                       style: TextStyle(
-                          fontSize: 15,
+                          fontSize: 14,
                         color: Color(int.parse("0xff${colors_color.main_theme}")),
                           fontWeight: FontWeight.bold,
                       ),),
@@ -322,11 +324,14 @@ class _college_list extends State<college_list> {
 
                 ],
               ),
+              SizedBox(
+                width: 5,
+              ),
               ClipRRect(
                 borderRadius: BorderRadius.circular(15), // Image border
                 child: SizedBox.fromSize(
-                  size: Size.fromRadius(50), // Image radius
-                  child: Image.asset("assets/image/img_1.png", fit: BoxFit.cover),
+                  size: Size.fromRadius(48), // Image radius
+                  child: Image.asset("assets/image/img_9.png", fit: BoxFit.cover),
                 ),
               )
             ],

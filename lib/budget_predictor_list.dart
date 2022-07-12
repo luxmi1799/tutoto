@@ -15,7 +15,7 @@ class _budget_d extends State<budget_detail> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(50.0), // here the desired height
         child: AppBar(
-          title: Text("",style: TextStyle(
+          title: Text("Budget Predictor",style: TextStyle(
             color: Colors.black,
           ),),
           leading: IconButton(
@@ -32,20 +32,7 @@ class _budget_d extends State<budget_detail> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 10.0,horizontal: 20),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text("Budget Predictor",
-                  textAlign: TextAlign.start,
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
-                ),
-              ),
-            ),
+
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 10),
               child: Row(
@@ -69,6 +56,7 @@ class _budget_d extends State<budget_detail> {
                           width: 100,
                           height: 40,
                           child: TextFormField(
+                            enabled: false,
                             validator: (value) {
                               if (value != null && value.trim().length < 5) {
                                 return 'This field requires a minimum of 3 characters';
@@ -77,7 +65,7 @@ class _budget_d extends State<budget_detail> {
                               return null;
                             },
                             decoration: const InputDecoration(
-                                hintText: 'Enter NEET Score',
+                                hintText: '1832983',
                                 hintStyle: TextStyle(
                                     color: Colors.black,
                                     fontSize: 12
@@ -111,6 +99,7 @@ class _budget_d extends State<budget_detail> {
                           width: 100,
                           height: 40,
                           child: TextFormField(
+                            enabled: false,
                             validator: (value) {
                               if (value != null && value.trim().length < 5) {
                                 return 'This field requires a minimum of 3 characters';
@@ -182,19 +171,12 @@ class _budget_d extends State<budget_detail> {
                               });
                             },
                             child: Container(
-                              height: 350,
+                              height: 340,
                               width: MediaQuery.of(context).size.width*0.45,
                               decoration: BoxDecoration(
                                 // border: Border.all(color: Color(0xff940D5A)),
                                 color: Colors.grey[200],
                                 borderRadius: BorderRadius.circular(14.0),
-                                boxShadow: <BoxShadow>[
-                                  BoxShadow(
-                                    color: Colors.grey,
-                                    offset: Offset(1.0, 15.0),
-                                    blurRadius: 20.0,
-                                  ),
-                                ],
                               ),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
@@ -204,8 +186,9 @@ class _budget_d extends State<budget_detail> {
                                     padding: const EdgeInsets.all(5.0),
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(10), // Image border
-                                      child: Image.asset("assets/image/img_1.png",
-                                        fit: BoxFit.fitWidth,
+                                      child: Image.asset("assets/image/img_9.png",
+                                        fit: BoxFit.cover,
+                                        height: 120,
                                         width: MediaQuery.of(context).size.width*0.45,
                                       ),
                                     ),
@@ -230,15 +213,17 @@ class _budget_d extends State<budget_detail> {
                                         Text("Delhi,India",
                                           textAlign: TextAlign.left,
                                           style: TextStyle(
-                                            color: Colors.grey,
-                                            fontSize: 9,
+                                            color: Colors.grey[600],
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.bold
                                           ),),
 
                                         Text("Rs. 1.8 lakhs",
                                           textAlign: TextAlign.left,
                                           style: TextStyle(
-                                            color: Colors.grey,
-                                            fontSize: 9,
+                                            color: Colors.grey[600],
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.bold
                                           ),),
                                       ],
                                     ),

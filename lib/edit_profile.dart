@@ -43,7 +43,7 @@ class _edit_profile extends State<edit_profile> {
                    text: Text('C', style: TextStyle(color: Colors.white, fontSize: 50),),
                    avatarType: AvatarType.CIRCLE,
                    backgroundColor: Colors.red,
-                   imagePath: "assets/image/img_2.png",
+                   imagePath: "assets/image/profilepic.png",
                    placeHolder: Container(
                      child: Icon(Icons.person, size: 50,),
                    ),

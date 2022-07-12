@@ -17,6 +17,15 @@ class _support extends State<support_s> {
       appBar: PreferredSize(
           preferredSize: Size.fromHeight(50.0), // here the desired height
           child: AppBar(
+            centerTitle: true,
+            title: Text("Support",
+              textAlign: TextAlign.start,
+              style: TextStyle(
+                fontSize: 23,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
+            ),
             leading: IconButton(
               icon: Icon(Icons.arrow_back, color: Colors.black),
               onPressed: () => Navigator.of(context).pop(),
@@ -31,30 +40,15 @@ class _support extends State<support_s> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 10.0,horizontal: 10),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text("Support",
-                  textAlign: TextAlign.start,
-                  style: TextStyle(
-                    fontSize: 23,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
-                ),
-              ),
-            ),
-
 
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 20.0,horizontal: 10),
+              padding: EdgeInsets.symmetric(vertical: 20.0,horizontal: 12),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text("Username",
                   textAlign: TextAlign.start,
                   style: TextStyle(
-                    fontSize: 14,
+                    fontSize: 15,
                     fontWeight: FontWeight.bold,
                     color: Colors.black54,
                   ),
@@ -62,7 +56,7 @@ class _support extends State<support_s> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 0),
               child: TextField(
                 decoration: InputDecoration(
                   border: const OutlineInputBorder(),
@@ -80,41 +74,10 @@ class _support extends State<support_s> {
               ),
             ),
 
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 20.0,horizontal: 10),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text("Email",
-                  textAlign: TextAlign.start,
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black54,
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
-              child: TextField(
-                decoration: InputDecoration(
-                  border: const OutlineInputBorder(),
-                  hintText: 'Enter email',
-                  hintStyle: TextStyle(
-                      fontSize: 14
-                  ),
-                  //labelText: "Phone number",
-                  labelStyle: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize:20,
-                    color: Colors.black54,
-                  ),
-                ),
-              ),
-            ),
+
 
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 20.0,horizontal: 10),
+              padding: EdgeInsets.symmetric(vertical: 20.0,horizontal: 12),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text("Password",
@@ -128,7 +91,7 @@ class _support extends State<support_s> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 0),
               child: TextField(
                 decoration: InputDecoration(
                   border: const OutlineInputBorder(),
@@ -147,7 +110,7 @@ class _support extends State<support_s> {
             ),
 
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 20.0,horizontal: 10),
+              padding: EdgeInsets.symmetric(vertical: 20.0,horizontal: 12),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text("Your message",
@@ -161,7 +124,7 @@ class _support extends State<support_s> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 0),
               child: TextField(
                 decoration: InputDecoration(
                   border: const OutlineInputBorder(),
@@ -182,22 +145,26 @@ class _support extends State<support_s> {
             //remenber me
 
             Padding(
-              padding: const EdgeInsets.all(30.0),
+              padding: const EdgeInsets.symmetric(vertical: 30.0,horizontal: 60),
               child: Center(
-                child: Container(
-                  width: 150,
-                  height: 50,
-                  child: RaisedButton(
-                    onPressed: (){},
-                    color: Color(int.parse("0xff${colors_color.main_theme}")),
-                    child: Text("Submit",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                        backgroundColor:  Color(int.parse("0xff${colors_color.main_theme}")),
-                      ),),
+                child: InkWell(
+                  onTap: (){
+                  },
+                  child: AnimatedContainer(
+                    duration: Duration(seconds: 1),//empty container can use inside of widget
+                    height: 50,
+                    alignment: Alignment.center,
+                    //changebtn?Icon(Icons.done,color: Colors.white,):
+                    child:Text("Submit",style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15,
+                      color: Colors.white,
+                    ),
+                    ),
+                    decoration: BoxDecoration(
+                      color: Color(int.parse("0xff${colors_color.main_theme}")),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                   ),
                 ),
               ),

@@ -46,12 +46,12 @@ class _budget extends State<budget_predictor> {
             Container(
               color: Color(int.parse("0xff${colors_color.main_theme}")),
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height*0.40,
+              height: MediaQuery.of(context).size.height*0.35,
               child:Padding(
                 padding: const EdgeInsets.all(18.0),
                 child:
                 // Center(child:
-                Image.asset("assets/image/img_2.png", fit: BoxFit.fill)
+                Image.asset("assets/image/img_6.png", fit: BoxFit.fill)
                 //),
               ),
             ),
@@ -115,20 +115,25 @@ class _budget extends State<budget_predictor> {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 30.0,horizontal: 60),
                       child: Center(
-                        child: AnimatedContainer(
-                          duration: Duration(seconds: 1),//empty container can use inside of widget
-                          height: 50,
-                          alignment: Alignment.center,
-                          //changebtn?Icon(Icons.done,color: Colors.white,):
-                          child:Text("Submit",style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 15,
-                            color: Colors.white,
-                          ),
-                          ),
-                          decoration: BoxDecoration(
-                            color: Color(int.parse("0xff${colors_color.main_theme}")),
-                            borderRadius: BorderRadius.circular(10),
+                        child: InkWell(
+                          onTap: (){
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => budget_detail()));
+                          },
+                          child: AnimatedContainer(
+                            duration: Duration(seconds: 1),//empty container can use inside of widget
+                            height: 50,
+                            alignment: Alignment.center,
+                            //changebtn?Icon(Icons.done,color: Colors.white,):
+                            child:Text("Submit",style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                              color: Colors.white,
+                            ),
+                            ),
+                            decoration: BoxDecoration(
+                              color: Color(int.parse("0xff${colors_color.main_theme}")),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
                           ),
                         ),
                       ),

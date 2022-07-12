@@ -42,7 +42,7 @@ class _college_details extends State<blog_details> {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 20.0,left: 15,right: 15),
+                padding: const EdgeInsets.only(top: 20.0,left: 10,right: 10),
                 child: Container(
                   height: MediaQuery.of(context).size.height*0.75,
                   width: MediaQuery.of(context).size.width,
@@ -64,7 +64,7 @@ class _college_details extends State<blog_details> {
                     children: <Widget>[
                       ClipRRect(
                         borderRadius: BorderRadius.vertical(top: Radius.circular(10)), // Image border
-                        child: Image.asset("assets/image/img_1.png",
+                        child: Image.asset("assets/image/laptop1.png",
                           fit: BoxFit.cover,
                           width: MediaQuery.of(context).size.width,
                         ),

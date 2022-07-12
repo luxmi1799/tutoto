@@ -35,7 +35,7 @@ class _about_us extends State<about_us> {
            crossAxisAlignment: CrossAxisAlignment.start,
            children: [
              Padding(
-               padding: EdgeInsets.symmetric(vertical: 10.0,horizontal: 10),
+               padding: EdgeInsets.symmetric(vertical: 10.0,horizontal: 12),
                child: Align(
                  alignment: Alignment.centerLeft,
                  child: Text("Start Your Search With Us",
@@ -49,15 +49,20 @@ class _about_us extends State<about_us> {
                ),
              ),
 
-             Align(
-               alignment: Alignment.centerLeft,
-               child: Image.asset("assets/image/img_4.png",
-                 fit: BoxFit.fill,
+             Padding(
+               padding: const EdgeInsets.only(top: 10.0),
+               child: Align(
+                 alignment: Alignment.centerLeft,
+                 child: Image.asset("assets/image/new.jpg",
+                   width: MediaQuery.of(context).size.width * 0.8,
+                   height: 250,
+                   fit: BoxFit.cover,
+                 ),
                ),
              ),
 
              Padding(
-               padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 15),
+               padding: const EdgeInsets.symmetric(horizontal: 12.0,vertical: 15),
                child: Text("About Tutoro",
                  textAlign: TextAlign.start,
                  style: TextStyle(
@@ -68,13 +73,13 @@ class _about_us extends State<about_us> {
                ),
              ),
              Padding(
-               padding: const EdgeInsets.symmetric(vertical: 15.0,horizontal: 10),
+               padding: const EdgeInsets.symmetric(vertical: 15.0,horizontal: 12),
                child: SizedBox(
                  width: MediaQuery.of(context).size.width,
                  child: Text("All-India Institute of Medical Sciences was established as an institution of national importance by an Act of Parliament with the objects to develop patterns of teaching in Undergraduate and Post-graduate Medical Education in all its branches so as to demonstrate a high standard of Medical Education in India; to bring together in one place educational facilities of the highest order for the training of personnel in all important branches of health activity; and to attain self-sufficiency in Post-graduate Medical Education.",
                      softWrap: true,
                      style: TextStyle(
-                       color: Colors.black,
+                       color: Colors.grey[600],
                        fontSize: 14,
                      ),
                      maxLines: 8,
@@ -84,7 +89,7 @@ class _about_us extends State<about_us> {
              ),
 
              Padding(
-               padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 15),
+               padding: const EdgeInsets.symmetric(horizontal: 12.0,vertical: 15),
                child: Text("Why Choose Us?",
                  textAlign: TextAlign.start,
                  style: TextStyle(
@@ -101,7 +106,7 @@ class _about_us extends State<about_us> {
                  child: Text("All-India Institute of Medical Sciences was established as ndia Institute of Medical Sciences was established as an institution of national importance by an Act of Parliament with the objects to develop patterns of teaching in Undergraduate and Post-graduate Medical Education in all its branches so as to demonstrate a high standard of Medical Education in India; to bring together in one place educational facilities of the highest order for the training of personnel in all important branches of health activity; and to attain self-sufficiency in Post-graduate Medical Education.",
                      softWrap: true,
                      style: TextStyle(
-                       color: Colors.black,
+                       color: Colors.grey[600],
                        fontSize: 14,
                      ),
                      maxLines: 10,
