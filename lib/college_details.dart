@@ -2,6 +2,7 @@ import 'package:dot_pagination_swiper/dot_pagination_swiper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:page_indicator/page_indicator.dart';
+import 'package:tutoro/applyloan.dart';
 import 'package:tutoro/colors/colors.dart';
 
 
@@ -253,13 +254,15 @@ class _college_details extends State<college_details> {
                      width: 150,
                      height: 50,
                      child: RaisedButton(
-                       onPressed: (){},
+                       onPressed: (){
+                         Navigator.of(context).push(MaterialPageRoute(builder: (context) => applyloan()));
+                       },
                        color: Color(int.parse("0xff${colors_color.main_theme}")),
                        child: Text("Apply",
                          textAlign: TextAlign.center,
                          style: TextStyle(
                            color: Colors.white,
-                           fontSize: 15,
+                           fontSize: 20,
                            fontWeight: FontWeight.bold,
                            backgroundColor:  Color(int.parse("0xff${colors_color.main_theme}")),
                          ),),

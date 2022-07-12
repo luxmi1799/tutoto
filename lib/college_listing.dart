@@ -83,61 +83,71 @@ class _college_list extends State<college_list> {
                padding: const EdgeInsets.only(left: 8.0),
                child: Align(
                  alignment: Alignment.centerLeft,
-                 child: Wrap(
-                  // mainAxisAlignment: MainAxisAlignment.spaceAround,
-
+                 child: Row(
+                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                    children: [
 
                      Container(
-                       margin: const EdgeInsets.all(12.0),
-                       padding: const EdgeInsets.all(3.0),
+                       height: 27,
+                       // width: 100,
+                       // height: 30,
+                       // margin: const EdgeInsets.all(12.0),
+                       // padding: const EdgeInsets.all(3.0),
                        decoration: BoxDecoration(
                            border: Border.all(
                              color: Color(int.parse("0xff${colors_color.main_theme}")),
                            ),
                          borderRadius: BorderRadius.circular(5),
                        ),
-                       child: Text(' All ',
-                         style: TextStyle(
-                           fontSize: 17,
-                           fontWeight: FontWeight.bold,
-                           color: Color(int.parse("0xff${colors_color.main_theme}")),
+                       child: Center(
+                         child: Text(' All ',
+                           style: TextStyle(
+                             fontSize: 17,
+                             fontWeight: FontWeight.bold,
+                             color: Color(int.parse("0xff${colors_color.main_theme}")),
+                           ),
                          ),
                        ),
                      ),
 
                      Container(
-                       margin: const EdgeInsets.all(12.0),
-                       padding: const EdgeInsets.all(3.0),
+                       height: 27,
+                       // margin: const EdgeInsets.all(12.0),
+                       // padding: const EdgeInsets.all(3.0),
                        decoration: BoxDecoration(
                          border: Border.all(
                            color: Color(int.parse("0xff${colors_color.main_theme}")),
                          ),
                          borderRadius: BorderRadius.circular(5),
                        ),
-                       child: Text(' India ',
-                         style: TextStyle(
-                           fontSize: 17,
-                           fontWeight: FontWeight.bold,
-                           color: Color(int.parse("0xff${colors_color.main_theme}")),
+                       child: Center(
+                         child: Text(' India ',
+                           style: TextStyle(
+                             fontSize: 17,
+                             fontWeight: FontWeight.bold,
+                             color: Color(int.parse("0xff${colors_color.main_theme}")),
+                           ),
                          ),
                        ),
                      ),
 
                      Container(
-                       margin: const EdgeInsets.all(12.0),
-                       padding: const EdgeInsets.all(3.0),
+                       height: 27,
+                       // margin: const EdgeInsets.all(12.0),
+                       // padding: const EdgeInsets.all(3.0),
                        decoration: BoxDecoration(
                          border: Border.all(
                            color: Color(int.parse("0xff${colors_color.main_theme}")),
                          ),
                          borderRadius: BorderRadius.circular(5),
                        ),
-                       child: Text(' Abroad ',
-                         style: TextStyle(
-                           fontSize: 17,
-                           fontWeight: FontWeight.bold,
-                           color: Color(int.parse("0xff${colors_color.main_theme}")),
+                       child: Center(
+                         child: Text(' Abroad ',
+                           style: TextStyle(
+                             fontSize: 17,
+                             fontWeight: FontWeight.bold,
+                             color: Color(int.parse("0xff${colors_color.main_theme}")),
+                           ),
                          ),
                        ),
                      ),
@@ -145,8 +155,9 @@ class _college_list extends State<college_list> {
                     FormField<String>(
                          builder: (FormFieldState<String> state) {
                            return Container(
-                               margin: const EdgeInsets.all(12.0),
-                               padding: const EdgeInsets.all(3.0),
+                             height: 27,
+                               // margin: const EdgeInsets.all(12.0),
+                               // padding: const EdgeInsets.all(3.0),
                                decoration: BoxDecoration(
                                  border: Border.all(
                                    color: Color(int.parse("0xff${colors_color.main_theme}")),

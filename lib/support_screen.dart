@@ -10,6 +10,7 @@ class support_s extends StatefulWidget{
 }
 
 class _support extends State<support_s> {
+  bool values = false;
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -142,7 +143,26 @@ class _support extends State<support_s> {
               ),
             ),
 
-            //remenber me
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 0.0,vertical: 10),
+              child: Row(
+                children: <Widget>[
+                  Checkbox(
+                    value: this.values,
+                    onChanged: (value) {
+                      setState(() {
+                        this.values = value!;
+                      });
+                    },
+                  ),//SizedBox
+                  Text(
+                    'Remember me',
+                    style: TextStyle(fontSize: 17.0,fontWeight: FontWeight.bold),
+                  ), //Text
+                  //Checkbox
+                ], //<Widget>[]
+              ),
+            ),
 
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 30.0,horizontal: 60),
