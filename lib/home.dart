@@ -32,7 +32,11 @@ class home extends StatefulWidget{
 
 class _home_body extends State<home> {
 
-  int _current = 0;
+  bool home = true;
+  bool college = false;
+  bool news = false;
+
+
   int _selectedIndex = 0;
   int counter = 0;
   final CarouselController _controller = CarouselController();
@@ -253,12 +257,12 @@ class _home_body extends State<home> {
             ),
 
             Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.symmetric(horizontal: 13.0,vertical: 20),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text("Categories",
                   style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 21,
                     fontWeight: FontWeight.bold,
                     color: Colors.black,
                   ),
@@ -284,7 +288,7 @@ class _home_body extends State<home> {
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(8),
-                          boxShadow: [BoxShadow(color: Color(int.parse("0xff${colors_color.main_theme}")), blurRadius: 8)],
+                          boxShadow: [BoxShadow(color: Color(int.parse("0xff${colors_color.main_theme}")), blurRadius: 4)],
                         ),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(8),
@@ -350,19 +354,19 @@ class _home_body extends State<home> {
                   ),
 
                   SizedBox(
-                    width: 20,
+                    width: 10,
                   ),
                   Expanded(
                     child: InkWell(
                       onTap: (){
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => blog_details()));
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => blog_detail(context)));
                       },
                       child: Container(
                         //width:200,
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(8),
-                          boxShadow: [BoxShadow(color: Color(int.parse("0xff${colors_color.main_theme}")), blurRadius: 8)],
+                          boxShadow: [BoxShadow(color: Color(int.parse("0xff${colors_color.main_theme}")), blurRadius: 4)],
                         ),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(8),
@@ -447,7 +451,7 @@ class _home_body extends State<home> {
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(8),
-                          boxShadow: [BoxShadow(color: Color(int.parse("0xff${colors_color.main_theme}")), blurRadius: 8)],
+                          boxShadow: [BoxShadow(color: Color(int.parse("0xff${colors_color.main_theme}")), blurRadius: 4)],
                         ),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(8),
@@ -509,7 +513,7 @@ class _home_body extends State<home> {
                     ),
                   ),
                   SizedBox(
-                    width: 20,
+                    width: 10,
                   ),
                   Expanded(
                     child: InkWell(
@@ -521,7 +525,7 @@ class _home_body extends State<home> {
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(8),
-                          boxShadow: [BoxShadow(color: Color(int.parse("0xff${colors_color.main_theme}")), blurRadius: 8)],
+                          boxShadow: [BoxShadow(color: Color(int.parse("0xff${colors_color.main_theme}")), blurRadius: 4)],
                         ),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(8),
@@ -588,12 +592,12 @@ class _home_body extends State<home> {
             ),
 
             Padding(
-              padding: const EdgeInsets.only(top: 30.0,left: 10),
+              padding: const EdgeInsets.only(top: 30.0,left: 13),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text("Latest News",
                   style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 21,
                     fontWeight: FontWeight.bold,
                     color: Colors.black,
                   ),
@@ -602,7 +606,7 @@ class _home_body extends State<home> {
             ),
 
             Container(
-              margin: EdgeInsets.symmetric(vertical: 10.0),
+              margin: EdgeInsets.symmetric(vertical: 0.0),
               height: 180.0,
               child:
               ListView(
@@ -613,11 +617,11 @@ class _home_body extends State<home> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 12.0),
                         child: ClipRRect(
-                          borderRadius: BorderRadius.circular(16), // Image border
+                          borderRadius: BorderRadius.circular(13), // Image border
                           child: SizedBox.fromSize(
-                            size: Size.fromRadius(42), // Image radius
+                            size: Size.fromRadius(50), // Image radius
                             child: Image.asset("assets/image/img_1.png", fit: BoxFit.cover),
                           ),
                         ),
@@ -631,21 +635,21 @@ class _home_body extends State<home> {
                         children: [
                           Text("Clinical Doctor",
                             style: TextStyle(
-                              fontSize: 12,
+                              fontSize: 15,
                               color: Colors.black,
                               fontWeight: FontWeight.bold
                             ),),
 
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text("A young doctor journey",
-                              // textAlign: TextAlign.left,
-                              style: TextStyle(
-                                  fontSize: 12,
-                                  color: Colors.grey,
-                                  fontWeight: FontWeight.bold
-                              ),),
-                          ),
+                          // Align(
+                          //   alignment: Alignment.centerLeft,
+                          //   child: Text("A young doctor journey",
+                          //     // textAlign: TextAlign.left,
+                          //     style: TextStyle(
+                          //         fontSize: 12,
+                          //         color: Colors.grey,
+                          //         fontWeight: FontWeight.bold
+                          //     ),),
+                          // ),
 
                           SizedBox(
                             height: 5,
@@ -659,10 +663,10 @@ class _home_body extends State<home> {
                                   // textAlign: TextAlign.left,
                                   softWrap: true,
                                   style: TextStyle(
-                                    fontSize: 12,
+                                    fontSize: 13,
                                     color: Colors.grey,
                                   ),
-                                 maxLines: 3,
+                                 maxLines: 4,
                                  overflow: TextOverflow.ellipsis
                                 ),
                             ),
@@ -680,9 +684,9 @@ class _home_body extends State<home> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ClipRRect(
-                          borderRadius: BorderRadius.circular(16), // Image border
+                          borderRadius: BorderRadius.circular(13), // Image border
                           child: SizedBox.fromSize(
-                            size: Size.fromRadius(42), // Image radius
+                            size: Size.fromRadius(50), // Image radius
                             child: Image.asset("assets/image/img_1.png", fit: BoxFit.cover),
                           ),
                         ),
@@ -696,21 +700,11 @@ class _home_body extends State<home> {
                         children: [
                           Text("Clinical Doctor",
                             style: TextStyle(
-                              fontSize: 12,
+                              fontSize: 15,
                               color: Colors.black,
                               fontWeight: FontWeight.bold
                             ),),
 
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text("A young doctor journey",
-                              // textAlign: TextAlign.left,
-                              style: TextStyle(
-                                  fontSize: 12,
-                                  color: Colors.grey,
-                                  fontWeight: FontWeight.bold
-                              ),),
-                          ),
 
                           SizedBox(
                             height: 5,
@@ -724,10 +718,10 @@ class _home_body extends State<home> {
                               child: Text(" Lorem Ipsum is probably  dummy text generator out there. ...",
                                 // textAlign: TextAlign.left,
                                 style: TextStyle(
-                                  fontSize: 12,
+                                  fontSize: 13,
                                   color: Colors.grey,
                                 ),
-                               maxLines: 3,
+                               maxLines: 4,
                                overflow: TextOverflow.ellipsis
                               ),
                               //  ),
@@ -1046,31 +1040,29 @@ class _home_body extends State<home> {
 
   Widget blog_detail(BuildContext context){
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
-        automaticallyImplyLeading: false,
+        centerTitle: true,
+        title: Text("Blogs List",
+          textAlign: TextAlign.start,
+          style: TextStyle(
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
+        ),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
         backgroundColor: Colors.white,
+        automaticallyImplyLeading: false,
+
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 0.0,horizontal: 20),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text("Blogs List",
-                  textAlign: TextAlign.start,
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
-                ),
-              ),
-            ),
-
-
-
             Padding(
                 padding: EdgeInsets.only(top: 10),
                 // Center is a layout widget. It takes a single child and positions it
@@ -1108,8 +1100,7 @@ class _home_body extends State<home> {
                                 boxShadow: <BoxShadow>[
                                   BoxShadow(
                                     color: Colors.grey,
-                                    offset: Offset(1.0, 15.0),
-                                    blurRadius: 20.0,
+                                    blurRadius: 2.0,
                                   ),
                                 ],
                               ),
@@ -1120,7 +1111,8 @@ class _home_body extends State<home> {
                                   ClipRRect(
                                     borderRadius: BorderRadius.vertical(top: Radius.circular(10)), // Image border
                                     child: Image.asset("assets/image/img_1.png",
-                                      fit: BoxFit.fitWidth,
+                                      height: 130,
+                                      fit: BoxFit.cover,
                                       width: MediaQuery.of(context).size.width*0.45,
                                     ),
                                   ),
@@ -1130,8 +1122,9 @@ class _home_body extends State<home> {
                                     child: Text("Data Science",
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
-                                        color: Colors.grey,
-                                        fontSize: 10,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.grey[600],
+                                        fontSize: 12,
                                       ),),
                                   ),
 
@@ -1143,26 +1136,33 @@ class _home_body extends State<home> {
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 12,
+                                        fontSize: 13,
                                       ),),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.all(5.0),
+                                    padding: const EdgeInsets.only(top: 5.0,left: 5,right: 5),
                                     child: Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text("20k",
-                                          textAlign: TextAlign.left,
-                                          style: TextStyle(
-                                            color: Colors.grey,
-                                            fontSize: 9,
-                                          ),),
+                                        Row(
+                                          children: [
+                                            Icon(Icons.remove_red_eye,size: 15,color: Colors.grey[600],),
+                                            Text("  20k",
+                                              textAlign: TextAlign.left,
+                                              style: TextStyle(
+                                                color: Colors.grey[600],
+                                                fontSize: 10,
+                                                fontWeight: FontWeight.bold
+                                              ),),
+                                          ],
+                                        ),
 
                                         Text("28 jan 2021",
                                           textAlign: TextAlign.left,
                                           style: TextStyle(
-                                            color: Colors.grey,
-                                            fontSize: 9,
+                                            color: Colors.grey[600],
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 10,
                                           ),),
                                       ],
                                     ),

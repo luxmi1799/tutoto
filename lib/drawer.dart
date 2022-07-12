@@ -29,10 +29,16 @@ class myDrawer extends StatelessWidget{
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
 
-                     Image.asset(
-                        "assets/image/tutorologo.png",
-                        fit:BoxFit.cover,
-                      ),
+                     Center(
+                       child: SizedBox(
+                         width: 220,
+                         height: 100,
+                         child: Image.asset(
+                            "assets/image/tutorologo.png",
+                            fit:BoxFit.cover,
+                          ),
+                       ),
+                     ),
                       // Text("My Profile",style: TextStyle(
                       //   color: Colors.black,
                       //   fontWeight: FontWeight.bold,

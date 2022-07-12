@@ -19,7 +19,16 @@ class _college_details extends State<blog_details> {
         backgroundColor: Colors.white,
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(50.0), // here the desired height
-          child: AppBar(
+          child:AppBar(
+            centerTitle: true,
+            title: Text("Blog Details",
+              textAlign: TextAlign.start,
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
+            ),
             leading: IconButton(
               icon: Icon(Icons.arrow_back, color: Colors.black),
               onPressed: () => Navigator.of(context).pop(),
@@ -33,22 +42,7 @@ class _college_details extends State<blog_details> {
           child: Column(
             children: [
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 10.0,horizontal: 20),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text("Blogs Details",
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-              ),
-
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0,left: 10,right: 10),
+                padding: const EdgeInsets.only(top: 20.0,left: 15,right: 15),
                 child: Container(
                   height: MediaQuery.of(context).size.height*0.75,
                   width: MediaQuery.of(context).size.width,
@@ -71,7 +65,7 @@ class _college_details extends State<blog_details> {
                       ClipRRect(
                         borderRadius: BorderRadius.vertical(top: Radius.circular(10)), // Image border
                         child: Image.asset("assets/image/img_1.png",
-                          fit: BoxFit.fill,
+                          fit: BoxFit.cover,
                           width: MediaQuery.of(context).size.width,
                         ),
                       ),
@@ -99,7 +93,7 @@ class _college_details extends State<blog_details> {
                             Text("A Young Doctor's Journey",
                               textAlign: TextAlign.start,
                               style: TextStyle(
-                                fontSize: 13,
+                                fontSize: 16,
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold
                               ),
@@ -107,23 +101,30 @@ class _college_details extends State<blog_details> {
 
                             Row(
                               children: [
-                                Text("20k",
-                                  textAlign: TextAlign.start,
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.black,
-                                  ),
+                                Row(
+                                  children: [
+                                    Icon(Icons.remove_red_eye,size: 15,color: Colors.grey[600],),
+                                    Text(" 20k",
+                                      textAlign: TextAlign.start,
+                                      style: TextStyle(
+                                        fontSize: 13,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold
+                                      ),
+                                    ),
+                                  ],
                                 ),
 
                                 SizedBox(
-                                  width: 5,
+                                  width: 7,
                                 ),
 
                                 Text("28 jan 2021",
                                   textAlign: TextAlign.start,
                                   style: TextStyle(
-                                    fontSize: 12,
+                                    fontSize: 13,
                                     color: Colors.black,
+                                    fontWeight: FontWeight.bold
                                   ),
                                 ),
                               ],
@@ -140,9 +141,9 @@ class _college_details extends State<blog_details> {
                               softWrap: true,
                               style: TextStyle(
                                 color: Colors.grey,
-                                fontSize: 14,
+                                fontSize: 15,
                               ),
-                              maxLines: 6,
+                              maxLines: 7,
                               overflow: TextOverflow.ellipsis
                           ),
                         ),
@@ -156,9 +157,9 @@ class _college_details extends State<blog_details> {
                               softWrap: true,
                               style: TextStyle(
                                 color: Colors.grey,
-                                fontSize: 14,
+                                fontSize: 15,
                               ),
-                              maxLines: 6,
+                              maxLines: 7,
                               overflow: TextOverflow.ellipsis
                           ),
                         ),

@@ -33,7 +33,7 @@ class _college_list extends State<college_list> {
          automaticallyImplyLeading: false,
          backgroundColor: Colors.white,
          title: ClipRRect(
-           borderRadius: BorderRadius.circular(10.0),
+           borderRadius: BorderRadius.circular(15.0),
            child: Container(
              width: double.infinity,
              height: 40,
@@ -52,7 +52,9 @@ class _college_list extends State<college_list> {
                    hintText: 'Search',
                    hintStyle: TextStyle(fontSize: 18.0, color: Colors.black),
                    suffixIcon: Icon(Icons.search,color: Colors.black,),
-                   prefixIcon: Icon(Icons.arrow_back,color: Colors.black,),
+                   prefixIcon: IconButton(
+                       onPressed: () => Navigator.of(context).pop(),
+                       icon:Icon(Icons.arrow_back,color: Colors.black,)),
                  ),
                ),
             // ),
@@ -63,7 +65,7 @@ class _college_list extends State<college_list> {
          child: Column(
            children: [
              Padding(
-               padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 20),
+               padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 15),
                child: Align(
                  alignment: Alignment.centerLeft,
                  child: Text("College Listing",
@@ -77,92 +79,144 @@ class _college_list extends State<college_list> {
                ),
              ),
 
-             Wrap(
-              // mainAxisAlignment: MainAxisAlignment.spaceAround,
-               children: [
+             Padding(
+               padding: const EdgeInsets.only(left: 8.0),
+               child: Align(
+                 alignment: Alignment.centerLeft,
+                 child: Wrap(
+                  // mainAxisAlignment: MainAxisAlignment.spaceAround,
 
-                 Container(
-                   margin: const EdgeInsets.all(10.0),
-                   padding: const EdgeInsets.all(3.0),
-                   decoration: BoxDecoration(
-                       border: Border.all(
-                         color: Color(int.parse("0xff${colors_color.main_theme}")),
+                   children: [
+
+                     Container(
+                       margin: const EdgeInsets.all(12.0),
+                       padding: const EdgeInsets.all(3.0),
+                       decoration: BoxDecoration(
+                           border: Border.all(
+                             color: Color(int.parse("0xff${colors_color.main_theme}")),
+                           ),
+                         borderRadius: BorderRadius.circular(5),
                        ),
-                     borderRadius: BorderRadius.circular(5),
-                   ),
-                   child: Text(' All ',
-                     style: TextStyle(
-                       fontSize: 17,
-                       fontWeight: FontWeight.bold,
-                       color: Color(int.parse("0xff${colors_color.main_theme}")),
+                       child: Text(' All ',
+                         style: TextStyle(
+                           fontSize: 17,
+                           fontWeight: FontWeight.bold,
+                           color: Color(int.parse("0xff${colors_color.main_theme}")),
+                         ),
+                       ),
                      ),
-                   ),
-                 ),
 
-                 Container(
-                   margin: const EdgeInsets.all(10.0),
-                   padding: const EdgeInsets.all(3.0),
-                   decoration: BoxDecoration(
-                     border: Border.all(
-                       color: Color(int.parse("0xff${colors_color.main_theme}")),
+                     Container(
+                       margin: const EdgeInsets.all(12.0),
+                       padding: const EdgeInsets.all(3.0),
+                       decoration: BoxDecoration(
+                         border: Border.all(
+                           color: Color(int.parse("0xff${colors_color.main_theme}")),
+                         ),
+                         borderRadius: BorderRadius.circular(5),
+                       ),
+                       child: Text(' India ',
+                         style: TextStyle(
+                           fontSize: 17,
+                           fontWeight: FontWeight.bold,
+                           color: Color(int.parse("0xff${colors_color.main_theme}")),
+                         ),
+                       ),
                      ),
-                     borderRadius: BorderRadius.circular(5),
-                   ),
-                   child: Text(' India ',
-                     style: TextStyle(
-                       fontSize: 17,
-                       fontWeight: FontWeight.bold,
-                       color: Color(int.parse("0xff${colors_color.main_theme}")),
-                     ),
-                   ),
-                 ),
 
-                 Container(
-                   margin: const EdgeInsets.all(10.0),
-                   padding: const EdgeInsets.all(3.0),
-                   decoration: BoxDecoration(
-                     border: Border.all(
-                       color: Color(int.parse("0xff${colors_color.main_theme}")),
+                     Container(
+                       margin: const EdgeInsets.all(12.0),
+                       padding: const EdgeInsets.all(3.0),
+                       decoration: BoxDecoration(
+                         border: Border.all(
+                           color: Color(int.parse("0xff${colors_color.main_theme}")),
+                         ),
+                         borderRadius: BorderRadius.circular(5),
+                       ),
+                       child: Text(' Abroad ',
+                         style: TextStyle(
+                           fontSize: 17,
+                           fontWeight: FontWeight.bold,
+                           color: Color(int.parse("0xff${colors_color.main_theme}")),
+                         ),
+                       ),
                      ),
-                     borderRadius: BorderRadius.circular(5),
-                   ),
-                   child: Text(' Abroad ',
-                     style: TextStyle(
-                       fontSize: 17,
-                       fontWeight: FontWeight.bold,
-                       color: Color(int.parse("0xff${colors_color.main_theme}")),
-                     ),
-                   ),
-                 ),
 
-                 Container(
-                   margin: const EdgeInsets.all(10.0),
-                   padding: const EdgeInsets.all(3.0),
-                   decoration: BoxDecoration(
-                     border: Border.all(
-                       color: Color(int.parse("0xff${colors_color.main_theme}")),
-                     ),
-                     borderRadius: BorderRadius.circular(5),
-                   ),
-                   child: Text('Advanced Filter',
-                     style: TextStyle(
-                       fontSize: 17,
-                       fontWeight: FontWeight.bold,
-                       color: Color(int.parse("0xff${colors_color.main_theme}")),
-                     ),
-                   ),
+                    FormField<String>(
+                         builder: (FormFieldState<String> state) {
+                           return Container(
+                               margin: const EdgeInsets.all(12.0),
+                               padding: const EdgeInsets.all(3.0),
+                               decoration: BoxDecoration(
+                                 border: Border.all(
+                                   color: Color(int.parse("0xff${colors_color.main_theme}")),
+                                 ),
+                                 borderRadius: BorderRadius.circular(5),
+                               ),
+                             child: DropdownButtonHideUnderline(
+                               child: DropdownButton<String>(
+                                 hint: Text("Advanced Filter",
+                                   style: TextStyle(
+                                   fontSize: 14,
+                                   fontWeight: FontWeight.bold,
+                                   color: Color(int.parse("0xff${colors_color.main_theme}")),
+                                 ),),
+                                 value: selectedValue,
+                                 isDense: true,
+                                 onChanged: (newValue) {
+                                   setState(() {
+                                     selectedValue = newValue;
+                                   });
+                                   print(selectedValue);
+                                 },
+                                 items: _currencies.map((String value) {
+                                   return DropdownMenuItem<String>(
+                                     value: value,
+                                     child: Text(value,
+                                       style: TextStyle(
+                                         fontSize: 17,
+                                         fontWeight: FontWeight.bold,
+                                         color: Color(int.parse("0xff${colors_color.main_theme}")),
+                                       ),
+                                     ),
+                                   );
+                                 }).toList(),
+                               ),
+                             ),
+                           );
+                         },
+                       ),
+
+                     // Container(
+                     //   margin: const EdgeInsets.all(12.0),
+                     //   padding: const EdgeInsets.all(3.0),
+                     //   decoration: BoxDecoration(
+                     //     border: Border.all(
+                     //       color: Color(int.parse("0xff${colors_color.main_theme}")),
+                     //     ),
+                     //     borderRadius: BorderRadius.circular(5),
+                     //   ),
+                     //   child: Text('Advanced Filter',
+                     //     style: TextStyle(
+                     //       fontSize: 17,
+                     //       fontWeight: FontWeight.bold,
+                     //       color: Color(int.parse("0xff${colors_color.main_theme}")),
+                     //     ),
+                     //   ),
+                     // ),
+                   ],
                  ),
-               ],
+               ),
              ),
 
              Padding(
-               padding: EdgeInsets.all(10),
+               padding: EdgeInsets.symmetric(vertical: 10,horizontal: 13),
                // Center is a layout widget. It takes a single child and positions it
                // in the middle of the parent.
                child: ListView.builder(
-                   physics: NeverScrollableScrollPhysics(),
+                   physics: ScrollPhysics(),
                    scrollDirection: Axis.vertical,
-                   itemCount: 8,
+                   itemCount: 5,
                    itemExtent: 110.0,
                    shrinkWrap: true,
                    itemBuilder: (context,index){
@@ -193,9 +247,9 @@ class _college_list extends State<college_list> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start ,
                 children: [
-                  Text("college_name",
+                  Text("College_name",
                     style: TextStyle(
-                      fontSize: 14,
+                      fontSize: 16,
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
                     ),),
@@ -206,10 +260,10 @@ class _college_list extends State<college_list> {
 
                   Align(
                     alignment: Alignment.centerLeft,
-                    child: Text("address,India",
+                    child: Text("Address,India",
                      // textAlign: TextAlign.left,
                       style: TextStyle(
-                        fontSize: 12,
+                        fontSize: 13,
                         color: Colors.grey,
                         fontWeight: FontWeight.bold
                       ),),
@@ -223,7 +277,7 @@ class _college_list extends State<college_list> {
                     children: [
                       Text("4.5",
                         style: TextStyle(
-                          fontSize: 10,
+                          fontSize: 12,
                           color: Colors.grey,
                           fontWeight: FontWeight.bold,
                         ),
@@ -242,7 +296,7 @@ class _college_list extends State<college_list> {
                       ),
                       Text("Graduation rate 98%",
                         style: TextStyle(
-                          fontSize: 12,
+                          fontSize: 13,
                           color: Colors.grey,
                           fontWeight: FontWeight.bold,
                         ),
@@ -259,7 +313,7 @@ class _college_list extends State<college_list> {
                     child: Text("Explore Details",
                       // textAlign: TextAlign.left,
                       style: TextStyle(
-                          fontSize: 12,
+                          fontSize: 15,
                         color: Color(int.parse("0xff${colors_color.main_theme}")),
                           fontWeight: FontWeight.bold,
                       ),),
@@ -269,9 +323,9 @@ class _college_list extends State<college_list> {
                 ],
               ),
               ClipRRect(
-                borderRadius: BorderRadius.circular(20), // Image border
+                borderRadius: BorderRadius.circular(15), // Image border
                 child: SizedBox.fromSize(
-                  size: Size.fromRadius(48), // Image radius
+                  size: Size.fromRadius(50), // Image radius
                   child: Image.asset("assets/image/img_1.png", fit: BoxFit.cover),
                 ),
               )

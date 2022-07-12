@@ -18,9 +18,15 @@ class _budget extends State<budget_predictor> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(50.0), // here the desired height
         child: AppBar(
-          title: Text("",style: TextStyle(
-            color: Colors.black,
-          ),),
+          centerTitle: true,
+          title: Text("Budget Predictor",
+            textAlign: TextAlign.start,
+            style: TextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+          ),
           leading: IconButton(
             icon: Icon(Icons.arrow_back, color: Colors.black),
             onPressed: () => Navigator.of(context).pop(),
@@ -36,20 +42,6 @@ class _budget extends State<budget_predictor> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 10.0,horizontal: 20),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text("Budget Predictor",
-                  textAlign: TextAlign.start,
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
-                ),
-              ),
-            ),
 
             Container(
               color: Color(int.parse("0xff${colors_color.main_theme}")),
@@ -65,7 +57,7 @@ class _budget extends State<budget_predictor> {
             ),
 
             Container(
-              color: Colors.amberAccent,
+              color: Colors.white,
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height*0.40,
               child: Padding(
@@ -76,13 +68,13 @@ class _budget extends State<budget_predictor> {
                   children: [
 
                     Padding(
-                      padding: const EdgeInsets.all(10.0),
+                      padding: const EdgeInsets.all(15.0),
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: Text("NEET Score",
                           textAlign: TextAlign.start,
                           style: TextStyle(
-                            fontSize: 14,
+                            fontSize: 16,
                             fontWeight: FontWeight.bold,
                             color: Colors.black,
                           ),
@@ -95,7 +87,7 @@ class _budget extends State<budget_predictor> {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: Container(
-                          color: Colors.amberAccent,
+                          color: Colors.white,
                           child: TextFormField(
                             validator: (value) {
                               if (value != null && value.trim().length < 5) {
@@ -113,7 +105,7 @@ class _budget extends State<budget_predictor> {
                                 border: OutlineInputBorder(),
                                 errorBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                        color: Colors.amber,
+                                        color: Colors.black,
                                         width: 4))),
                           ),
                         ),
@@ -121,24 +113,22 @@ class _budget extends State<budget_predictor> {
                     ),
 
                     Padding(
-                      padding: const EdgeInsets.all(30.0),
+                      padding: const EdgeInsets.symmetric(vertical: 30.0,horizontal: 60),
                       child: Center(
-                        child: Container(
-                          width: 150,
+                        child: AnimatedContainer(
+                          duration: Duration(seconds: 1),//empty container can use inside of widget
                           height: 50,
-                          child: RaisedButton(
-                            onPressed: (){
-                              Navigator.of(context).push(MaterialPageRoute(builder: (context) => budget_detail()));
-                            },
+                          alignment: Alignment.center,
+                          //changebtn?Icon(Icons.done,color: Colors.white,):
+                          child:Text("Submit",style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15,
+                            color: Colors.white,
+                          ),
+                          ),
+                          decoration: BoxDecoration(
                             color: Color(int.parse("0xff${colors_color.main_theme}")),
-                            child: Text("Submit",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                                backgroundColor:  Color(int.parse("0xff${colors_color.main_theme}")),
-                              ),),
+                            borderRadius: BorderRadius.circular(10),
                           ),
                         ),
                       ),

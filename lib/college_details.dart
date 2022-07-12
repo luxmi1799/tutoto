@@ -32,8 +32,17 @@ class _college_details extends State<college_details> {
        child: Scaffold(
          backgroundColor: Colors.white,
          appBar: PreferredSize(
-           preferredSize: Size.fromHeight(50.0), // here the desired height
+           preferredSize: Size.fromHeight(40.0), // here the desired height
            child: AppBar(
+             centerTitle: true,
+             title: Text("College Details",
+               textAlign: TextAlign.start,
+               style: TextStyle(
+                 fontSize: 22,
+                 fontWeight: FontWeight.bold,
+                 color: Colors.black,
+               ),
+             ),
              leading: IconButton(
                icon: Icon(Icons.arrow_back, color: Colors.black),
                onPressed: () => Navigator.of(context).pop(),
@@ -49,23 +58,9 @@ class _college_details extends State<college_details> {
              crossAxisAlignment: CrossAxisAlignment.start,
              children: [
 
-               Padding(
-                 padding: EdgeInsets.symmetric(vertical: 10.0,horizontal: 20),
-                 child: Align(
-                   alignment: Alignment.centerLeft,
-                   child: Text("College Details",
-                     textAlign: TextAlign.start,
-                     style: TextStyle(
-                       fontSize: 22,
-                       fontWeight: FontWeight.bold,
-                       color: Colors.black,
-                     ),
-                   ),
-                 ),
-               ),
 
                Padding(
-                 padding: const EdgeInsets.symmetric(vertical: 12.0),
+                 padding: const EdgeInsets.only(top: 35.0,bottom: 20),
                  child: Container(
                    height: 220,
                    child: DotPaginationSwiper.builder(
@@ -88,7 +83,7 @@ class _college_details extends State<college_details> {
                // ),
 
                Padding(
-                 padding: EdgeInsets.symmetric(vertical: 10.0,horizontal: 20),
+                 padding: EdgeInsets.symmetric(vertical: 20.0,horizontal: 20),
                  child: Align(
                    alignment: Alignment.centerLeft,
                    child: Text("All India Insitute of Medical Sciences",
@@ -133,14 +128,14 @@ class _college_details extends State<college_details> {
                ),
 
                Padding(
-                 padding: const EdgeInsets.only(left: 10.0,top: 5),
+                 padding: const EdgeInsets.only(left: 10.0,top: 15),
                  child: Table(
                      border: TableBorder.all(width: 0.001), // Allows to add a border decoration around your table
                      children: [
 
                        TableRow(children :[
                          Padding(
-                           padding: const EdgeInsets.symmetric(horizontal: 10),
+                           padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 5),
                            child:
                            Text('World Ranking',style: TextStyle(
                              fontSize: 15,
@@ -148,23 +143,24 @@ class _college_details extends State<college_details> {
                            ),),
                          ),
                          Padding(
-                           padding: const EdgeInsets.symmetric(horizontal: 10),
+                           padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 5),
                            child: Text('8234 Rank',
                              style: TextStyle(
                                fontSize: 15,
                              ),),
                          ),
                        ]),
+
                        TableRow(children :[
                          Padding(
-                           padding: const EdgeInsets.symmetric(horizontal: 10),
+                           padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 5),
                            child: Text('Bond',style: TextStyle(
                              fontSize: 15,
                              fontWeight: FontWeight.bold,
                            ),),
                          ),
                          Padding(
-                           padding: const EdgeInsets.symmetric(horizontal: 10),
+                           padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 5),
                            child: Text('-',
                              style: TextStyle(
                                fontSize: 15,
@@ -174,14 +170,14 @@ class _college_details extends State<college_details> {
 
                        TableRow(children :[
                          Padding(
-                           padding: const EdgeInsets.symmetric(horizontal: 10),
+                           padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 5),
                            child: Text('Private/Government',style: TextStyle(
                              fontSize: 15,
                              fontWeight: FontWeight.bold,
                            ),),
                          ),
                          Padding(
-                           padding: const EdgeInsets.symmetric(horizontal: 10),
+                           padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 5),
                            child: Text('Private',
                              style: TextStyle(
                                fontSize: 15,
@@ -193,14 +189,14 @@ class _college_details extends State<college_details> {
 
                        TableRow(children :[
                          Padding(
-                           padding: const EdgeInsets.symmetric(horizontal: 10),
+                           padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 5),
                            child: Text('Institute Fee/Hostel Fee',style: TextStyle(
                              fontSize: 15,
                              fontWeight: FontWeight.bold,
                            ),),
                          ),
                          Padding(
-                           padding: const EdgeInsets.symmetric(horizontal: 10),
+                           padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 5),
                            child: Text('2 Lakhs',
                              style: TextStyle(
                                fontSize: 15,
@@ -230,7 +226,7 @@ class _college_details extends State<college_details> {
                       ),
 
                        SizedBox(
-                         height: 6,
+                         height: 10,
                        ),
 
                        SizedBox(
@@ -239,7 +235,7 @@ class _college_details extends State<college_details> {
                           softWrap: true,
                            style: TextStyle(
                             color: Colors.grey,
-                            fontSize: 14,
+                            fontSize: 15,
                           ),
                           maxLines: 10,
                          overflow: TextOverflow.ellipsis

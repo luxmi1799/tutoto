@@ -130,22 +130,22 @@ class _edit_profile extends State<edit_profile> {
              ),
 
              Padding(
-               padding: const EdgeInsets.symmetric(vertical: 30.0,horizontal: 20),
+               padding: const EdgeInsets.symmetric(vertical: 30.0,horizontal: 60),
                child: Center(
-                 child: Container(
-                   width: 150,
+                 child: AnimatedContainer(
+                   duration: Duration(seconds: 1),//empty container can use inside of widget
                    height: 50,
-                   child: RaisedButton(
-                     onPressed: (){},
+                   alignment: Alignment.center,
+                   //changebtn?Icon(Icons.done,color: Colors.white,):
+                   child:Text("Submit",style: TextStyle(
+                     fontWeight: FontWeight.bold,
+                     fontSize: 15,
+                     color: Colors.white,
+                   ),
+                   ),
+                   decoration: BoxDecoration(
                      color: Color(int.parse("0xff${colors_color.main_theme}")),
-                     child: Text("Submit",
-                       textAlign: TextAlign.center,
-                       style: TextStyle(
-                         color: Colors.white,
-                         fontSize: 15,
-                         fontWeight: FontWeight.bold,
-                         backgroundColor:  Color(int.parse("0xff${colors_color.main_theme}")),
-                       ),),
+                     borderRadius: BorderRadius.circular(10),
                    ),
                  ),
                ),
