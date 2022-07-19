@@ -1098,7 +1098,7 @@ class _home_body extends State<home> {
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
                     return Padding(
-                      padding: const EdgeInsets.only(bottom: 10.0),
+                      padding: const EdgeInsets.all(10.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
@@ -1112,7 +1112,7 @@ class _home_body extends State<home> {
                               });
                             },
                             child: Container(
-                              height: 350,
+                              height: 360,
                               width: MediaQuery.of(context).size.width*0.45,
                               decoration: BoxDecoration(
                                 // border: Border.all(color: Color(0xff940D5A)),
@@ -1132,14 +1132,14 @@ class _home_body extends State<home> {
                                   ClipRRect(
                                     borderRadius: BorderRadius.vertical(top: Radius.circular(10)), // Image border
                                     child: Image.asset(assetimg[index],
-                                      height: 130,
+                                      height: 120,
                                       fit: BoxFit.cover,
                                       width: MediaQuery.of(context).size.width*0.45,
                                     ),
                                   ),
 
                                   Padding(
-                                    padding: const EdgeInsets.symmetric(horizontal: 7.0,vertical: 5),
+                                    padding: const EdgeInsets.only(top: 5.0,left: 7,right: 5),
                                     child: Text("Data Science",
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
@@ -1151,7 +1151,7 @@ class _home_body extends State<home> {
 
 
                                   Padding(
-                                    padding: const EdgeInsets.only(left: 7.0,bottom: 5,right: 7),
+                                    padding: const EdgeInsets.only(left: 7.0,right: 7,top: 5),
                                     child: Text("How to improve Excel Skills",
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
@@ -1161,7 +1161,7 @@ class _home_body extends State<home> {
                                       ),),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.only(top: 3.0,left: 7,right: 7,bottom: 2),
+                                    padding: const EdgeInsets.only(top: 5.0,left: 7,right: 7,bottom: 5),
                                     child: Row(
                                       mainAxisAlignment: MainAxisAlignment.start,
                                       children: [

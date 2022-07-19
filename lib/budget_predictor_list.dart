@@ -15,8 +15,10 @@ class _budget_d extends State<budget_detail> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(50.0), // here the desired height
         child: AppBar(
+          centerTitle: true,
           title: Text("Budget Predictor",style: TextStyle(
             color: Colors.black,
+            fontSize: 20,
           ),),
           leading: IconButton(
             icon: Icon(Icons.arrow_back, color: Colors.black),
@@ -33,50 +35,46 @@ class _budget_d extends State<budget_detail> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
 
+            SizedBox(
+              height: 20,
+            ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 25.0,vertical: 10),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
 
                   Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(top: 5),
                         child: Text("NEET Score",
                           textAlign: TextAlign.start,
                           style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 20,
                          fontWeight: FontWeight.bold,
                         ),
                         ),
                       ),
 
                       Padding(
-                        padding: const EdgeInsets.only(top: 4.0),
+                        padding: const EdgeInsets.only(top: 10.0),
                         child: Container(
-                          width: 100,
+                          width: 120,
                           height: 40,
-                          child: TextFormField(
-                            enabled: false,
-                            validator: (value) {
-                              if (value != null && value.trim().length < 5) {
-                                return 'This field requires a minimum of 3 characters';
-                              }
-
-                              return null;
-                            },
-                            decoration: const InputDecoration(
-                                hintText: '1832983',
-                                hintStyle: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 12
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.black),
+                              borderRadius: BorderRadius.circular(4)
+                          ),
+                          child: Center(
+                              child: Text(
+                                "1234678",
+                                style: TextStyle(
+                                    fontSize: 18
                                 ),
-                                border: OutlineInputBorder(),
-                                errorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: Colors.amber,
-                                        width: 4))),
+                              )
                           ),
                         ),
                       ),
@@ -89,43 +87,36 @@ class _budget_d extends State<budget_detail> {
                   ),
 
                   Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(top: 5.0),
                         child: Text("Budget",
                           textAlign: TextAlign.start,
                           style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 20,
                          fontWeight: FontWeight.bold,
                         ),
                         ),
                       ),
 
                       Padding(
-                        padding: const EdgeInsets.only(top: 4.0),
+                        padding: const EdgeInsets.only(top: 10.0),
                         child: Container(
-                          width: 100,
+                          width: 120,
                           height: 40,
-                          child: TextFormField(
-                            enabled: false,
-                            validator: (value) {
-                              if (value != null && value.trim().length < 5) {
-                                return 'This field requires a minimum of 3 characters';
-                              }
-
-                              return null;
-                            },
-                            decoration: const InputDecoration(
-                                hintText: '2 Lakhs',
-                                hintStyle: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 12
-                                ),
-                                border: OutlineInputBorder(),
-                                errorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: Colors.amber,
-                                        width: 4))),
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.black),
+                            borderRadius: BorderRadius.circular(4)
+                          ),
+                          child: Center(
+                            child: Text(
+                              "2 Lakhs",
+                              style: TextStyle(
+                                fontSize: 18
+                              ),
+                            )
                           ),
                         ),
                       ),
@@ -137,7 +128,7 @@ class _budget_d extends State<budget_detail> {
             ),
 
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 10.0,horizontal: 20),
+              padding: EdgeInsets.symmetric(vertical: 15.0,horizontal: 20),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text("Recommended College List",
@@ -166,7 +157,7 @@ class _budget_d extends State<budget_detail> {
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
                     return Padding(
-                      padding: const EdgeInsets.only(bottom: 10.0),
+                      padding: const EdgeInsets.all(10.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
@@ -191,7 +182,7 @@ class _budget_d extends State<budget_detail> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Padding(
-                                    padding: const EdgeInsets.all(5.0),
+                                    padding: const EdgeInsets.symmetric(vertical: 5.0,horizontal: 7),
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(10), // Image border
                                       child: Image.asset("assets/image/img_9.png",
@@ -214,7 +205,7 @@ class _budget_d extends State<budget_detail> {
                                       ),),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.only(left: 10.0,bottom: 5,top: 5),
+                                    padding: const EdgeInsets.only(left: 10.0,bottom: 5,),
                                     child: Row(
                                       children: [
                                         Text("Delhi,India",

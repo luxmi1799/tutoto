@@ -98,7 +98,7 @@ class _college_list extends State<college_list> {
                        child: Padding(
                          padding: const EdgeInsets.all(8.0),
                          child: Container(
-                           height: 30,
+                           height: 35,
                            width: 40,
                            // height: 30,
                            // margin: const EdgeInsets.all(12.0),
@@ -135,7 +135,7 @@ class _college_list extends State<college_list> {
                        child: Padding(
                          padding: const EdgeInsets.all(8.0),
                          child: Container(
-                           height: 30,
+                           height: 35,
                            width: 50,
                            // margin: const EdgeInsets.all(12.0),
                            // padding: const EdgeInsets.all(3.0),
@@ -171,7 +171,7 @@ class _college_list extends State<college_list> {
                        child: Padding(
                          padding: const EdgeInsets.all(8.0),
                          child: Container(
-                           height: 30,
+                           height: 35,
                            width: 65,
                            // margin: const EdgeInsets.all(12.0),
                            // padding: const EdgeInsets.all(3.0),
@@ -210,7 +210,7 @@ class _college_list extends State<college_list> {
                           child: FormField<String>(
                                builder: (FormFieldState<String> state) {
                                  return Container(
-                                   height: 30,
+                                   height: 35,
                                      // margin: const EdgeInsets.all(12.0),
                                      // padding: const EdgeInsets.all(3.0),
                                      decoration: BoxDecoration(

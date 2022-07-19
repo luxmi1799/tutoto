@@ -118,6 +118,7 @@ class _edit_profile extends State<edit_profile> {
                  },
                ),
              ),
+
              Padding(
                padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 12),
                child: TextFormField(
