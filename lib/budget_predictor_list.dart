@@ -34,24 +34,26 @@ class _budget_d extends State<budget_detail> {
           children: [
 
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 10),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
 
                   Column(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text("NEET Score",style: TextStyle(
-                          fontSize: 12,
+                        padding: const EdgeInsets.only(top: 5),
+                        child: Text("NEET Score",
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                          fontSize: 16,
                          fontWeight: FontWeight.bold,
                         ),
                         ),
                       ),
 
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.only(top: 4.0),
                         child: Container(
                           width: 100,
                           height: 40,
@@ -82,19 +84,25 @@ class _budget_d extends State<budget_detail> {
 
                   ),
 
+                  SizedBox(
+                    width: 40,
+                  ),
+
                   Column(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text("Budget",style: TextStyle(
-                          fontSize: 12,
+                        padding: const EdgeInsets.only(top: 5.0),
+                        child: Text("Budget",
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                          fontSize: 16,
                          fontWeight: FontWeight.bold,
                         ),
                         ),
                       ),
 
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.only(top: 4.0),
                         child: Container(
                           width: 100,
                           height: 40,
@@ -196,7 +204,7 @@ class _budget_d extends State<budget_detail> {
 
 
                                   Padding(
-                                    padding: const EdgeInsets.only(left: 5.0,bottom: 5),
+                                    padding: const EdgeInsets.only(left: 10.0,bottom: 5),
                                     child: Text("All India Institute of Medical Science",
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
@@ -206,23 +214,26 @@ class _budget_d extends State<budget_detail> {
                                       ),),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.all(5.0),
+                                    padding: const EdgeInsets.only(left: 10.0,bottom: 5,top: 5),
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text("Delhi,India",
                                           textAlign: TextAlign.left,
                                           style: TextStyle(
                                             color: Colors.grey[600],
-                                            fontSize: 10,
+                                            fontSize: 11,
                                             fontWeight: FontWeight.bold
                                           ),),
+
+                                        SizedBox(
+                                          width: 10,
+                                        ),
 
                                         Text("Rs. 1.8 lakhs",
                                           textAlign: TextAlign.left,
                                           style: TextStyle(
                                             color: Colors.grey[600],
-                                            fontSize: 10,
+                                            fontSize: 11,
                                             fontWeight: FontWeight.bold
                                           ),),
                                       ],

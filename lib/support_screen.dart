@@ -43,7 +43,7 @@ class _support extends State<support_s> {
           children: [
 
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 20.0,horizontal: 12),
+              padding: EdgeInsets.only(top: 20.0,left: 12,bottom: 10),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text("Username",
@@ -78,7 +78,7 @@ class _support extends State<support_s> {
 
 
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 20.0,horizontal: 12),
+              padding: EdgeInsets.only(top: 20.0,left: 12,bottom: 10),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text("Password",
@@ -111,7 +111,7 @@ class _support extends State<support_s> {
             ),
 
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 20.0,horizontal: 12),
+              padding: EdgeInsets.only(top: 20.0,left: 12,bottom: 10),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text("Your message",

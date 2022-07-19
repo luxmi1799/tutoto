@@ -48,9 +48,9 @@ class _otp_screen extends State<otp_screen>{
             ),
 
             const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10,vertical: 20),
+              padding: EdgeInsets.symmetric(horizontal: 10,vertical: 15),
               child: Center(
-                child: Text("We have sent you a 4 digit verification code on",
+                child: Text("We have sent you a 6 digit verification code on",
                   style: TextStyle(
                     color: Colors.grey,
                     fontSize: 16,
@@ -108,7 +108,7 @@ class _otp_screen extends State<otp_screen>{
                 },
                 child: AnimatedContainer(
                   duration: Duration(seconds: 1),//empty container can use inside of widget
-                  height: 45,
+                  height: 50,
                   alignment: Alignment.center,
                   //changebtn?Icon(Icons.done,color: Colors.white,):
                   child:Text("Login",style: TextStyle(
@@ -119,7 +119,7 @@ class _otp_screen extends State<otp_screen>{
                   ),
                   decoration: BoxDecoration(
                     color: Color(int.parse("0xff${colors_color.main_theme}")),
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(4),
                   ),
                 ),
               ),

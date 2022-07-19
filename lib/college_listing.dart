@@ -18,11 +18,13 @@ class college_list extends StatefulWidget{
 class _college_list extends State<college_list> {
 
   var _currencies = [
-    "Food",
-    "Transport",
-    "Personal",
+    "Delhi",
+    "Uttar Pradesh",
+    "Mumbai",
   ];
   String? selectedValue;
+  String select = "first";
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -33,17 +35,17 @@ class _college_list extends State<college_list> {
          automaticallyImplyLeading: false,
          backgroundColor: Colors.white,
          title: ClipRRect(
-           borderRadius: BorderRadius.circular(15.0),
+           borderRadius: BorderRadius.circular(10.0),
            child: Container(
              width: double.infinity,
-             height: 40,
+             height: 45,
              color: Colors.grey[200],
              // child: Center(
                child: TextField(
                  textAlign: TextAlign.start,
                  decoration: InputDecoration(
-
-                   contentPadding: EdgeInsets.only(top: 5),
+                   border: InputBorder.none,
+                   contentPadding: EdgeInsets.only(top: 10),
                  //  filled: true,
                    // fillColor: Colors.grey[200],
                    // border: OutlineInputBorder(
@@ -84,123 +86,194 @@ class _college_list extends State<college_list> {
                child: Align(
                  alignment: Alignment.centerLeft,
                  child: Row(
-                   mainAxisAlignment: MainAxisAlignment.spaceAround,
+                   //mainAxisAlignment: MainAxisAlignment.spaceAround,
                    children: [
 
-                     Container(
-                       height: 27,
-                       // width: 100,
-                       // height: 30,
-                       // margin: const EdgeInsets.all(12.0),
-                       // padding: const EdgeInsets.all(3.0),
-                       decoration: BoxDecoration(
-                           border: Border.all(
-                             color: Color(int.parse("0xff${colors_color.main_theme}")),
-                           ),
-                         borderRadius: BorderRadius.circular(5),
-                       ),
-                       child: Center(
-                         child: Text(' All ',
-                           style: TextStyle(
-                             fontSize: 17,
-                             fontWeight: FontWeight.bold,
-                             color: Color(int.parse("0xff${colors_color.main_theme}")),
-                           ),
-                         ),
-                       ),
-                     ),
-
-                     Container(
-                       height: 27,
-                       // margin: const EdgeInsets.all(12.0),
-                       // padding: const EdgeInsets.all(3.0),
-                       decoration: BoxDecoration(
-                         border: Border.all(
-                           color: Color(int.parse("0xff${colors_color.main_theme}")),
-                         ),
-                         borderRadius: BorderRadius.circular(5),
-                       ),
-                       child: Center(
-                         child: Text(' India ',
-                           style: TextStyle(
-                             fontSize: 17,
-                             fontWeight: FontWeight.bold,
-                             color: Color(int.parse("0xff${colors_color.main_theme}")),
-                           ),
-                         ),
-                       ),
-                     ),
-
-                     Container(
-                       height: 27,
-                       // margin: const EdgeInsets.all(12.0),
-                       // padding: const EdgeInsets.all(3.0),
-                       decoration: BoxDecoration(
-                         border: Border.all(
-                           color: Color(int.parse("0xff${colors_color.main_theme}")),
-                         ),
-                         borderRadius: BorderRadius.circular(5),
-                       ),
-                       child: Center(
-                         child: Text(' Abroad ',
-                           style: TextStyle(
-                             fontSize: 17,
-                             fontWeight: FontWeight.bold,
-                             color: Color(int.parse("0xff${colors_color.main_theme}")),
-                           ),
-                         ),
-                       ),
-                     ),
-
-                    FormField<String>(
-                         builder: (FormFieldState<String> state) {
-                           return Container(
-                             height: 27,
-                               // margin: const EdgeInsets.all(12.0),
-                               // padding: const EdgeInsets.all(3.0),
-                               decoration: BoxDecoration(
-                                 border: Border.all(
-                                   color: Color(int.parse("0xff${colors_color.main_theme}")),
-                                 ),
-                                 borderRadius: BorderRadius.circular(5),
+                     GestureDetector(
+                       onTap: () {
+                         setState(() {
+                           select = 'first';
+                         });
+                       },
+                       child: Padding(
+                         padding: const EdgeInsets.all(8.0),
+                         child: Container(
+                           height: 30,
+                           width: 40,
+                           // height: 30,
+                           // margin: const EdgeInsets.all(12.0),
+                           // padding: const EdgeInsets.all(3.0),
+                           decoration: BoxDecoration(
+                               color: select == 'first' ? Color(0xffECAE0F) : Colors.white,
+                               border: Border.all(
+                                 color: select == 'first' ? Color(0xffECAE0F) : Color(0xffECAE0F),width: 1.5,
                                ),
-                             child: DropdownButtonHideUnderline(
-                               child: DropdownButton<String>(
-                                 hint: Text("Advanced Filter",
-                                   style: TextStyle(
-                                   fontSize: 14,
+                             borderRadius: BorderRadius.circular(5),
+                           ),
+                           child: Center(
+                             child: Padding(
+                               padding: const EdgeInsets.all(5.0),
+                               child: Text(' All ',
+                                 style: TextStyle(
+                                   fontSize: 15,
                                    fontWeight: FontWeight.bold,
-                                   color: Color(int.parse("0xff${colors_color.main_theme}")),
-                                 ),),
-                                 icon: Icon(                // Add this
-                                   Icons.arrow_drop_down,  // Add this
-                                   color: Color(int.parse("0xff${colors_color.main_theme}")),  // Add this
+                                   color: select == 'first' ? Colors.white:Color(0xffECAE0F),
                                  ),
-                                 value: selectedValue,
-                                 isDense: true,
-                                 onChanged: (newValue) {
-                                   setState(() {
-                                     selectedValue = newValue;
-                                   });
-                                   print(selectedValue);
-                                 },
-                                 items: _currencies.map((String value) {
-                                   return DropdownMenuItem<String>(
-                                     value: value,
-                                     child: Text(value,
-                                       style: TextStyle(
-                                         fontSize: 17,
-                                         fontWeight: FontWeight.bold,
-                                         color: Color(int.parse("0xff${colors_color.main_theme}")),
-                                       ),
-                                     ),
-                                   );
-                                 }).toList(),
                                ),
                              ),
-                           );
-                         },
+                           ),
+                         ),
                        ),
+                     ),
+
+                     GestureDetector(
+                       onTap: () {
+                         setState(() {
+                           select = 'second';
+                         });
+                       },
+                       child: Padding(
+                         padding: const EdgeInsets.all(8.0),
+                         child: Container(
+                           height: 30,
+                           width: 50,
+                           // margin: const EdgeInsets.all(12.0),
+                           // padding: const EdgeInsets.all(3.0),
+                           decoration: BoxDecoration(
+                             color: select == 'second' ? Color(0xffECAE0F) : Colors.white,
+                             border: Border.all(
+                               color: select == 'second' ? Color(0xffECAE0F) :  Color(0xffECAE0F),width: 1.5,
+                             ),
+                             borderRadius: BorderRadius.circular(5),
+                           ),
+                           child: Center(
+                             child: Padding(
+                               padding: const EdgeInsets.all(5.0),
+                               child: Text('India',
+                                 style: TextStyle(
+                                   fontSize: 15,
+                                   fontWeight: FontWeight.bold,
+                                   color: select == 'second' ? Colors.white:Color(0xffECAE0F),
+                                 ),
+                               ),
+                             ),
+                           ),
+                         ),
+                       ),
+                     ),
+
+                     GestureDetector(
+                       onTap: () {
+                         setState(() {
+                           select = 'third';
+                         });
+                       },
+                       child: Padding(
+                         padding: const EdgeInsets.all(8.0),
+                         child: Container(
+                           height: 30,
+                           width: 65,
+                           // margin: const EdgeInsets.all(12.0),
+                           // padding: const EdgeInsets.all(3.0),
+                           decoration: BoxDecoration(
+                             color: select == 'third' ? Color(0xffECAE0F) : Colors.white,
+                             border: Border.all(
+                               color: select == 'third' ? Color(0xffECAE0F) :  Color(0xffECAE0F),width: 1.5,
+                             ),
+                             borderRadius: BorderRadius.circular(5),
+                           ),
+                           child: Center(
+                             child: Padding(
+                               padding: const EdgeInsets.all(5.0),
+                               child: Text('Abroad',
+                                 style: TextStyle(
+                                   fontSize: 15,
+                                   fontWeight: FontWeight.bold,
+                                   color: select == 'third' ? Colors.white:Color(0xffECAE0F),
+                                 ),
+                               ),
+                             ),
+                           ),
+                         ),
+                       ),
+                     ),
+
+                   Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              print("select$select");
+                              select = 'four';
+                            });
+                          },
+                          child: FormField<String>(
+                               builder: (FormFieldState<String> state) {
+                                 return Container(
+                                   height: 30,
+                                     // margin: const EdgeInsets.all(12.0),
+                                     // padding: const EdgeInsets.all(3.0),
+                                     decoration: BoxDecoration(
+                                       color: select == 'four' ? Color(0xffECAE0F) : Colors.white,
+                                       border: Border.all(
+                                         color: select == 'four' ? Color(0xffECAE0F) : Color(0xffECAE0F),width: 1.5,
+                                       ),
+                                       borderRadius: BorderRadius.circular(5),
+                                     ),
+                                   child: GestureDetector(
+                                     onTap: () {
+                                       setState(() {
+                                         print("select1$select");
+                                         select = 'four';
+                                       });
+                                     },
+                                     child: DropdownButtonHideUnderline(
+                                       child: DropdownButton<String>(
+                                         hint: Padding(
+                                           padding: const EdgeInsets.all(5.0),
+                                           child: Text("Advanced Filter",
+                                             style: TextStyle(
+                                             fontSize: 15,
+                                             fontWeight: FontWeight.bold,
+                                               color: select == 'four' ? Colors.white:Color(0xffECAE0F),
+                                           ),),
+                                         ),
+                                         icon: Icon(                // Add this
+                                           Icons.arrow_drop_down,  // Add this
+                                           color: Color(int.parse("0xff${colors_color.main_theme}")),  // Add this
+                                         ),
+                                         value: selectedValue,
+                                         isDense: true,
+                                         onChanged: (newValue) {
+                                           setState(() {
+                                             selectedValue = newValue;
+                                           });
+                                           print(selectedValue);
+                                         },
+                                         items: _currencies.map((String value) {
+                                           return DropdownMenuItem<String>(
+                                             value: value,
+                                             child: Padding(
+                                               padding: const EdgeInsets.all(5.0),
+                                               child: Text(value,
+                                                 style: TextStyle(
+                                                   fontSize: 15,
+                                                   fontWeight: FontWeight.bold,
+                                                   color: select == 'four' ? Colors.white:Color(0xffECAE0F),
+                                                 ),
+                                               ),
+                                             ),
+                                           );
+                                         }).toList(),
+                                       ),
+                                     ),
+                                   ),
+                                 );
+                               },
+                             ),
+                        ),
+                      ),
+
 
                      // Container(
                      //   margin: const EdgeInsets.all(12.0),
@@ -260,7 +333,7 @@ class _college_list extends State<college_list> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start ,
                 children: [
-                  Text("All india institute of medical sciences",
+                  Text("All India Institute of medical sciences",
                     style: TextStyle(
                       fontSize: 15,
                       color: Colors.black,
@@ -278,7 +351,6 @@ class _college_list extends State<college_list> {
                       style: TextStyle(
                         fontSize: 13,
                         color: Colors.grey,
-                        fontWeight: FontWeight.bold
                       ),),
                   ),
 
@@ -292,7 +364,6 @@ class _college_list extends State<college_list> {
                         style: TextStyle(
                           fontSize: 12,
                           color: Colors.grey,
-                          fontWeight: FontWeight.bold,
                         ),
                       ),
                       SizedBox(
@@ -311,7 +382,6 @@ class _college_list extends State<college_list> {
                         style: TextStyle(
                           fontSize: 13,
                           color: Colors.grey,
-                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ],
@@ -328,7 +398,6 @@ class _college_list extends State<college_list> {
                       style: TextStyle(
                           fontSize: 14,
                         color: Color(int.parse("0xff${colors_color.main_theme}")),
-                          fontWeight: FontWeight.bold,
                       ),),
                   ),
 
@@ -339,7 +408,7 @@ class _college_list extends State<college_list> {
                 width: 5,
               ),
               ClipRRect(
-                borderRadius: BorderRadius.circular(15), // Image border
+                borderRadius: BorderRadius.circular(10), // Image border
                 child: SizedBox.fromSize(
                   size: Size.fromRadius(48), // Image radius
                   child: Image.asset("assets/image/img_9.png", fit: BoxFit.cover),

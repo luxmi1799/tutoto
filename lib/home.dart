@@ -143,7 +143,8 @@ class _home_body extends State<home> {
   Widget college_home(BuildContext context){
     return Scaffold(
       backgroundColor: Colors.white,
-      drawer: myDrawer(),
+      drawer: Container(
+          width:260,child: myDrawer()),
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.black),
         backgroundColor: Colors.white,
@@ -259,7 +260,7 @@ class _home_body extends State<home> {
                   itemBuilder: (context, i) =>
                     //  Center(child:
                     ClipRRect(
-                      borderRadius: BorderRadius.circular(14),
+                      borderRadius: BorderRadius.circular(4),
                         child: Image.network(imgList[i], fit: BoxFit.cover,)),
                  // ),
                 ),
@@ -677,7 +678,7 @@ class _home_body extends State<home> {
                                     // textAlign: TextAlign.left,
                                     softWrap: true,
                                     style: TextStyle(
-                                      fontSize: 13,
+                                      fontSize: 11,
                                       color: Colors.grey,
                                     ),
                                    maxLines: 4,
@@ -737,7 +738,7 @@ class _home_body extends State<home> {
                                 child: Text(" Lorem Ipsum is probably  dummy text generator out there. ...",
                                   // textAlign: TextAlign.left,
                                   style: TextStyle(
-                                    fontSize: 13,
+                                    fontSize: 11,
                                     color: Colors.grey,
                                   ),
                                  maxLines: 4,
@@ -1138,7 +1139,7 @@ class _home_body extends State<home> {
                                   ),
 
                                   Padding(
-                                    padding: const EdgeInsets.all(5.0),
+                                    padding: const EdgeInsets.symmetric(horizontal: 7.0,vertical: 5),
                                     child: Text("Data Science",
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
@@ -1150,7 +1151,7 @@ class _home_body extends State<home> {
 
 
                                   Padding(
-                                    padding: const EdgeInsets.only(left: 5.0,bottom: 5),
+                                    padding: const EdgeInsets.only(left: 7.0,bottom: 5,right: 7),
                                     child: Text("How to improve Excel Skills",
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
@@ -1160,9 +1161,9 @@ class _home_body extends State<home> {
                                       ),),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.only(top: 5.0,left: 5,right: 5),
+                                    padding: const EdgeInsets.only(top: 3.0,left: 7,right: 7,bottom: 2),
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment: MainAxisAlignment.start,
                                       children: [
                                         Row(
                                           children: [
@@ -1175,6 +1176,10 @@ class _home_body extends State<home> {
                                                 fontWeight: FontWeight.bold
                                               ),),
                                           ],
+                                        ),
+
+                                        SizedBox(
+                                          width: 25,
                                         ),
 
                                         Text("28 jan 2021",

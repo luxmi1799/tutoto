@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tutoro/colors/colors.dart';
+import 'package:tutoro/login.dart';
 
 import 'about_us.dart';
 import 'edit_profile.dart';
@@ -31,7 +32,7 @@ class myDrawer extends StatelessWidget{
 
                      Center(
                        child: SizedBox(
-                         width: 220,
+                         width: 210,
                          height: 100,
                          child: Image.asset(
                             "assets/image/tutorologo.png",
@@ -104,7 +105,7 @@ class myDrawer extends StatelessWidget{
             Row(
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 10),
+                  padding: const EdgeInsets.symmetric(vertical: 5.0,horizontal: 10),
                   child: Container(
                     width: 50,
                     height: 50,
@@ -138,7 +139,7 @@ class myDrawer extends StatelessWidget{
               child: Row(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 10),
+                    padding: const EdgeInsets.symmetric(vertical: 5.0,horizontal: 10),
                     child: Container(
                       width: 50,
                       height: 50,
@@ -173,7 +174,7 @@ class myDrawer extends StatelessWidget{
               child: Row(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 10),
+                    padding: const EdgeInsets.symmetric(vertical: 5.0,horizontal: 10),
                     child: Container(
                       width: 50,
                       height: 50,
@@ -204,7 +205,7 @@ class myDrawer extends StatelessWidget{
             Row(
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 10),
+                  padding: const EdgeInsets.symmetric(vertical: 5.0,horizontal: 10),
                   child: Container(
                     width: 50,
                     height: 50,
@@ -234,7 +235,7 @@ class myDrawer extends StatelessWidget{
             Row(
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 10),
+                  padding: const EdgeInsets.symmetric(vertical: 5.0,horizontal: 10),
                   child: Container(
                     width: 50,
                     height: 50,
@@ -264,7 +265,7 @@ class myDrawer extends StatelessWidget{
             Row(
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 10),
+                  padding: const EdgeInsets.symmetric(vertical: 5.0,horizontal: 10),
                   child: Container(
                     width: 50,
                     height: 50,
@@ -291,34 +292,39 @@ class myDrawer extends StatelessWidget{
               ],
             ),
 
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 10),
-                  child: Container(
-                    width: 50,
-                    height: 50,
+            InkWell(
+              onTap: (){
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => login()));
+              },
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 5.0,horizontal: 10),
                     child: Container(
-                      child: Icon(Icons.logout,
-                        size: 30,
-                        color: Color(int.parse("0xff${colors_color.main_theme}"),),
+                      width: 50,
+                      height: 50,
+                      child: Container(
+                        child: Icon(Icons.logout,
+                          size: 30,
+                          color: Color(int.parse("0xff${colors_color.main_theme}"),),
+                        ),
                       ),
+
                     ),
-
                   ),
-                ),
 
 
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text("Sign Out",
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                      fontSize: 14,
-                    ),),
-                ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text("Sign Out",
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        fontSize: 14,
+                      ),),
+                  ),
 
-              ],
+                ],
+              ),
             ),
 
           ],

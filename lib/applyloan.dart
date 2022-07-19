@@ -37,7 +37,7 @@ class _applyloan extends State<applyloan> {
          children: [
 
            Padding(
-             padding: EdgeInsets.symmetric(vertical: 20.0,horizontal: 12),
+             padding: EdgeInsets.only(top: 20.0,left: 12,bottom: 10),
              child: Align(
                alignment: Alignment.centerLeft,
                child: Text("Name",
@@ -70,7 +70,7 @@ class _applyloan extends State<applyloan> {
            ),
 
            Padding(
-             padding: EdgeInsets.symmetric(vertical: 20.0,horizontal: 12),
+             padding: EdgeInsets.only(top: 20.0,left: 12,bottom: 10),
              child: Align(
                alignment: Alignment.centerLeft,
                child: Text("Email Id",
@@ -103,7 +103,7 @@ class _applyloan extends State<applyloan> {
            ),
 
            Padding(
-             padding: EdgeInsets.symmetric(vertical: 20.0,horizontal: 12),
+             padding: EdgeInsets.only(top: 20.0,left: 12,bottom: 10),
              child: Align(
                alignment: Alignment.centerLeft,
                child: Text("Mobile No.",
@@ -137,7 +137,7 @@ class _applyloan extends State<applyloan> {
            ),
 
            Padding(
-             padding: EdgeInsets.symmetric(vertical: 20.0,horizontal: 12),
+             padding: EdgeInsets.only(top: 20.0,left: 12,bottom: 10),
              child: Align(
                alignment: Alignment.centerLeft,
                child: Text("Address",
@@ -182,7 +182,7 @@ class _applyloan extends State<applyloan> {
                    },
                  ),//SizedBox
                  Text(
-                   'Do you Want to apply for loan ',
+                   'Do you want to apply for loan ',
                    style: TextStyle(fontSize: 17.0,fontWeight: FontWeight.bold),
                  ), //Text
                  //Checkbox
@@ -200,13 +200,13 @@ class _applyloan extends State<applyloan> {
                  //changebtn?Icon(Icons.done,color: Colors.white,):
                  child:Text("Submit",style: TextStyle(
                    fontWeight: FontWeight.bold,
-                   fontSize: 15,
+                   fontSize: 17,
                    color: Colors.white,
                  ),
                  ),
                  decoration: BoxDecoration(
                    color: Color(int.parse("0xff${colors_color.main_theme}")),
-                   borderRadius: BorderRadius.circular(10),
+                   borderRadius: BorderRadius.circular(4),
                  ),
                ),
              ),

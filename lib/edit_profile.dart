@@ -36,27 +36,35 @@ class _edit_profile extends State<edit_profile> {
              Padding(
                padding: const EdgeInsets.only(top: 60,bottom: 20),
                child: Center(
-                 child:  AvatarView(
-                   radius: 60,
-                   borderColor: Colors.yellow,
-                   isOnlyText: false,
-                   text: Text('C', style: TextStyle(color: Colors.white, fontSize: 50),),
-                   avatarType: AvatarType.CIRCLE,
-                   backgroundColor: Colors.red,
-                   imagePath: "assets/image/profilepic.png",
-                   placeHolder: Container(
-                     child: Icon(Icons.person, size: 50,),
+                 child:  Stack(
+                   children:[
+                     Image.asset("assets/image/profilebg.png"),
+                     Positioned(
+                       left: 20,
+                       child: AvatarView(
+                       radius: 63,
+                       borderColor: Colors.yellow,
+                       isOnlyText: false,
+                       text: Text('C', style: TextStyle(color: Colors.white, fontSize: 50),),
+                       avatarType: AvatarType.CIRCLE,
+                       backgroundColor: Colors.white,
+                       imagePath: "assets/image/profile.png",
+                       placeHolder: Container(
+                         child: Icon(Icons.person, size: 50,),
+                       ),
+                       errorWidget: Container(
+                         child: Icon(Icons.error, size: 50,),
+                       ),
                    ),
-                   errorWidget: Container(
-                     child: Icon(Icons.error, size: 50,),
-                   ),
+                     ),
+                   ]
                  ),
                ),
              ),
 
 
              Padding(
-               padding: const EdgeInsets.symmetric(vertical: 15.0,horizontal: 12),
+               padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 12),
                child: TextFormField(
                  decoration: InputDecoration(
                    hintText: "Full name",
@@ -75,7 +83,7 @@ class _edit_profile extends State<edit_profile> {
              ),
 
              Padding(
-               padding: const EdgeInsets.symmetric(vertical: 15.0,horizontal: 12),
+               padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 12),
                child: TextFormField(
                  decoration: InputDecoration(
                    hintText: "Email Id",
@@ -111,7 +119,7 @@ class _edit_profile extends State<edit_profile> {
                ),
              ),
              Padding(
-               padding: const EdgeInsets.symmetric(vertical: 15.0,horizontal: 12),
+               padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 12),
                child: TextFormField(
                  decoration: InputDecoration(
                    hintText: "Address",

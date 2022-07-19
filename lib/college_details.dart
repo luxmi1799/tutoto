@@ -68,7 +68,7 @@ class _college_details extends State<college_details> {
                      itemBuilder: (context, i) =>
                      //  Center(child:
                      ClipRRect(
-                         borderRadius: BorderRadius.circular(10),
+                         borderRadius: BorderRadius.circular(4),
                          child: Image.asset("assets/image/img_9.png", fit: BoxFit.cover)),
                      // ),
                    ),
@@ -83,7 +83,7 @@ class _college_details extends State<college_details> {
                // ),
 
                Padding(
-                 padding: EdgeInsets.symmetric(vertical: 20.0,horizontal: 20),
+                 padding: EdgeInsets.symmetric(vertical: 0.0,horizontal: 20),
                  child: Align(
                    alignment: Alignment.centerLeft,
                    child: Text("All India Insitute of Medical Sciences",
@@ -97,38 +97,50 @@ class _college_details extends State<college_details> {
                  ),
                ),
 
-               Padding(
-                 padding: EdgeInsets.symmetric(vertical: 0.0,horizontal: 20),
-                 child: Align(
-                   alignment: Alignment.centerLeft,
-                   child: Text("Delhi",
-                     textAlign: TextAlign.start,
-                     style: TextStyle(
-                       fontSize: 16,
-                       color: Colors.grey,
-                       fontWeight: FontWeight.bold
+               Row(
+                 children: [
+                   Padding(
+                     padding: EdgeInsets.symmetric(vertical: 5.0,horizontal: 20),
+                     child: Align(
+                       alignment: Alignment.centerLeft,
+                       child: Text("Delhi",
+                         textAlign: TextAlign.start,
+                         style: TextStyle(
+                           fontSize: 16,
+                           color: Colors.grey,
+                         ),
+                       ),
                      ),
                    ),
-                 ),
-               ),
-
-               Padding(
-                 padding: EdgeInsets.symmetric(vertical: 3.0,horizontal: 20),
-                 child: Align(
-                   alignment: Alignment.centerLeft,
-                   child: Text("4.5",
-                     textAlign: TextAlign.start,
-                     style: TextStyle(
-                       fontSize: 16,
-                       color: Colors.grey,
-                       fontWeight: FontWeight.bold
+                   SizedBox(
+                     width: 10,
+                   ),
+                   Padding(
+                     padding: EdgeInsets.symmetric(vertical: 3.0,horizontal: 0),
+                     child: Align(
+                       alignment: Alignment.centerLeft,
+                       child: Text("4.5",
+                         textAlign: TextAlign.start,
+                         style: TextStyle(
+                             fontSize: 16,
+                             color: Colors.grey,
+                         ),
+                       ),
                      ),
                    ),
-                 ),
+                   Align(
+                       alignment: Alignment.center,
+                       child: Icon(Icons.star,
+                         color: Color(int.parse("0xff${colors_color.main_theme}")),
+                         size: 15,
+                       )),
+                 ],
                ),
 
+
+
                Padding(
-                 padding: const EdgeInsets.only(left: 10.0,top: 15),
+                 padding: const EdgeInsets.only(left: 10.0,top: 10),
                  child: Table(
                      border: TableBorder.all(width: 0.001), // Allows to add a border decoration around your table
                      children: [
@@ -210,7 +222,7 @@ class _college_details extends State<college_details> {
                ),
 
                Padding(
-                 padding: EdgeInsets.symmetric(vertical: 10.0,horizontal: 20),
+                 padding: EdgeInsets.symmetric(vertical: 20.0,horizontal: 20),
                  child: Align(
                    alignment: Alignment.centerLeft,
                    child: Column(
@@ -235,7 +247,7 @@ class _college_details extends State<college_details> {
                           softWrap: true,
                            style: TextStyle(
                             color: Colors.grey,
-                            fontSize: 15,
+                            fontSize: 14,
                           ),
                           maxLines: 10,
                          overflow: TextOverflow.ellipsis
