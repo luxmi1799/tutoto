@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:tutoro/colors/colors.dart';
+import 'package:tutoro/home.dart';
 import 'package:tutoro/login.dart';
 
 import 'about_us.dart';
 import 'edit_profile.dart';
 
 class myDrawer extends StatelessWidget{
+  var string = 'Liza Horllow';
   @override
   Widget build(BuildContext context) {
+    var output = getInitials(string: string, limitTo: 1);
     // TODO: implement build
     return Drawer(
 
@@ -69,7 +72,7 @@ class myDrawer extends StatelessWidget{
                           border: Border.all(color: Color(int.parse("0xff${colors_color.main_theme}")), width: 0.0),
                         ),
                         padding: EdgeInsets.all(8.0),
-                        child: Text("L", style: TextStyle(color: Colors.white)),
+                        child: Text(output, style: TextStyle(color: Colors.white)),
                       ),
                     ),
                   ),
@@ -102,34 +105,39 @@ class myDrawer extends StatelessWidget{
               ],
             ),
 
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 5.0,horizontal: 10),
-                  child: Container(
-                    width: 50,
-                    height: 50,
+            InkWell(
+              onTap: (){
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => home()));
+              },
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 5.0,horizontal: 10),
                     child: Container(
-                      child: Icon(Icons.home_outlined,
-                        size: 30,
-                        color: Color(int.parse("0xff${colors_color.main_theme}"),),
+                      width: 50,
+                      height: 50,
+                      child: Container(
+                        child: Icon(Icons.home_outlined,
+                          size: 30,
+                          color: Color(int.parse("0xff${colors_color.main_theme}"),),
+                        ),
                       ),
+
                     ),
-
                   ),
-                ),
 
 
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text("Home",
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                      fontSize: 14,
-                    ),),
-                ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text("Home",
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        fontSize: 14,
+                      ),),
+                  ),
 
-              ],
+                ],
+              ),
             ),
 
             InkWell(
@@ -331,5 +339,15 @@ class myDrawer extends StatelessWidget{
         ),
       ),
     );
+  }
+
+  String getInitials({required String string, required int limitTo}) {
+    var buffer = StringBuffer();
+    var split = string.split(' ');
+    for (var i = 0 ; i < (limitTo ?? split.length); i ++) {
+      buffer.write(split[i][0]);
+    }
+
+    return buffer.toString();
   }
 }

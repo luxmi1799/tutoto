@@ -31,6 +31,9 @@ class _login_body extends State<_login> {
   bool email = false;
   bool phone_widget = true;
   bool email_widget = false;
+  TextEditingController _emailController = TextEditingController();
+  final emailGlobalKey = GlobalKey < FormState > ();
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -132,6 +135,7 @@ class _login_body extends State<_login> {
                 child: phone_widget == true? Padding(
                    padding: const EdgeInsets.symmetric(vertical: 20.0,horizontal: 10),
                    child: IntlPhoneField(
+                     style: TextStyle(color: Colors.black),
                      initialCountryCode: 'IN',
                      decoration: InputDecoration(
                        labelText: 'Phone Number',
@@ -154,21 +158,32 @@ class _login_body extends State<_login> {
                  offstage: !email_widget,
                  child: Padding(
                    padding: const EdgeInsets.all(10.0),
-                   child: TextFormField(
-                     // controller: emailController,
-                     decoration: InputDecoration(
-                       hintText: "email",
-                       // labelText: "OTP",
-                       labelStyle: TextStyle(
-                         fontWeight: FontWeight.bold,
-                         fontSize:20,
-                         color: Colors.grey,
+                   child: Form(
+                     key: emailGlobalKey,
+                     child: TextFormField(
+                       controller: _emailController,
+                       style: TextStyle(color: Colors.black),
+                       // controller: emailController,
+                       decoration: InputDecoration(
+                         hintText: "Email ID",
+                         // labelText: "OTP",
+                         labelStyle: TextStyle(
+                           fontWeight: FontWeight.bold,
+                           fontSize:20,
+                           color: Colors.grey,
+                         ),
+                         //prefixIcon: new Icon(Icons.email),
                        ),
-                       //prefixIcon: new Icon(Icons.email),
+                       validator: (value) {
+                         if (value!.isEmpty) {
+                           return 'Enter your Email address';
+                         }
+                         if (!RegExp(r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$').hasMatch(value)) {
+                           return 'Enter a Valid Email address';
+                         }
+                         return null;
+                       },
                      ),
-                     validator: (text){
-                       return null;
-                     },
                    ),
                  ),
                ),
@@ -180,10 +195,16 @@ class _login_body extends State<_login> {
                    onTap: (){
 
                      setState(() {
-                      // phone_widget = false;
+                       if (emailGlobalKey.currentState!.validate()) {
+                         print("nothing");
+                         Navigator.of(context).push(MaterialPageRoute(builder: (context) => otp_screen()));
+                       }
+                       else{
+                         print("else");
+                       }
                      });
 
-                     Navigator.of(context).push(MaterialPageRoute(builder: (context) => otp_screen()));
+                     //
 
                    },
                    child: AnimatedContainer(
@@ -221,10 +242,8 @@ class _login_body extends State<_login> {
                        InkWell(
 
                          onTap: (){
+                           Navigator.of(context).push(MaterialPageRoute(builder: (context) => create_account()));
 
-                           setState(() {
-                             Navigator.of(context).push(MaterialPageRoute(builder: (context) => create_account()));
-                           });
                            //
                          },
                          child: Text(" Signup for Free",
@@ -246,6 +265,7 @@ class _login_body extends State<_login> {
        ),
      );
   }
+
 
   sendotp() {
 

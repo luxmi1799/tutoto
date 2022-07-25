@@ -1,4 +1,5 @@
 import 'package:dot_pagination_swiper/dot_pagination_swiper.dart';
+import 'package:favorite_button/favorite_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:page_indicator/page_indicator.dart';
@@ -23,6 +24,7 @@ class college_details extends StatefulWidget{
 }
 
 class _college_details extends State<college_details> {
+  bool bookmark = false;
   PageController? controller;
   GlobalKey<PageContainerState> key = GlobalKey();
   @override
@@ -262,23 +264,73 @@ class _college_details extends State<college_details> {
                Padding(
                  padding: const EdgeInsets.all(10.0),
                  child: Center(
-                   child: Container(
-                     width: 150,
-                     height: 50,
-                     child: RaisedButton(
-                       onPressed: (){
-                         Navigator.of(context).push(MaterialPageRoute(builder: (context) => applyloan()));
-                       },
-                       color: Color(int.parse("0xff${colors_color.main_theme}")),
-                       child: Text("Apply",
-                         textAlign: TextAlign.center,
-                         style: TextStyle(
-                           color: Colors.white,
-                           fontSize: 20,
-                           fontWeight: FontWeight.bold,
-                           backgroundColor:  Color(int.parse("0xff${colors_color.main_theme}")),
-                         ),),
-                     ),
+                   child: Row(
+                     mainAxisAlignment: MainAxisAlignment.center,
+                     children: [
+                       Container(
+                         width: 150,
+                         height: 50,
+                         child: RaisedButton(
+                           onPressed: (){
+                             Navigator.of(context).push(MaterialPageRoute(builder: (context) => applyloan()));
+                           },
+                           color: Color(int.parse("0xff${colors_color.main_theme}")),
+                           child: Text("Apply",
+                             textAlign: TextAlign.center,
+                             style: TextStyle(
+                               color: Colors.white,
+                               fontSize: 18,
+                               fontWeight: FontWeight.bold,
+                               backgroundColor:  Color(int.parse("0xff${colors_color.main_theme}")),
+                             ),),
+                         ),
+                       ),
+
+                       SizedBox(
+                         width: 10,
+                       ),
+
+                       InkWell(
+                         onTap: (){
+                           setState(() {
+                             bookmark = true;
+                           });
+                         },
+                         child: Container(
+                           width: 35,
+                           height: 50,
+                           child: FittedBox(
+                             fit: BoxFit.contain,
+                             alignment: Alignment.center,
+                             child: Container(
+                               alignment: Alignment.center,
+                               decoration: BoxDecoration(
+                                 boxShadow: <BoxShadow>[
+                                   BoxShadow(
+                                     color: Colors.grey,
+                                     blurRadius: 1.0,
+                                   ),
+                                 ],
+                                 shape: BoxShape.circle,
+                                 color: Colors.white,
+                                 border: Border.all(color: Color(int.parse("0xff${colors_color.main_theme}")), width: 0.0),
+                               ),
+                               padding: EdgeInsets.all(8.0),
+                               child: StarButton(
+                                 isStarred: false,
+                                 iconColor: Color(0xffECAE0F),
+                                 //iconDisabledColor: Colors.white,
+                                 valueChanged: (_isStarred) {
+                                   print('Is Starred : $_isStarred');
+                                 },
+                               ),
+                               //child: Icon(Icons.star,color: bookmark ==false?Colors.white:Color(0xffECAE0F)),
+                             ),
+                           ),
+                         ),
+                       ),
+
+                     ],
                    ),
                  ),
                ),

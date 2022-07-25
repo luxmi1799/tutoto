@@ -349,9 +349,9 @@ class _home_body extends State<home> {
 
                                       ],
                                     ),
-                                    SizedBox(
-                                      width: 20,
-                                    ),
+                                    // SizedBox(
+                                    //   width: 20,
+                                    // ),
                                     Image.asset("assets/image/college.png", fit: BoxFit.cover),
                                   ],
                                 ),
@@ -397,6 +397,7 @@ class _home_body extends State<home> {
                               mainAxisSize: MainAxisSize.min,
                               children: <Widget>[
                                 Row(
+                                //  mainAxisSize: MainAxisSize.min,
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Column(
@@ -425,10 +426,10 @@ class _home_body extends State<home> {
 
                                       ],
                                     ),
-                                    SizedBox(
-                                      width: 20,
-                                    ),
-                                Image.asset("assets/image/Vector.png", fit: BoxFit.cover),
+                                    // SizedBox(
+                                    //   width: 20,
+                                    // ),
+                                  Image.asset("assets/image/Vector.png", fit: BoxFit.cover),
 
                                   ],
                                 ),
@@ -482,7 +483,7 @@ class _home_body extends State<home> {
                               mainAxisSize: MainAxisSize.min,
                               children: <Widget>[
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Column(
                                       mainAxisAlignment: MainAxisAlignment.start,
@@ -509,9 +510,9 @@ class _home_body extends State<home> {
 
                                       ],
                                     ),
-                                    SizedBox(
-                                      width: 20,
-                                    ),
+                                    // SizedBox(
+                                    //   width: 20,
+                                    // ),
                                     Image.asset("assets/image/budget.png", fit: BoxFit.cover),
                                   ],
                                 ),
@@ -556,7 +557,7 @@ class _home_body extends State<home> {
                               mainAxisSize: MainAxisSize.min,
                               children: <Widget>[
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Column(
                                       mainAxisAlignment: MainAxisAlignment.start,
@@ -583,9 +584,9 @@ class _home_body extends State<home> {
 
                                       ],
                                     ),
-                                    SizedBox(
-                                      width: 20,
-                                    ),
+                                    // SizedBox(
+                                    //   width: 20,
+                                    // ),
                                     Image.asset("assets/image/support.png", fit: BoxFit.cover),
                                   ],
                                 ),
@@ -1061,6 +1062,7 @@ class _home_body extends State<home> {
 
   Widget blog_detail(BuildContext context){
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
@@ -1091,14 +1093,14 @@ class _home_body extends State<home> {
 
                 child: GridView.builder(
                   gridDelegate:
-                  new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+                  new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,mainAxisExtent: 210),
                   scrollDirection: Axis.vertical,
                   itemCount: 8,
                   physics: ScrollPhysics(),
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
                     return Padding(
-                      padding: const EdgeInsets.all(10.0),
+                      padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 9),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
@@ -1111,91 +1113,93 @@ class _home_body extends State<home> {
                                 Navigator.of(context).push(MaterialPageRoute(builder: (context) => blog_details()));
                               });
                             },
-                            child: Container(
-                              height: 360,
-                              width: MediaQuery.of(context).size.width*0.45,
-                              decoration: BoxDecoration(
-                                // border: Border.all(color: Color(0xff940D5A)),
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(14.0),
-                                boxShadow: <BoxShadow>[
-                                  BoxShadow(
-                                    color: Colors.grey,
-                                    blurRadius: 2.0,
-                                  ),
-                                ],
-                              ),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.vertical(top: Radius.circular(10)), // Image border
-                                    child: Image.asset(assetimg[index],
-                                      height: 120,
-                                      fit: BoxFit.cover,
-                                      width: MediaQuery.of(context).size.width*0.45,
+                          //  child: SingleChildScrollView(
+                              child: Container(
+                              //  height: 380,
+                                width: MediaQuery.of(context).size.width*0.45,
+                                decoration: BoxDecoration(
+                                  // border: Border.all(color: Color(0xff940D5A)),
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(14.0),
+                                  boxShadow: <BoxShadow>[
+                                    BoxShadow(
+                                      color: Colors.grey,
+                                      blurRadius: 2.0,
                                     ),
-                                  ),
-
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 5.0,left: 7,right: 5),
-                                    child: Text("Data Science",
-                                      textAlign: TextAlign.left,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.grey[600],
-                                        fontSize: 12,
-                                      ),),
-                                  ),
-
-
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 7.0,right: 7,top: 5),
-                                    child: Text("How to improve Excel Skills",
-                                      textAlign: TextAlign.left,
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 13,
-                                      ),),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 5.0,left: 7,right: 7,bottom: 5),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Icon(Icons.remove_red_eye,size: 15,color: Colors.grey[600],),
-                                            Text("  20k",
-                                              textAlign: TextAlign.left,
-                                              style: TextStyle(
-                                                color: Colors.grey[600],
-                                                fontSize: 10,
-                                                fontWeight: FontWeight.bold
-                                              ),),
-                                          ],
-                                        ),
-
-                                        SizedBox(
-                                          width: 25,
-                                        ),
-
-                                        Text("28 jan 2021",
-                                          textAlign: TextAlign.left,
-                                          style: TextStyle(
-                                            color: Colors.grey[600],
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 10,
-                                          ),),
-                                      ],
+                                  ],
+                                ),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.vertical(top: Radius.circular(10)), // Image border
+                                      child: Image.asset(assetimg[index],
+                                        height: 110,
+                                        fit: BoxFit.cover,
+                                        width: MediaQuery.of(context).size.width*0.45,
+                                      ),
                                     ),
-                                  ),
 
-                                ],
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 5.0,left: 7,right: 5),
+                                      child: Text("Data Science",
+                                        textAlign: TextAlign.left,
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.grey[600],
+                                          fontSize: 12,
+                                        ),),
+                                    ),
+
+
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 7.0,right: 7,top: 5),
+                                      child: Text("How to improve Excel Skills",
+                                        textAlign: TextAlign.left,
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 12,
+                                        ),),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 5.0,left: 7,right: 7,bottom: 5),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Icon(Icons.remove_red_eye,size: 15,color: Colors.grey[600],),
+                                              Text("  20k",
+                                                textAlign: TextAlign.left,
+                                                style: TextStyle(
+                                                  color: Colors.grey[600],
+                                                  fontSize: 10,
+                                                  fontWeight: FontWeight.bold
+                                                ),),
+                                            ],
+                                          ),
+
+                                          SizedBox(
+                                            width: 25,
+                                          ),
+
+                                          Text("28 jan 2021",
+                                            textAlign: TextAlign.left,
+                                            style: TextStyle(
+                                              color: Colors.grey[600],
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 10,
+                                            ),),
+                                        ],
+                                      ),
+                                    ),
+
+                                  ],
+                                ),
                               ),
-                            ),
+                           // ),
                           ),
                         ],
                       ),

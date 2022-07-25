@@ -71,6 +71,7 @@ class _login_body extends State<_login> {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 0.0,horizontal: 10),
                 child: IntlPhoneField(
+                  style: TextStyle(color: Colors.black),
                   initialCountryCode: 'IN',
                   decoration: InputDecoration(
                     labelText: 'Phone Number',
@@ -91,6 +92,7 @@ class _login_body extends State<_login> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 0),
                 child: TextFormField(
+                  style: TextStyle(color: Colors.black),
                   // controller: emailController,
                   decoration: InputDecoration(
                     hintText: "Full name",
@@ -111,6 +113,7 @@ class _login_body extends State<_login> {
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: TextFormField(
+                  style: TextStyle(color: Colors.black),
                   // controller: emailController,
                   decoration: InputDecoration(
                     hintText: "Email Id",
@@ -144,7 +147,7 @@ class _login_body extends State<_login> {
                 },
                 child: AnimatedContainer(
                   duration: Duration(seconds: 1),//empty container can use inside of widget
-                  height: 45,
+                  height: 50,
                   alignment: Alignment.center,
                   //changebtn?Icon(Icons.done,color: Colors.white,):
                   child:Text(

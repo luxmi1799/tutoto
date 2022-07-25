@@ -44,7 +44,7 @@ class _college_details extends State<blog_details> {
               Padding(
                 padding: const EdgeInsets.only(top: 20.0,left: 10,right: 10),
                 child: Container(
-                  height: MediaQuery.of(context).size.height*0.75,
+                  //height: MediaQuery.of(context).size.height*0.75,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                     // border: Border.all(color: Color(0xff940D5A)),
@@ -169,13 +169,6 @@ class _college_details extends State<blog_details> {
                   ),
                 ),
               ),
-              // floatingActionButton: FloatingActionButton(
-              //   child: Icon(Icons.refresh),
-              //   tooltip: "force refresh indicator",
-              //   onPressed: () {
-              //     key.currentState?.forceRefreshState();
-              //   },
-              // ),
             ],
           ),
         ),

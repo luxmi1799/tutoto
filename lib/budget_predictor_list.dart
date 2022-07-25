@@ -150,23 +150,23 @@ class _budget_d extends State<budget_detail> {
 
                 child: GridView.builder(
                   gridDelegate:
-                  new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+                  new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,mainAxisExtent: 210),
                   scrollDirection: Axis.vertical,
                   itemCount: 8,
                   physics: ScrollPhysics(),
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
                     return Padding(
-                      padding: const EdgeInsets.all(10.0),
+                      padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 2),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
                           GestureDetector(
                             onTap: () {
                               // What do i do here?
-
                               setState(()
                               {
+
                               });
                             },
                             child: Container(

@@ -66,6 +66,7 @@ class _edit_profile extends State<edit_profile> {
              Padding(
                padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 12),
                child: TextFormField(
+                 style: TextStyle(color: Colors.black),
                  decoration: InputDecoration(
                    hintText: "Full name",
                    hintStyle: TextStyle(
@@ -85,6 +86,7 @@ class _edit_profile extends State<edit_profile> {
              Padding(
                padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 12),
                child: TextFormField(
+                 style: TextStyle(color: Colors.black),
                  decoration: InputDecoration(
                    hintText: "Email Id",
                    hintStyle: TextStyle(
@@ -103,6 +105,7 @@ class _edit_profile extends State<edit_profile> {
              Padding(
                padding: const EdgeInsets.symmetric(vertical: 0.0,horizontal: 12),
                child: IntlPhoneField(
+                 style: TextStyle(color: Colors.black),
                  initialCountryCode: 'IN',
                  decoration: InputDecoration(
                    labelText: 'Phone Number',
@@ -122,6 +125,7 @@ class _edit_profile extends State<edit_profile> {
              Padding(
                padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 12),
                child: TextFormField(
+                 style: TextStyle(color: Colors.black),
                  decoration: InputDecoration(
                    hintText: "Address",
                    hintStyle: TextStyle(

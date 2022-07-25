@@ -82,7 +82,7 @@ class _college_list extends State<college_list> {
              ),
 
              Padding(
-               padding: const EdgeInsets.only(left: 8.0),
+               padding:  EdgeInsets.only(left: 8.0),
                child: Align(
                  alignment: Alignment.centerLeft,
                  child: Row(
@@ -199,7 +199,7 @@ class _college_list extends State<college_list> {
                      ),
 
                    Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.only(left: 8.0),
                         child: GestureDetector(
                           onTap: () {
                             setState(() {
@@ -230,7 +230,7 @@ class _college_list extends State<college_list> {
                                      child: DropdownButtonHideUnderline(
                                        child: DropdownButton<String>(
                                          hint: Padding(
-                                           padding: const EdgeInsets.all(5.0),
+                                           padding: const EdgeInsets.only(left: 5.0,top: 5),
                                            child: Text("Advanced Filter",
                                              style: TextStyle(
                                              fontSize: 15,
@@ -274,24 +274,6 @@ class _college_list extends State<college_list> {
                         ),
                       ),
 
-
-                     // Container(
-                     //   margin: const EdgeInsets.all(12.0),
-                     //   padding: const EdgeInsets.all(3.0),
-                     //   decoration: BoxDecoration(
-                     //     border: Border.all(
-                     //       color: Color(int.parse("0xff${colors_color.main_theme}")),
-                     //     ),
-                     //     borderRadius: BorderRadius.circular(5),
-                     //   ),
-                     //   child: Text('Advanced Filter',
-                     //     style: TextStyle(
-                     //       fontSize: 17,
-                     //       fontWeight: FontWeight.bold,
-                     //       color: Color(int.parse("0xff${colors_color.main_theme}")),
-                     //     ),
-                     //   ),
-                     // ),
                    ],
                  ),
                ),
@@ -335,7 +317,7 @@ class _college_list extends State<college_list> {
                 children: [
                   Text("All India Institute of medical sciences",
                     style: TextStyle(
-                      fontSize: 15,
+                      fontSize: 14,
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
                     ),),
@@ -410,7 +392,8 @@ class _college_list extends State<college_list> {
               ClipRRect(
                 borderRadius: BorderRadius.circular(10), // Image border
                 child: SizedBox.fromSize(
-                  size: Size.fromRadius(48), // Image radius
+                  size: Size.fromRadius(44
+                  ), // Image radius
                   child: Image.asset("assets/image/img_9.png", fit: BoxFit.cover),
                 ),
               )

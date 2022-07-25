@@ -59,7 +59,7 @@ class _budget extends State<budget_predictor> {
             Container(
               color: Colors.white,
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height*0.40,
+            //  height: MediaQuery.of(context).size.height*0.40,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30.0,vertical: 15),
                 child: Column(
@@ -89,6 +89,7 @@ class _budget extends State<budget_predictor> {
                         child: Container(
                           color: Colors.white,
                           child: TextFormField(
+                            style: TextStyle(color: Colors.black),
                             validator: (value) {
                               if (value != null && value.trim().length < 5) {
                                 return 'This field requires a minimum of 3 characters';
