@@ -1,5 +1,10 @@
+import 'dart:convert';
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
-import 'package:tutoro/colors/colors.dart';
+import 'package:flutter_html/flutter_html.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
 class blog_details extends StatefulWidget{
   @override
@@ -10,6 +15,69 @@ class blog_details extends StatefulWidget{
 }
 
 class _college_details extends State<blog_details> {
+
+  var blog_id = '';
+  var getdata;
+
+  @override
+  void initState() {
+    super.initState();
+    blod_id_detail(context);
+  }
+
+  blod_id_detail(BuildContext context) async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (BuildContext context) {
+        return new BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+            child:  AlertDialog(
+              content: Row(children: [
+                CircularProgressIndicator(
+                  backgroundColor: Colors.red,
+                ),
+                Container(margin: EdgeInsets.only(left: 7), child: Text("Loading...")),
+              ]),
+            )
+        );
+      },
+    );
+    print("blog_id$blog_id");
+    setState(() {
+      blog_id = prefs.getString('blog_id')!;
+    });
+    setState(() {
+      blog_list(blog_id);
+    });
+  }
+
+
+  void blog_list(String imagePath) async {
+    String postUrl = "https://tutoro.co.in/mobile-authenticate/blog-detail.php";
+    print("stringrequest");
+    var request = new http.MultipartRequest(
+        "POST", Uri.parse(postUrl));
+    request.fields['blogId'] = imagePath;
+    request.send().then((response) {
+      http.Response.fromStream(response).then((onValue) {
+        try {
+          Navigator.pop(context);
+          print("onValue${onValue.body}");
+          Map mapRes = json.decode(onValue.body);
+          var blogdetail= mapRes["commandResult"]["data"]["BlogDetail"];
+          setState(() {
+            getdata = blogdetail;
+          });
+          print("getdatata$getdata)");
+
+        } catch (e) {
+          print("response$e");
+        }
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +132,7 @@ class _college_details extends State<blog_details> {
                     children: <Widget>[
                       ClipRRect(
                         borderRadius: BorderRadius.vertical(top: Radius.circular(10)), // Image border
-                        child: Image.asset("assets/image/laptop1.png",
+                        child: Image.network("${getdata["Image"]}",
                           fit: BoxFit.cover,
                           width: MediaQuery.of(context).size.width,
                         ),
@@ -90,7 +158,7 @@ class _college_details extends State<blog_details> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("A Young Doctor's Journey",
+                            Text("${getdata["Heading"]}",
                               textAlign: TextAlign.start,
                               style: TextStyle(
                                 fontSize: 16,
@@ -119,7 +187,7 @@ class _college_details extends State<blog_details> {
                                   width: 7,
                                 ),
 
-                                Text("28 jan 2021",
+                                Text("${getdata["BlogDate"]}",
                                   textAlign: TextAlign.start,
                                   style: TextStyle(
                                     fontSize: 13,
@@ -133,34 +201,45 @@ class _college_details extends State<blog_details> {
                         ),
                       ),
 
+                      // Padding(
+                      //   padding: const EdgeInsets.symmetric(vertical: 0.0,horizontal: 10),
+                      //   child: SizedBox(
+                      //     width: MediaQuery.of(context).size.width,
+                      //     child: Text(
+                      //         "${getdata["Description"]}",
+                      //         softWrap: true,
+                      //         style: TextStyle(
+                      //           color: Colors.grey,
+                      //           fontSize: 15,
+                      //         ),
+                      //         maxLines: 7,
+                      //         overflow: TextOverflow.ellipsis
+                      //     ),
+                      //   ),
+                      // ),
+
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 0.0,horizontal: 10),
                         child: SizedBox(
                           width: MediaQuery.of(context).size.width,
-                          child: Text("All-India Institute of Medical Sciences was established as an institution of national importance by an Act of Parliament with the objects to develop patterns of teaching in Undergraduate and Post-graduate Medical Education in all its branches so as to demonstrate a high standard of Medical Education in India; to bring together in one place educational facilities of the highest order for the training of personnel in all important branches of health activity; and to attain self-sufficiency in Post-graduate Medical Education.",
-                              softWrap: true,
-                              style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 15,
+                          child:  Html(data:"${getdata["Description"]}",
+                            style: {
+                              "table": Style(
+                                backgroundColor: Color.fromARGB(0x50, 0xee, 0xee, 0xee),
                               ),
-                              maxLines: 7,
-                              overflow: TextOverflow.ellipsis
-                          ),
-                        ),
-                      ),
-
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 15.0,horizontal: 10),
-                        child: SizedBox(
-                          width: MediaQuery.of(context).size.width,
-                          child: Text("All-India Institn institution Parliament with the objects to develop patterns of teaching in Undergraduate and Post-graduate Medical Education in all its branches so as to demonstrate a high standard of Medical Education in India; to bring together in one place educational facilities of the highest order for the training of personnel in all important branches of health activity; and to attain self-sufficiency in Post-graduate Medical Education.",
-                              softWrap: true,
-                              style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 15,
+                              "tr": Style(
+                                border: Border(bottom: BorderSide(color: Colors.grey)),
                               ),
-                              maxLines: 7,
-                              overflow: TextOverflow.ellipsis
+                              "th": Style(
+                                padding: EdgeInsets.all(6),
+                                backgroundColor: Colors.grey,
+                              ),
+                              "td": Style(
+                                padding: EdgeInsets.all(6),
+                                alignment: Alignment.topLeft,
+                              ),
+                              'h5': Style( textOverflow: TextOverflow.ellipsis,color: Colors.grey[200]),
+                            },
                           ),
                         ),
                       ),

@@ -11,6 +11,7 @@ import 'package:tutoro/drawer.dart';
 import 'package:tutoro/edit_profile.dart';
 import 'package:tutoro/support_screen.dart';
 
+import 'blog_list.dart';
 import 'blogs_details.dart';
 
 
@@ -107,7 +108,7 @@ class _home_body extends State<home> {
       college_home(context),
 
       //news
-      blog_detail(context),
+      blog_detail(),
 
       //profile
       edit_profile()
@@ -370,7 +371,7 @@ class _home_body extends State<home> {
                   Expanded(
                     child: InkWell(
                       onTap: (){
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => blog_detail(context)));
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => blog_detail()));
                       },
                       child: Container(
                         //width:200,
@@ -1054,159 +1055,6 @@ class _home_body extends State<home> {
               ],
             ),
 
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget blog_detail(BuildContext context){
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        elevation: 0,
-        centerTitle: true,
-        title: Text("Blogs List",
-          textAlign: TextAlign.start,
-          style: TextStyle(
-            fontSize: 22,
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
-          ),
-        ),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-        backgroundColor: Colors.white,
-        automaticallyImplyLeading: false,
-
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-                padding: EdgeInsets.only(top: 10),
-                // Center is a layout widget. It takes a single child and positions it
-                // in the middle of the parent.
-
-                child: GridView.builder(
-                  gridDelegate:
-                  new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,mainAxisExtent: 210),
-                  scrollDirection: Axis.vertical,
-                  itemCount: 8,
-                  physics: ScrollPhysics(),
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 9),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          GestureDetector(
-                            onTap: () {
-                              // What do i do here?
-
-                              setState(()
-                              {
-                                Navigator.of(context).push(MaterialPageRoute(builder: (context) => blog_details()));
-                              });
-                            },
-                          //  child: SingleChildScrollView(
-                              child: Container(
-                              //  height: 380,
-                                width: MediaQuery.of(context).size.width*0.45,
-                                decoration: BoxDecoration(
-                                  // border: Border.all(color: Color(0xff940D5A)),
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(14.0),
-                                  boxShadow: <BoxShadow>[
-                                    BoxShadow(
-                                      color: Colors.grey,
-                                      blurRadius: 2.0,
-                                    ),
-                                  ],
-                                ),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    ClipRRect(
-                                      borderRadius: BorderRadius.vertical(top: Radius.circular(10)), // Image border
-                                      child: Image.asset(assetimg[index],
-                                        height: 110,
-                                        fit: BoxFit.cover,
-                                        width: MediaQuery.of(context).size.width*0.45,
-                                      ),
-                                    ),
-
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 5.0,left: 7,right: 5),
-                                      child: Text("Data Science",
-                                        textAlign: TextAlign.left,
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.grey[600],
-                                          fontSize: 12,
-                                        ),),
-                                    ),
-
-
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 7.0,right: 7,top: 5),
-                                      child: Text("How to improve Excel Skills",
-                                        textAlign: TextAlign.left,
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 12,
-                                        ),),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 5.0,left: 7,right: 7,bottom: 5),
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
-                                        children: [
-                                          Row(
-                                            children: [
-                                              Icon(Icons.remove_red_eye,size: 15,color: Colors.grey[600],),
-                                              Text("  20k",
-                                                textAlign: TextAlign.left,
-                                                style: TextStyle(
-                                                  color: Colors.grey[600],
-                                                  fontSize: 10,
-                                                  fontWeight: FontWeight.bold
-                                                ),),
-                                            ],
-                                          ),
-
-                                          SizedBox(
-                                            width: 25,
-                                          ),
-
-                                          Text("28 jan 2021",
-                                            textAlign: TextAlign.left,
-                                            style: TextStyle(
-                                              color: Colors.grey[600],
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 10,
-                                            ),),
-                                        ],
-                                      ),
-                                    ),
-
-                                  ],
-                                ),
-                              ),
-                           // ),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                )
-            ),
           ],
         ),
       ),

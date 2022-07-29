@@ -278,7 +278,6 @@ class _college_list extends State<college_list> {
                  ),
                ),
              ),
-
              Padding(
                padding: EdgeInsets.symmetric(vertical: 10,horizontal: 13),
                // Center is a layout widget. It takes a single child and positions it

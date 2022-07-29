@@ -203,7 +203,7 @@ class _support extends State<support_s> {
               ),
 
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 30.0,horizontal: 60),
+                padding: const EdgeInsets.symmetric(vertical: 20.0,horizontal: 60),
                 child: Center(
                   child: InkWell(
                     onTap: (){
