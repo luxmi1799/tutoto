@@ -78,9 +78,8 @@ class _OnBoardingPageState extends State<OnBoardingPage> with TickerProviderStat
            onLoaded: (composition) {
              _controller
                ..duration = composition.duration
-               ..forward().whenComplete(() => Navigator.push(
-                 context,
-                 MaterialPageRoute(builder: (context) => login()),
+               ..forward().whenComplete(() => Navigator.of(context).pushAndRemoveUntil(
+                   MaterialPageRoute(builder: (context) => login()), (route) => false
                ));
            },
          ),

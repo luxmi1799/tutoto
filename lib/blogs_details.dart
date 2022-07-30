@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
+import 'package:tutoro/loding_bar.dart';
 
 class blog_details extends StatefulWidget{
   @override
@@ -23,6 +24,12 @@ class _college_details extends State<blog_details> {
   void initState() {
     super.initState();
     blod_id_detail(context);
+    Future.delayed(const Duration(seconds: 3), () {
+      setState(() {
+        print("222");
+        blog_list(blog_id);
+      });
+    });
   }
 
   blod_id_detail(BuildContext context) async{
@@ -47,9 +54,6 @@ class _college_details extends State<blog_details> {
     print("blog_id$blog_id");
     setState(() {
       blog_id = prefs.getString('blog_id')!;
-    });
-    setState(() {
-      blog_list(blog_id);
     });
   }
 
@@ -109,7 +113,8 @@ class _college_details extends State<blog_details> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              Padding(
+
+             getdata==null?Container(color: Colors.white,): Padding(
                 padding: const EdgeInsets.only(top: 20.0,left: 10,right: 10),
                 child: Container(
                   //height: MediaQuery.of(context).size.height*0.75,
@@ -154,11 +159,12 @@ class _college_details extends State<blog_details> {
                       ),*/
 
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 20),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        padding: const EdgeInsets.only(left: 12.0,top: 20,right: 12,bottom: 5),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("${getdata["Heading"]}",
+                            Text("${getdata["Heading"]}".toCapitalized(),
                               textAlign: TextAlign.start,
                               style: TextStyle(
                                 fontSize: 16,
@@ -167,7 +173,12 @@ class _college_details extends State<blog_details> {
                               ),
                             ),
 
+                            SizedBox(
+                              height: 10,
+                            ),
+
                             Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Row(
                                   children: [
@@ -224,21 +235,12 @@ class _college_details extends State<blog_details> {
                           width: MediaQuery.of(context).size.width,
                           child:  Html(data:"${getdata["Description"]}",
                             style: {
-                              "table": Style(
-                                backgroundColor: Color.fromARGB(0x50, 0xee, 0xee, 0xee),
+                              "body": Style(
+                                fontSize: FontSize(15.0),
+                                textAlign: TextAlign.justify,
+                                // fontWeight: FontWeight.bold,
+                                color: Colors.grey,
                               ),
-                              "tr": Style(
-                                border: Border(bottom: BorderSide(color: Colors.grey)),
-                              ),
-                              "th": Style(
-                                padding: EdgeInsets.all(6),
-                                backgroundColor: Colors.grey,
-                              ),
-                              "td": Style(
-                                padding: EdgeInsets.all(6),
-                                alignment: Alignment.topLeft,
-                              ),
-                              'h5': Style( textOverflow: TextOverflow.ellipsis,color: Colors.grey[200]),
                             },
                           ),
                         ),

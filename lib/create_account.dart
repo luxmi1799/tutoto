@@ -1,10 +1,15 @@
-import 'package:flutter/material.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:tutoro/colors/colors.dart';
-import 'package:tutoro/home.dart';
-import 'package:tutoro/signup.dart';
+import 'dart:convert';
 
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tutoro/colors/colors.dart';
+import 'package:http/http.dart' as http;
+import 'package:tutoro/signup.dart';
+import 'loding_bar.dart';
 import 'login.dart';
+import 'otp_activity.dart';
 
 class create_account extends StatelessWidget{
   @override
@@ -33,6 +38,9 @@ class _login_body extends State<_login> {
   bool phone_widget = true;
   bool email_widget = false;
   bool verified= false;
+  var getdata;
+  bool verified_enable = false;
+  TextEditingController _phoneController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -45,7 +53,7 @@ class _login_body extends State<_login> {
               Padding(
                 padding: const EdgeInsets.only(top: 50.0,bottom: 10),
                 child: Center(
-                  child:Image.asset("assets/image/tutorologo.png",
+                  child:Image.asset("assets/image/pic.png",
                     width: 200,
                     height: 180,
                     // fit:BoxFit.fill,
@@ -70,6 +78,7 @@ class _login_body extends State<_login> {
                 child: phone_widget == true? Padding(
                   padding: const EdgeInsets.symmetric(vertical: 20.0,horizontal: 10),
                   child: IntlPhoneField(
+                    controller: _phoneController,
                     initialCountryCode: 'IN',
                     decoration: InputDecoration(
                       labelText: 'Phone Number',
@@ -77,12 +86,24 @@ class _login_body extends State<_login> {
                         borderSide: BorderSide(),
                       ),
                     ),
-                    onSubmitted: sendotp(),
+                   // onSubmitted: sendotp(),
                     onChanged: (phone) {
                       print(phone.completeNumber);
                     },
                     onCountryChanged: (country) {
                       print('Country changed to: ' + country.name);
+                    },
+                    validator: (value) {
+                      if (value == null) {
+                        return 'Enter your Phone Number';
+                      }
+                      else{
+                        setState(() {
+                          print("verified_enable$verified_enable");
+                          verified_enable = true;
+                        });
+                        print("verified_enable$verified_enable");                       }
+                      return null;
                     },
                   ),
                 ):otp_enter(context),
@@ -96,11 +117,12 @@ class _login_body extends State<_login> {
                   onTap: (){
 
                     setState(() {
-                      verified = true;
+                      verified_enable ==false?null:
+                      loading(context);
+                      send_mobile_otp(_phoneController.text);
+                      verified_enable = false;
                     });
-
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => sign_up()));
-
+                   // Navigator.of(context).push(MaterialPageRoute(builder: (context) => sign_up()));
                   },
                   child: AnimatedContainer(
                     duration: Duration(seconds: 1),//empty container can use inside of widget
@@ -108,15 +130,14 @@ class _login_body extends State<_login> {
                     alignment: Alignment.center,
                     //changebtn?Icon(Icons.done,color: Colors.white,):
                     child:Text(
-                       verified==false?
-                      "Verify":"Signup",style: TextStyle(
+                      "Verify",style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 15,
+                      fontSize: 17,
                       color: Colors.white,
                     ),
                     ),
                     decoration: BoxDecoration(
-                      color: Color(int.parse("0xff${colors_color.main_theme}")),
+                      color: verified_enable == false?Color(0xffECAE0F).withOpacity(.3):Color(0xffECAE0F),
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
@@ -130,9 +151,9 @@ class _login_body extends State<_login> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text("Already have an account?",
+                      Text("Already have an account? ",
                         style: TextStyle(
-                          fontSize: 13,
+                          fontSize: 14,
                           color: Colors.grey,
                         ),
                       ),
@@ -164,9 +185,7 @@ class _login_body extends State<_login> {
     );
   }
 
-  sendotp() {
 
-  }
 
   Widget otp_enter(BuildContext context){
     return Padding(
@@ -239,7 +258,7 @@ class _login_body extends State<_login> {
                 borderSide: BorderSide(),
               ),
             ),
-            onSubmitted: sendotp(),
+            //onSubmitted: sendotp(),
             onChanged: (phone) {
               print(phone.completeNumber);
             },
@@ -291,5 +310,48 @@ class _login_body extends State<_login> {
 
       ],
     );
+  }
+
+  send_mobile_otp(String mobile) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String postUrl = "https://tutoro.co.in/mobile-authenticate/mobile-number.php";
+    print("stringrequest");
+    var request = new http.MultipartRequest(
+        "POST", Uri.parse(postUrl));
+    request.fields['Mobile'] = mobile;
+    request.send().then((response) {
+      http.Response.fromStream(response).then((onValue) {
+        try {
+          Navigator.pop(context);
+          print("onValue${onValue.body}");
+          Map mapRes = json.decode(onValue.body);
+          var blogdetail= mapRes["commandResult"]["data"]["otp"];
+          var success = mapRes["commandResult"]["success"];
+          var msg = mapRes["commandResult"]["message"];
+          print("msss$msg");
+          setState(() {
+            getdata = blogdetail;
+            prefs.setString("new_account", "new_account");
+            prefs.setString("mobile_number",mobile);
+            prefs.setInt("otp_found",getdata);
+          });
+          if(success == 1){
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => otp_screen()));
+          }
+          else{
+            Fluttertoast.showToast(
+                msg: msg,
+                toastLength: Toast.LENGTH_LONG,
+                gravity: ToastGravity.CENTER,
+                timeInSecForIosWeb: 1
+            );
+          }
+          print("getdatata$getdata)");
+
+        } catch (e) {
+          print("response$e");
+        }
+      });
+    });
   }
 }

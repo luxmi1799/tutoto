@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:tutoro/loding_bar.dart';
 import 'blogs_details.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -24,7 +25,6 @@ class _blog_list extends State<blog_detail> {
   }
 
   blog_list(BuildContext context) async{
-
     var theory_url = 'https://tutoro.co.in/mobile-authenticate/blog-list.php';
     var response = await http.post(Uri.parse(theory_url));
     Map mapRes = json.decode(response.body);
@@ -88,8 +88,9 @@ class _blog_list extends State<blog_detail> {
                               {
                                 prefs.setString("blog_id","${getdata[index]["BlogId"]}");
                                 print("BlogId${getdata[index]["BlogId"]}");
-                                Navigator.of(context).push(MaterialPageRoute(builder: (context) => blog_details()));
                               });
+                              Future.delayed(Duration(seconds: 1));
+                              Navigator.of(context).push(MaterialPageRoute(builder: (context) => blog_details()));
                             },
                             //  child: SingleChildScrollView(
                             child: Container(
@@ -121,7 +122,7 @@ class _blog_list extends State<blog_detail> {
 
                                   Padding(
                                     padding: const EdgeInsets.only(top: 5.0,left: 7,right: 5),
-                                    child: Text("${getdata[index]["Heading"]}",
+                                    child: Text("${getdata[index]["Heading"]}".toCapitalized(),
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
@@ -133,7 +134,7 @@ class _blog_list extends State<blog_detail> {
 
                                   Padding(
                                     padding: const EdgeInsets.only(left: 7.0,right: 7,top: 5),
-                                    child: Text("${getdata[index]["ShortDescription"]}",
+                                    child: Text("${getdata[index]["ShortDescription"]}".toCapitalized(),
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
                                         color: Colors.black,

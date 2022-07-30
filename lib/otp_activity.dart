@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tutoro/colors/colors.dart';
+import 'package:tutoro/loding_bar.dart';
+import 'package:tutoro/signup.dart';
 
 import 'home.dart';
 
@@ -12,11 +16,36 @@ class otp_screen extends StatefulWidget{
 }
 
 class _otp_screen extends State<otp_screen>{
-  String phonenum = "8975423996";
+  String phonenum = "";
+  var otp_val;
+  String new_acc = "";
+  String enterotp ="";
+
+
+  @override
+  void initState() {
+    super.initState();
+   // loading(context);
+    Future.delayed(Duration(seconds: 2), () {
+    });
+    get_otp(context);
+  }
+
+  get_otp(BuildContext context) async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+    //  Navigator.pop(context);
+      new_acc = prefs.getString("new_account")!;
+      phonenum = prefs.getString('mobile_number')!;
+      otp_val = prefs.getInt("otp_found");
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
       return Scaffold(
+        resizeToAvoidBottomInset : false,
         backgroundColor: Colors.white,
         appBar: AppBar(
           leading: IconButton(
@@ -59,9 +88,10 @@ class _otp_screen extends State<otp_screen>{
             ),
 
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10,vertical: 5),
+              padding: EdgeInsets.symmetric(horizontal: 10,vertical: 0),
               child: Center(
-                child: Text("+91 $phonenum",
+                child: Text(
+                  "$phonenum",
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
@@ -83,6 +113,9 @@ class _otp_screen extends State<otp_screen>{
                 },
                 //runs when every textfield is filled
                 onSubmit: (String verificationCode){
+                  setState(() {
+                    enterotp = verificationCode;
+                  });
                   showDialog(
                       context: context,
                       builder: (context){
@@ -100,9 +133,9 @@ class _otp_screen extends State<otp_screen>{
               padding: const EdgeInsets.symmetric(vertical: 30.0,horizontal: 30),
               child: InkWell(
                 onTap: (){
-
                   setState(() {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => home()));
+                    loading(context);
+                    match_otp(context);
                   });
 
                 },
@@ -111,7 +144,9 @@ class _otp_screen extends State<otp_screen>{
                   height: 50,
                   alignment: Alignment.center,
                   //changebtn?Icon(Icons.done,color: Colors.white,):
-                  child:Text("Login",style: TextStyle(
+                  child:Text(
+                    new_acc=="new_account"?"Sign Up":"Login",
+                    style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 22,
                     color: Colors.white,
@@ -127,5 +162,31 @@ class _otp_screen extends State<otp_screen>{
           ],
         ),
       );
+  }
+
+  match_otp(BuildContext context) async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if(otp_val.toString() == enterotp){
+      print("correct");
+      if(new_acc == "new_account"){
+        Navigator.pop(context);
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => sign_up()));
+        prefs.remove('new_account');
+      }
+      else{
+        Navigator.pop(context);
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => home()));
+      }
+    }
+    else{
+      Navigator.pop(context);
+      Fluttertoast.showToast(
+          msg: "OTP is invalid",
+          toastLength: Toast.LENGTH_LONG,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1
+      );
+      print("otp_val$otp_val .....$enterotp");
+    }
   }
 }

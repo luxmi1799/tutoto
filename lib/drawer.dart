@@ -1,16 +1,51 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tutoro/colors/colors.dart';
 import 'package:tutoro/home.dart';
 import 'package:tutoro/login.dart';
-
+import 'package:http/http.dart' as http;
 import 'about_us.dart';
 import 'edit_profile.dart';
 
-class myDrawer extends StatelessWidget{
-  var string = 'Liza Horllow';
+
+class myDrawer extends StatefulWidget{
+  @override
+  State<StatefulWidget> createState() {
+    return _myDrawe();
+  }
+}
+
+class _myDrawe extends State<myDrawer>{
+  var name;
+  var email;
+  var output;
+
+  @override
+  void initState() {
+    super.initState();
+    get_otp(context);
+    Future.delayed(const Duration(seconds: 3), () {
+      setState(() {
+        print("222");
+      });
+    });
+  }
+
+  get_otp(BuildContext context) async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      name = prefs.getString("name_user")!;
+      email = prefs.getString("email_id")!;
+      //output = getInitials(string: name, limitTo: 1);
+    });
+  }
+
+
   @override
   Widget build(BuildContext context) {
-    var output = getInitials(string: string, limitTo: 1);
+    output = getInitials(string: name, limitTo: 1);
     // TODO: implement build
     return Drawer(
 
@@ -38,7 +73,7 @@ class myDrawer extends StatelessWidget{
                          width: 210,
                          height: 100,
                          child: Image.asset(
-                            "assets/image/tutorologo.png",
+                            "assets/image/pic.png",
                             fit:BoxFit.cover,
                           ),
                        ),
@@ -85,7 +120,7 @@ class myDrawer extends StatelessWidget{
                   children: [
                     Align(
                       alignment: Alignment.centerLeft,
-                      child: Text("Liza Horllow",
+                      child: Text(name,
                         textAlign: TextAlign.start,
                         style: TextStyle(
                           fontSize: 13,
@@ -94,7 +129,7 @@ class myDrawer extends StatelessWidget{
                     ),
                     Align(
                       alignment: Alignment.centerLeft,
-                      child: Text("Lizaorllow@gmail.com",
+                      child: Text(email,
                         style: TextStyle(
                           fontSize: 13,
                         ),),

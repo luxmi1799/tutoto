@@ -53,6 +53,7 @@ dependencies:
   favorite_button: ^0.0.4
   shared_preferences: ^2.0.10
   flutter_html: ^2.2.1
+  fluttertoast: ^8.0.9
 
 dev_dependencies:
   flutter_test:

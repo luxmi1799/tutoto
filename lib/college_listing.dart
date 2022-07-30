@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:tutoro/college_details.dart';
 import 'package:tutoro/colors/colors.dart';
@@ -17,6 +19,7 @@ class college_list extends StatefulWidget{
 
 class _college_list extends State<college_list> {
 
+  List getdata = [];
   var _currencies = [
     "Delhi",
     "Uttar Pradesh",
@@ -24,6 +27,24 @@ class _college_list extends State<college_list> {
   ];
   String? selectedValue;
   String select = "first";
+
+  @override
+  void initState() {
+    super.initState();
+    college_list_api(context);
+  }
+
+  college_list_api(BuildContext context) async{
+    var theory_url = 'https://tutoro.co.in/mobile-authenticate/college-list.php';
+    var response = await http.post(Uri.parse(theory_url));
+    Map mapRes = json.decode(response.body);
+    print('Response from server: $mapRes');
+    var bloglists = mapRes["commandResult"]["data"]["CollegeList"];
+    print("bloglists$bloglists");
+    setState(() {
+      getdata = bloglists;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -285,7 +306,7 @@ class _college_list extends State<college_list> {
                child: ListView.builder(
                    physics: ScrollPhysics(),
                    scrollDirection: Axis.vertical,
-                   itemCount: 5,
+                   itemCount: getdata.length,
                    itemExtent: 110.0,
                    shrinkWrap: true,
                    itemBuilder: (context,index){
@@ -293,7 +314,112 @@ class _college_list extends State<college_list> {
                          onTap: (){
                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => college_details()));
                          },
-                         child: college_list());
+                         child: IntrinsicHeight(
+                         child: Column(
+                         mainAxisAlignment: MainAxisAlignment.start,
+                         children: [
+                         Row(
+                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                         children: [
+                         Column(
+                         mainAxisAlignment: MainAxisAlignment.start,
+                         crossAxisAlignment: CrossAxisAlignment.start ,
+                         children: [
+                         SizedBox(
+                           width:MediaQuery.of(context).size.width *0.6,
+                           child: Text("${getdata[index]["Heading"]}",
+                           textAlign: TextAlign.justify,
+                           softWrap: true,
+                           maxLines: 2,
+                           overflow: TextOverflow.ellipsis,
+                           style: TextStyle(
+                           fontSize: 14,
+                           color: Colors.black,
+                           fontWeight: FontWeight.bold,
+                           ),),
+                         ),
+
+                         SizedBox(
+                         height: 5,
+                         ),
+
+                             Align(
+                             alignment: Alignment.centerLeft,
+                         child: Text("Delhi,India",
+                         // textAlign: TextAlign.left,
+                         style: TextStyle(
+                         fontSize: 13,
+                         color: Colors.grey,
+                         ),),
+                         ),
+
+                         SizedBox(
+                         height: 5,
+                         ),
+
+                     Wrap(
+                     children: [
+                     Text("${getdata[index]["Rating"]}",
+                     style: TextStyle(
+                     fontSize: 12,
+                     color: Colors.grey,
+                     ),
+                     ),
+                     SizedBox(
+                     width: 5,
+                     ),
+                     Align(
+                     alignment: Alignment.center,
+                     child: Icon(Icons.star,
+                     color: Color(int.parse("0xff${colors_color.main_theme}")),
+                     size: 15,
+                     )),
+                     SizedBox(
+                     width: 5,
+                     ),
+                     Text("${getdata[index]["ShortDescription"]}",
+                     style: TextStyle(
+                     fontSize: 13,
+                     color: Colors.grey,
+                     ),
+                     ),
+                     ],
+                     ),
+
+                     SizedBox(
+                     height: 5,
+                     ),
+
+                     Align(
+                     alignment: Alignment.centerLeft,
+                     child: Text("Explore Details",
+                     // textAlign: TextAlign.left,
+                     style: TextStyle(
+                     fontSize: 14,
+                     color: Color(int.parse("0xff${colors_color.main_theme}")),
+                     ),),
+                     ),
+
+
+                     ],
+                     ),
+                     SizedBox(
+                     width: 5,
+                     ),
+                     ClipRRect(
+                     borderRadius: BorderRadius.circular(10), // Image border
+                     child: SizedBox.fromSize(
+                     size: Size.fromRadius(44
+                     ), // Image radius
+                     child: Image.network("${getdata[index]["Image"]}", fit: BoxFit.cover),
+                     ),
+                     )
+                     ],
+                     ),
+                     ],
+                     ),
+                     )
+                     );
                    }),
              ),
            ],
@@ -302,7 +428,7 @@ class _college_list extends State<college_list> {
      );
   }
 
-  Widget college_list(){
+  Widget college_list(int pos){
     return IntrinsicHeight(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -314,7 +440,7 @@ class _college_list extends State<college_list> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start ,
                 children: [
-                  Text("All India Institute of medical sciences",
+                  Text("${getdata[pos]["Heading"]}",
                     style: TextStyle(
                       fontSize: 14,
                       color: Colors.black,

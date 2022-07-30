@@ -1,9 +1,15 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tutoro/colors/colors.dart';
 import 'package:tutoro/create_account.dart';
-import 'package:tutoro/home.dart';
+import 'package:http/http.dart' as http;
 import 'package:tutoro/otp_activity.dart';
+
+import 'loding_bar.dart';
 
 class login extends StatelessWidget{
   @override
@@ -32,7 +38,11 @@ class _login_body extends State<_login> {
   bool phone_widget = true;
   bool email_widget = false;
   TextEditingController _emailController = TextEditingController();
+  TextEditingController _phoneController = TextEditingController();
   final emailGlobalKey = GlobalKey < FormState > ();
+  bool otp_enable = false;
+  var getdata;
+
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +59,7 @@ class _login_body extends State<_login> {
                    child:Container(
                      width: 200,
                      height: 180,
-                     child: Image.asset("assets/image/tutorologo.png",
+                     child: Image.asset("assets/image/pic.png",
                      // fit:BoxFit.fill,
                      ),
                    ),
@@ -135,6 +145,7 @@ class _login_body extends State<_login> {
                 child: phone_widget == true? Padding(
                    padding: const EdgeInsets.symmetric(vertical: 20.0,horizontal: 10),
                    child: IntlPhoneField(
+                     controller: _phoneController,
                      style: TextStyle(color: Colors.black),
                      initialCountryCode: 'IN',
                      decoration: InputDecoration(
@@ -143,9 +154,22 @@ class _login_body extends State<_login> {
                          borderSide: BorderSide(),
                        ),
                      ),
-                     onSubmitted: sendotp(),
+                     //onSubmitted: sendotp(),
+                    // onSaved: sendotp(),
                      onChanged: (phone) {
                        print(phone.completeNumber);
+                     },
+                     validator: (value) {
+                       if (value == null) {
+                         return 'Enter your Phone Number';
+                       }
+                       else{
+                         setState(() {
+                           print("otp_enable$otp_enable");
+                           otp_enable = true;
+                         });
+                         print("otp_enable$otp_enable");                       }
+                       return null;
                      },
                      onCountryChanged: (country) {
                        print('Country changed to: ' + country.name);
@@ -161,6 +185,7 @@ class _login_body extends State<_login> {
                    child: Form(
                      key: emailGlobalKey,
                      child: TextFormField(
+                       keyboardType: TextInputType.emailAddress,
                        controller: _emailController,
                        style: TextStyle(color: Colors.black),
                        // controller: emailController,
@@ -181,6 +206,12 @@ class _login_body extends State<_login> {
                          if (!RegExp(r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$').hasMatch(value)) {
                            return 'Enter a Valid Email address';
                          }
+                         else{
+                           setState(() {
+                             print("otp_enable$otp_enable");
+                             otp_enable = true;
+                           });
+                           print("otp_enable$otp_enable");                          }
                          return null;
                        },
                      ),
@@ -193,19 +224,22 @@ class _login_body extends State<_login> {
                  padding: const EdgeInsets.symmetric(vertical: 20.0,horizontal: 30),
                  child: InkWell(
                    onTap: (){
-
+                     print("phone_p$phone");
+                     print("email_p$email");
                      setState(() {
-                       if (emailGlobalKey.currentState!.validate()) {
-                         print("nothing");
-                         Navigator.of(context).push(MaterialPageRoute(builder: (context) => otp_screen()));
+                       if(phone == true){
+                         otp_enable ==false?null:
+                         loading(context);
+                         send_mobile_otp(_phoneController.text);
+                         otp_enable = false;
                        }
-                       else{
-                         print("else");
+                      else{
+                         otp_enable ==false?null:
+                         loading(context);
+                         send_email_otp(_emailController.text);
+                         otp_enable = false;
                        }
-                     });
-
-                     //
-
+                    });
                    },
                    child: AnimatedContainer(
                      duration: Duration(seconds: 1),//empty container can use inside of widget
@@ -219,7 +253,7 @@ class _login_body extends State<_login> {
                      ),
                      ),
                      decoration: BoxDecoration(
-                       color: Color(int.parse("0xff${colors_color.main_theme}")),
+                       color: otp_enable == false?Color(0xffECAE0F).withOpacity(.3):Color(0xffECAE0F),
                        borderRadius: BorderRadius.circular(5),
                      ),
                    ),
@@ -266,9 +300,118 @@ class _login_body extends State<_login> {
      );
   }
 
+   send_mobile_otp(String mobile) async {
+     SharedPreferences prefs = await SharedPreferences.getInstance();
+     String postUrl = "https://tutoro.co.in/mobile-authenticate/login.php";
+     print("stringrequest");
+     var request = new http.MultipartRequest(
+        "POST", Uri.parse(postUrl));
+    request.fields['Mobile'] = mobile;
+    request.send().then((response) {
+      http.Response.fromStream(response).then((onValue) {
+        try {
+          Navigator.pop(context);
+          print("onValue${onValue.body}");
+          Map mapRes = json.decode(onValue.body);
+          var blogdetail= mapRes["commandResult"]["data"]["otp"];
+          var user_id= mapRes["commandResult"]["data"]["user_id"];
+          var success = mapRes["commandResult"]["success"];
+          var msg = mapRes["commandResult"]["message"];
+          setState(() {
+            getdata = blogdetail;
+            prefs.setString("new_account", " ");
+            prefs.setString("mobile_number",mobile);
+            prefs.setInt("otp_found",getdata);
+            prefs.setString("user_id",user_id);
+          });
+          if(success == 1){
+            userdata(user_id);
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => otp_screen()));
+          }
+          else{
+            Fluttertoast.showToast(
+                msg: msg,
+                toastLength: Toast.LENGTH_LONG,
+                gravity: ToastGravity.CENTER,
+                timeInSecForIosWeb: 1
+            );
+          }
+          print("getdatata$getdata)");
 
-  sendotp() {
+        } catch (e) {
+          print("response$e");
+        }
+      });
+    });
+  }
 
+
+   send_email_otp(String email) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String postUrl = "https://tutoro.co.in/mobile-authenticate/login-email.php";
+    print("stringrequest");
+    var request = new http.MultipartRequest(
+        "POST", Uri.parse(postUrl));
+    request.fields['Email'] = email;
+    request.send().then((response) {
+      http.Response.fromStream(response).then((onValue) {
+        try {
+          Navigator.pop(context);
+          print("onValue${onValue.body}");
+          Map mapRes = json.decode(onValue.body);
+          var blogdetail= mapRes["commandResult"]["data"]["otp"];
+          var success = mapRes["commandResult"]["success"];
+          var msg = mapRes["commandResult"]["message"];
+          setState(() {
+            getdata = blogdetail;
+            prefs.setString("mobile_number","$email");
+            prefs.setString("otp_found","$getdata");
+          });
+          if(success == 1){
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => otp_screen()));
+          }
+          else{
+            Fluttertoast.showToast(
+                msg: msg,
+                toastLength: Toast.LENGTH_LONG,
+                gravity: ToastGravity.CENTER,
+                timeInSecForIosWeb: 1
+            );
+          }
+          print("getdatata$getdata)");
+
+        } catch (e) {
+          print("response$e");
+        }
+      });
+    });
+  }
+
+  userdata(String UserId) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String postUrl = "https://tutoro.co.in/mobile-authenticate/userById.php";
+    print("stringrequest");
+    var request = new http.MultipartRequest(
+        "POST", Uri.parse(postUrl));
+    request.fields['UserId'] = UserId;
+    request.send().then((response) {
+      http.Response.fromStream(response).then((onValue) {
+        try {
+          print("onValue1${onValue.body}");
+          Map mapRes = json.decode(onValue.body);
+          var emaildetail= mapRes["commandResult"]["data"]["Email"];
+          var namedetail= mapRes["commandResult"]["data"]["Name"];
+          setState(() {
+            prefs.setString("email_id","$emaildetail");
+            prefs.setString("name_user","$namedetail");
+          });
+       //   print("getdatata$email $name)");
+
+        } catch (e) {
+          print("response$e");
+        }
+      });
+    });
   }
 
   Widget otp_enter(BuildContext context){
@@ -323,9 +466,9 @@ class _login_body extends State<_login> {
               color: Colors.grey,
             ),),
           ),
-
         ],
       ),
     );
   }
+
 }
