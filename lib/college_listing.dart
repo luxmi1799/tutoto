@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tutoro/college_details.dart';
 import 'package:tutoro/colors/colors.dart';
 
@@ -311,7 +312,14 @@ class _college_list extends State<college_list> {
                    shrinkWrap: true,
                    itemBuilder: (context,index){
                      return InkWell(
-                         onTap: (){
+                         onTap: () async {
+                           SharedPreferences prefs = await SharedPreferences.getInstance();
+                           setState(()
+                           {
+                             prefs.setString("collegeId","${getdata[index]["CollegeId"]}");
+                             print("collegeId${getdata[index]["collegeId"]}");
+                           });
+                           Future.delayed(Duration(seconds: 1));
                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => college_details()));
                          },
                          child: IntrinsicHeight(

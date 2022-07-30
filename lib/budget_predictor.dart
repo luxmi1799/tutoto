@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tutoro/budget_predictor_list.dart';
 import 'package:tutoro/colors/colors.dart';
 
@@ -11,6 +12,8 @@ class budget_predictor extends StatefulWidget{
 }
 
 class _budget extends State<budget_predictor> {
+  TextEditingController _bugdeController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,28 +89,35 @@ class _budget extends State<budget_predictor> {
                     //  color: Color(int.parse("0xff${colors_color.main_theme}")),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: Container(
-                          color: Colors.white,
-                          child: TextFormField(
-                            style: TextStyle(color: Colors.black),
-                            validator: (value) {
-                              if (value != null && value.trim().length < 5) {
-                                return 'This field requires a minimum of 3 characters';
-                              }
-
-                              return null;
-                            },
-                            decoration: const InputDecoration(
-                                hintText: 'Enter NEET Score',
-                                hintStyle: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 14
-                                ),
-                                border: OutlineInputBorder(),
-                                errorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: Colors.black,
-                                        width: 4))),
+                        child: Form(
+                          key: _formKey,
+                          child: Container(
+                            color: Colors.white,
+                            child: TextFormField(
+                              keyboardType: TextInputType.number,
+                              controller: _bugdeController,
+                              style: TextStyle(color: Colors.black),
+                              validator: (value) {
+                                if(value!.isEmpty){
+                                  return "Enter Score";
+                                }
+                               else if (value != null && value.trim().length < 3) {
+                                  return 'This field requires a minimum of 3 characters';
+                                }
+                                return null;
+                              },
+                              decoration: const InputDecoration(
+                                  hintText: 'Enter NEET Score',
+                                  hintStyle: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 14
+                                  ),
+                                  border: OutlineInputBorder(),
+                                  errorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: Colors.black,
+                                          width: 1))),
+                            ),
                           ),
                         ),
                       ),
@@ -117,8 +127,12 @@ class _budget extends State<budget_predictor> {
                       padding: const EdgeInsets.symmetric(vertical: 30.0,horizontal: 60),
                       child: Center(
                         child: InkWell(
-                          onTap: (){
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => budget_detail()));
+                          onTap: () async {
+                            if (_formKey.currentState!.validate()) {
+                              SharedPreferences prefs = await SharedPreferences.getInstance();
+                              prefs.setString("score", _bugdeController.text);
+                              Navigator.of(context).push(MaterialPageRoute(builder: (context) => budget_detail()));
+                            }
                           },
                           child: AnimatedContainer(
                             duration: Duration(seconds: 1),//empty container can use inside of widget
@@ -133,7 +147,7 @@ class _budget extends State<budget_predictor> {
                             ),
                             decoration: BoxDecoration(
                               color: Color(int.parse("0xff${colors_color.main_theme}")),
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(4),
                             ),
                           ),
                         ),

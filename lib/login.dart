@@ -187,6 +187,7 @@ class _login_body extends State<_login> {
                      child: TextFormField(
                        keyboardType: TextInputType.emailAddress,
                        controller: _emailController,
+                       onEditingComplete: otp_btn,
                        style: TextStyle(color: Colors.black),
                        // controller: emailController,
                        decoration: InputDecoration(
@@ -356,7 +357,6 @@ class _login_body extends State<_login> {
     request.send().then((response) {
       http.Response.fromStream(response).then((onValue) {
         try {
-          Navigator.pop(context);
           print("onValue${onValue.body}");
           Map mapRes = json.decode(onValue.body);
           var blogdetail= mapRes["commandResult"]["data"]["otp"];
@@ -364,7 +364,7 @@ class _login_body extends State<_login> {
           var msg = mapRes["commandResult"]["message"];
           setState(() {
             getdata = blogdetail;
-            prefs.setString("mobile_number","$email");
+            prefs.setString("mobile_number",email);
             prefs.setString("otp_found","$getdata");
           });
           if(success == 1){
@@ -401,9 +401,11 @@ class _login_body extends State<_login> {
           Map mapRes = json.decode(onValue.body);
           var emaildetail= mapRes["commandResult"]["data"]["Email"];
           var namedetail= mapRes["commandResult"]["data"]["Name"];
+          var Mobile= mapRes["commandResult"]["data"]["Mobile"];
           setState(() {
             prefs.setString("email_id","$emaildetail");
             prefs.setString("name_user","$namedetail");
+            prefs.setString("Mobile","$Mobile");
           });
        //   print("getdatata$email $name)");
 
@@ -469,6 +471,12 @@ class _login_body extends State<_login> {
         ],
       ),
     );
+  }
+
+  otp_btn(){
+  setState(() {
+    otp_enable = true;
+  });
   }
 
 }

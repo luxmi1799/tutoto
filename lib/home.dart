@@ -172,26 +172,29 @@ class _home_body extends State<home> {
         elevation: 0.0,
         actions: <Widget>[
 
-          Container(
-            width: 30,
-            height: 30,
-            child: FittedBox(
-              fit: BoxFit.contain,
-              alignment: Alignment.center,
-              child: Container(
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: Container(
+              width: 30,
+              height: 30,
+              child: FittedBox(
+                fit: BoxFit.contain,
                 alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Color(int.parse("0xff${colors_color.main_theme}")),
-                  border: Border.all(color: Color(int.parse("0xff${colors_color.main_theme}")), width: 0.0),
+                child: Container(
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color(int.parse("0xff${colors_color.main_theme}")),
+                    border: Border.all(color: Color(int.parse("0xff${colors_color.main_theme}")), width: 0.0),
+                  ),
+                  padding: EdgeInsets.all(8.0),
+                  child: Icon(Icons.call,color: Colors.white),
                 ),
-                padding: EdgeInsets.all(8.0),
-                child: Icon(Icons.call,color: Colors.white),
               ),
             ),
           ),
           // Using Stack to show Notification Badge
-          new Stack(
+          /*new Stack(
             children: <Widget>[
               new IconButton(
                   icon: Icon(
@@ -224,7 +227,7 @@ class _home_body extends State<home> {
                 ),
               ) : new Container()
             ],
-          ),
+          ),*/
         ],
 
       ),

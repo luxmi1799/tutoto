@@ -1,7 +1,12 @@
+import 'dart:convert';
+import 'dart:ui';
+import 'package:http/http.dart' as http;
 import 'package:avatar_view/avatar_view.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tutoro/colors/colors.dart';
+import 'package:tutoro/loding_bar.dart';
 
 class edit_profile extends StatefulWidget{
   @override
@@ -11,6 +16,55 @@ class edit_profile extends StatefulWidget{
 }
 
 class _edit_profile extends State<edit_profile> {
+
+  var name;
+  var email;
+  var mobile;
+  var user_id;
+  TextEditingController _fullname = TextEditingController();
+  TextEditingController _address = TextEditingController();
+  TextEditingController _pincode = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    get_otp(context);
+    Future.delayed(const Duration(seconds: 3), () {
+      setState(() {
+        print("222");
+      });
+    });
+  }
+
+  get_otp(BuildContext context) async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (BuildContext context) {
+        return new BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+            child:  AlertDialog(
+              content: Row(children: [
+                CircularProgressIndicator(
+                  backgroundColor: Colors.red,
+                ),
+                Container(margin: EdgeInsets.only(left: 7), child: Text("Loading...")),
+              ]),
+            )
+        );
+      },
+    );
+    setState(() {
+      name = prefs.getString("name_user")!;
+      _fullname.text = name;
+      email = prefs.getString("email_id")!;
+      mobile = prefs.getString("Mobile")!;
+      user_id = prefs.getString("user_id")!;
+    });
+    Navigator.pop(context);
+  }
+
   @override
   Widget build(BuildContext context) {
      return Scaffold(
@@ -34,7 +88,7 @@ class _edit_profile extends State<edit_profile> {
          child: Column(
            children: [
              Padding(
-               padding: const EdgeInsets.only(top: 60,bottom: 20),
+               padding: const EdgeInsets.only(top: 30,bottom: 20),
                child: Center(
                  child:  Stack(
                    children:[
@@ -66,6 +120,7 @@ class _edit_profile extends State<edit_profile> {
              Padding(
                padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 12),
                child: TextFormField(
+                 controller: _fullname,
                  style: TextStyle(color: Colors.black),
                  decoration: InputDecoration(
                    hintText: "Full name",
@@ -73,10 +128,11 @@ class _edit_profile extends State<edit_profile> {
                      color: Colors.grey,
                      fontSize: 13,
                    ),
-                   //labelText: "Batch Id",
+                   labelText: "$name".toCapitalized(),
                    labelStyle: TextStyle(
-                     fontWeight: FontWeight.bold,
-                     fontSize:20,
+                     //fontWeight: FontWeight.bold,
+                     fontSize:18,
+                     color: Colors.black
                    ),
                    //prefixIcon: new Icon(Icons.lock),
                  ),
@@ -86,6 +142,7 @@ class _edit_profile extends State<edit_profile> {
              Padding(
                padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 12),
                child: TextFormField(
+                 enabled: false,
                  style: TextStyle(color: Colors.black),
                  decoration: InputDecoration(
                    hintText: "Email Id",
@@ -93,10 +150,11 @@ class _edit_profile extends State<edit_profile> {
                      color: Colors.grey,
                      fontSize: 13,
                    ),
-                   //labelText: "Batch Id",
+                   labelText: "$email".toCapitalized(),
                    labelStyle: TextStyle(
-                     fontWeight: FontWeight.bold,
-                     fontSize:20,
+                     //fontWeight: FontWeight.bold,
+                     fontSize:18,
+                     color: Colors.black,
                    ),
                    //prefixIcon: new Icon(Icons.lock),
                  ),
@@ -105,10 +163,16 @@ class _edit_profile extends State<edit_profile> {
              Padding(
                padding: const EdgeInsets.symmetric(vertical: 0.0,horizontal: 12),
                child: IntlPhoneField(
+                 enabled: false,
                  style: TextStyle(color: Colors.black),
                  initialCountryCode: 'IN',
                  decoration: InputDecoration(
-                   labelText: 'Phone Number',
+                   labelText: '$mobile',
+                   labelStyle: TextStyle(
+                     //fontWeight: FontWeight.bold,
+                     fontSize:18,
+                     color: Colors.black,
+                   ),
                    border: UnderlineInputBorder(
                      borderSide: BorderSide(),
                    ),
@@ -122,9 +186,33 @@ class _edit_profile extends State<edit_profile> {
                ),
              ),
 
+
              Padding(
                padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 12),
                child: TextFormField(
+                 controller: _pincode,
+                 keyboardType: TextInputType.number,
+                 style: TextStyle(color: Colors.black),
+                 decoration: InputDecoration(
+                   hintText: "Pincode",
+                   hintStyle: TextStyle(
+                     color: Colors.grey,
+                     fontSize: 13,
+                   ),
+                   //labelText: "Batch Id",
+                   labelStyle: TextStyle(
+                     fontWeight: FontWeight.bold,
+                     fontSize:20,
+                   ),
+                   //prefixIcon: new Icon(Icons.lock),
+                 ),
+               ),
+             ),
+
+             Padding(
+               padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 12),
+               child: TextFormField(
+                 controller: _address,
                  style: TextStyle(color: Colors.black),
                  decoration: InputDecoration(
                    hintText: "Address",
@@ -145,20 +233,25 @@ class _edit_profile extends State<edit_profile> {
              Padding(
                padding: const EdgeInsets.symmetric(vertical: 30.0,horizontal: 60),
                child: Center(
-                 child: AnimatedContainer(
-                   duration: Duration(seconds: 1),//empty container can use inside of widget
-                   height: 50,
-                   alignment: Alignment.center,
-                   //changebtn?Icon(Icons.done,color: Colors.white,):
-                   child:Text("Submit",style: TextStyle(
-                     fontWeight: FontWeight.bold,
-                     fontSize: 15,
-                     color: Colors.white,
-                   ),
-                   ),
-                   decoration: BoxDecoration(
-                     color: Color(int.parse("0xff${colors_color.main_theme}")),
-                     borderRadius: BorderRadius.circular(10),
+                 child: InkWell(
+                   onTap: (){
+                     edit_p(name, _address.text, _pincode.text, user_id);
+                   },
+                   child: AnimatedContainer(
+                     duration: Duration(seconds: 1),//empty container can use inside of widget
+                     height: 50,
+                     alignment: Alignment.center,
+                     //changebtn?Icon(Icons.done,color: Colors.white,):
+                     child:Text("Submit",style: TextStyle(
+                       fontWeight: FontWeight.bold,
+                       fontSize: 15,
+                       color: Colors.white,
+                     ),
+                     ),
+                     decoration: BoxDecoration(
+                       color: Color(int.parse("0xff${colors_color.main_theme}")),
+                       borderRadius: BorderRadius.circular(4),
+                     ),
                    ),
                  ),
                ),
@@ -167,5 +260,29 @@ class _edit_profile extends State<edit_profile> {
          ),
        ),
      );
+  }
+  void edit_p(String name,String address,String pincode ,String user_id) async {
+    String postUrl = "https://tutoro.co.in/mobile-authenticate/update-member.php";
+    print("stringrequest");
+    var request = new http.MultipartRequest(
+        "POST", Uri.parse(postUrl));
+    request.fields['Name'] = name;
+    request.fields['Address'] = address;
+    request.fields['Pincode'] = pincode;
+    request.fields['UserId'] = user_id;
+
+    request.send().then((response) {
+      http.Response.fromStream(response).then((onValue) {
+        try {
+          print("onValue${onValue.body}");
+          Map mapRes = json.decode(onValue.body);
+          var success= mapRes["commandResult"]["success"];
+          setState(() {
+          });
+        } catch (e) {
+          print("response$e");
+        }
+      });
+    });
   }
 }

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tutoro/colors/colors.dart';
 import 'package:tutoro/home.dart';
+import 'package:tutoro/loding_bar.dart';
 import 'package:tutoro/login.dart';
 import 'package:http/http.dart' as http;
 import 'about_us.dart';
@@ -107,7 +108,7 @@ class _myDrawe extends State<myDrawer>{
                           border: Border.all(color: Color(int.parse("0xff${colors_color.main_theme}")), width: 0.0),
                         ),
                         padding: EdgeInsets.all(8.0),
-                        child: Text(output, style: TextStyle(color: Colors.white)),
+                        child: Text(output.toUpperCase(), style: TextStyle(color: Colors.white)),
                       ),
                     ),
                   ),
@@ -120,7 +121,7 @@ class _myDrawe extends State<myDrawer>{
                   children: [
                     Align(
                       alignment: Alignment.centerLeft,
-                      child: Text(name,
+                      child: Text("$name".toCapitalized(),
                         textAlign: TextAlign.start,
                         style: TextStyle(
                           fontSize: 13,
@@ -129,7 +130,7 @@ class _myDrawe extends State<myDrawer>{
                     ),
                     Align(
                       alignment: Alignment.centerLeft,
-                      child: Text(email,
+                      child: Text("$email".toCapitalized(),
                         style: TextStyle(
                           fontSize: 13,
                         ),),

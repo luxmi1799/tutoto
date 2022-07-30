@@ -57,7 +57,6 @@ class _college_details extends State<blog_details> {
     });
   }
 
-
   void blog_list(String imagePath) async {
     String postUrl = "https://tutoro.co.in/mobile-authenticate/blog-detail.php";
     print("stringrequest");
