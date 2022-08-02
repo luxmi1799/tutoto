@@ -1,12 +1,20 @@
 import 'dart:convert';
+import 'dart:io';
 import 'dart:ui';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:avatar_view/avatar_view.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tutoro/colors/colors.dart';
 import 'package:tutoro/loding_bar.dart';
+
+
+File? imageFile;
+TextEditingController _address = TextEditingController();
+TextEditingController _pincode = TextEditingController();
 
 class edit_profile extends StatefulWidget{
   @override
@@ -22,8 +30,6 @@ class _edit_profile extends State<edit_profile> {
   var mobile;
   var user_id;
   TextEditingController _fullname = TextEditingController();
-  TextEditingController _address = TextEditingController();
-  TextEditingController _pincode = TextEditingController();
 
   @override
   void initState() {
@@ -91,26 +97,72 @@ class _edit_profile extends State<edit_profile> {
                padding: const EdgeInsets.only(top: 30,bottom: 20),
                child: Center(
                  child:  Stack(
+                   alignment: Alignment.center,
                    children:[
-                     Image.asset("assets/image/profilebg.png"),
-                     Positioned(
-                       left: 20,
-                       child: AvatarView(
-                       radius: 63,
-                       borderColor: Colors.yellow,
-                       isOnlyText: false,
-                       text: Text('C', style: TextStyle(color: Colors.white, fontSize: 50),),
-                       avatarType: AvatarType.CIRCLE,
-                       backgroundColor: Colors.white,
-                       imagePath: "assets/image/profile.png",
-                       placeHolder: Container(
-                         child: Icon(Icons.person, size: 50,),
+                   //  Image.asset("assets/image/profilebg.png"),
+
+                     InkWell(
+                       onTap: _getFromGallery,
+                       child: CircleAvatar(
+                           backgroundColor: Colors.black,
+                           radius: 60.0,
+                           child:CircleAvatar(
+                               backgroundImage: imageFile!= null ? Image.file(imageFile!).image :Image.asset('assets/image/editp.png',color: Color(0xffECAE0F),fit: BoxFit.cover,).image,radius:60)
+                         // child: CircleAvatar(
+                         //   radius: 55.0,
+                         //   backgroundImage: imageFile!=null?AssetImage('assets/image/profile.png'):FileImage(imageFile!),
+                         //   child: ClipOval(
+                         //     child: (imageFile != null)
+                         //         ? Image.file(imageFile!)
+                         //         : Image.asset('assets/image/profile.png'),
+                         //   ),
+                         //   backgroundColor: Colors.white,
+                         // ),
                        ),
-                       errorWidget: Container(
-                         child: Icon(Icons.error, size: 50,),
-                       ),
-                   ),
                      ),
+                     Positioned(
+                       bottom: 5,
+                       right: 10,
+                       child: Container(
+                         width: 34,
+                         height: 40,
+                         decoration: ShapeDecoration(
+                           shape: CircleBorder(),
+                           color: Color(0xffECAE0F),
+                         ),
+                         child: IconButton(
+                           onPressed: () {
+                             _getFromGallery();
+                           },
+                           icon: Icon(
+                             Icons.edit,
+                             color: Colors.white,
+                             size: 20,
+                           ),
+                         ),
+                       ),
+                     ),
+                     // Positioned(
+                     //   child: InkWell(
+                     //     onTap: _getFromGallery,
+                     //     child: CircleAvatar(
+                     //       backgroundColor: Colors.black,
+                     //       radius: 55.0,
+                     //       child:CircleAvatar(
+                     //           backgroundImage: imageFile!= null ? Image.file(imageFile!).image :Image.asset('assets/image/editp.png',color: Color(0xffECAE0F),fit: BoxFit.cover,).image,radius:55)
+                     //       // child: CircleAvatar(
+                     //       //   radius: 55.0,
+                     //       //   backgroundImage: imageFile!=null?AssetImage('assets/image/profile.png'):FileImage(imageFile!),
+                     //       //   child: ClipOval(
+                     //       //     child: (imageFile != null)
+                     //       //         ? Image.file(imageFile!)
+                     //       //         : Image.asset('assets/image/profile.png'),
+                     //       //   ),
+                     //       //   backgroundColor: Colors.white,
+                     //       // ),
+                     //     ),
+                     //   ),
+                     // ),
                    ]
                  ),
                ),
@@ -128,7 +180,7 @@ class _edit_profile extends State<edit_profile> {
                      color: Colors.grey,
                      fontSize: 13,
                    ),
-                   labelText: "$name".toCapitalized(),
+                  // labelText: "$name".toCapitalized(),
                    labelStyle: TextStyle(
                      //fontWeight: FontWeight.bold,
                      fontSize:18,
@@ -235,7 +287,7 @@ class _edit_profile extends State<edit_profile> {
                child: Center(
                  child: InkWell(
                    onTap: (){
-                     edit_p(name, _address.text, _pincode.text, user_id);
+                     edit_profile(name,_address.text, _pincode.text, user_id,imageFile!.path);
                    },
                    child: AnimatedContainer(
                      duration: Duration(seconds: 1),//empty container can use inside of widget
@@ -285,4 +337,59 @@ class _edit_profile extends State<edit_profile> {
       });
     });
   }
+
+  _getFromGallery() async {
+    PickedFile? pickedFile = await ImagePicker().getImage(
+      source: ImageSource.gallery,
+      // maxWidth: 1800,
+      // maxHeight: 1800,
+    );
+    setState(() {
+      if (pickedFile != null) {
+        imageFile = File(pickedFile.path);
+      }
+    });
+  }
+
+  void edit_profile(String name,String address,String pincode ,String user_id,String imagepath) async {
+    String postUrl = "https://tutoro.co.in/mobile-authenticate/update-member.php";
+    print("stringrequest");
+    var request = new http.MultipartRequest(
+        "POST", Uri.parse(postUrl));
+    request.fields['Name'] = name;
+    request.fields['Address'] = address;
+    request.fields['Pincode'] = pincode;
+    request.fields['UserId'] = user_id;
+    request.fields['profile_pic'] = imagepath;
+
+    request.send().then((response) {
+      http.Response.fromStream(response).then((onValue) {
+        try {
+          print("onValue${onValue.body}");
+          Map mapRes = json.decode(onValue.body);
+          var success= mapRes["commandResult"]["success"];
+          var msg = mapRes["commandResult"]["message"];
+          if(success == 1){
+            Fluttertoast.showToast(
+                msg: msg,
+                toastLength: Toast.LENGTH_LONG,
+                gravity: ToastGravity.CENTER,
+                timeInSecForIosWeb: 1
+            );
+          }
+          else {
+            Fluttertoast.showToast(
+                msg: msg,
+                toastLength: Toast.LENGTH_LONG,
+                gravity: ToastGravity.CENTER,
+                timeInSecForIosWeb: 1
+            );
+          }
+        } catch (e) {
+          print("response$e");
+        }
+      });
+    });
+  }
+
 }

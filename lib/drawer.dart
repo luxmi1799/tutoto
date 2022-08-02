@@ -8,6 +8,7 @@ import 'package:tutoro/loding_bar.dart';
 import 'package:tutoro/login.dart';
 import 'package:http/http.dart' as http;
 import 'about_us.dart';
+import 'bookmark_colleges.dart';
 import 'edit_profile.dart';
 
 
@@ -236,6 +237,42 @@ class _myDrawe extends State<myDrawer>{
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text("Edit Profile",
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        fontSize: 14,
+                      ),),
+                  ),
+
+                ],
+              ),
+            ),
+
+
+            InkWell(
+              onTap: (){
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => bookmark_list()));
+              },
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 5.0,horizontal: 10),
+                    child: Container(
+                      width: 50,
+                      height: 50,
+                      child: Container(
+                        child: Icon(Icons.favorite,
+                          size: 30,
+                          color: Color(int.parse("0xff${colors_color.main_theme}"),),
+                        ),
+                      ),
+
+                    ),
+                  ),
+
+
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text("Bookmark",
                       textAlign: TextAlign.start,
                       style: TextStyle(
                         fontSize: 14,

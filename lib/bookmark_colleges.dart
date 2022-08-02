@@ -1,13 +1,10 @@
 import 'dart:convert';
+import 'dart:ui';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tutoro/college_details.dart';
 import 'package:tutoro/colors/colors.dart';
-
-List<String> college_name = ["All India Institute of Medical Sciences","Harvard University","university of cambride","harvard"];
-List<String> address  = ["Delhi,India","Cambrigde,United States","cambridge","cambridge"];
-
 
 
 class bookmark_list extends StatefulWidget{
@@ -21,29 +18,68 @@ class bookmark_list extends StatefulWidget{
 class _college_list extends State<bookmark_list> {
 
   List getdata = [];
-  var _currencies = [
-    "Delhi",
-    "Uttar Pradesh",
-    "Mumbai",
-  ];
   String? selectedValue;
-  String select = "first";
+  var user_id;
+
 
   @override
   void initState() {
     super.initState();
-    college_list_api(context);
+    college_id_detail(context);
+    Future.delayed(const Duration(seconds: 3), () {
+      setState(() {
+        print("222");
+        college_list_detail(user_id);
+      });
+    });
   }
 
-  college_list_api(BuildContext context) async{
-    var theory_url = 'https://tutoro.co.in/mobile-authenticate/college-list.php';
-    var response = await http.post(Uri.parse(theory_url));
-    Map mapRes = json.decode(response.body);
-    print('Response from server: $mapRes');
-    var bloglists = mapRes["commandResult"]["data"]["CollegeList"];
-    print("bloglists$bloglists");
+  college_id_detail(BuildContext context) async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (BuildContext context) {
+        return new BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+            child:  AlertDialog(
+              content: Row(children: [
+                CircularProgressIndicator(
+                  backgroundColor: Colors.red,
+                ),
+                Container(margin: EdgeInsets.only(left: 7), child: Text("Loading...")),
+              ]),
+            )
+        );
+      },
+    );
     setState(() {
-      getdata = bloglists;
+      user_id = prefs.getString("user_id")!;
+    });
+  }
+
+  void college_list_detail(String user_id) async {
+    String postUrl = "https://tutoro.co.in/mobile-authenticate/bookmark-list.php";
+    print("stringrequest");
+    var request = new http.MultipartRequest(
+        "POST", Uri.parse(postUrl));
+    request.fields['UserId'] = user_id;
+    request.send().then((response) {
+      http.Response.fromStream(response).then((onValue) {
+        try {
+          Navigator.pop(context);
+          print("onValue${onValue.body}");
+          Map mapRes = json.decode(onValue.body);
+          var collegedetail= mapRes["commandResult"]["data"]["CollegeDetail"];
+          setState(() {
+            getdata = collegedetail;
+          });
+          print("getdatata$getdata)");
+
+        } catch (e) {
+          print("response$e");
+        }
+      });
     });
   }
 
@@ -54,9 +90,18 @@ class _college_list extends State<bookmark_list> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
-        automaticallyImplyLeading: false,
+        centerTitle: true,
+       // automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
-        title: ClipRRect(
+         title: Text("Bookmark College",
+           textAlign: TextAlign.start,
+           style: TextStyle(
+             fontSize: 22,
+             fontWeight: FontWeight.bold,
+             color: Colors.black,
+           ),
+         ),
+         /* title: ClipRRect(
           borderRadius: BorderRadius.circular(10.0),
           child: Container(
             width: double.infinity,
@@ -83,25 +128,11 @@ class _college_list extends State<bookmark_list> {
             ),
             // ),
           ),
-        ),
+        ), */
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 15),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text("College Listing",
-                  textAlign: TextAlign.start,
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
-                ),
-              ),
-            ),
 
             Padding(
               padding: EdgeInsets.symmetric(vertical: 10,horizontal: 13),
@@ -138,7 +169,7 @@ class _college_list extends State<bookmark_list> {
                                     children: [
                                       SizedBox(
                                         width:MediaQuery.of(context).size.width *0.6,
-                                        child: Text("${getdata[index]["Heading"]}",
+                                        child: Text("${getdata[index]["Name"]}",
                                           textAlign: TextAlign.justify,
                                           softWrap: true,
                                           maxLines: 2,
@@ -156,7 +187,7 @@ class _college_list extends State<bookmark_list> {
 
                                       Align(
                                         alignment: Alignment.centerLeft,
-                                        child: Text("Delhi,India",
+                                        child: Text("${getdata[index]["Location"]}",
                                           // textAlign: TextAlign.left,
                                           style: TextStyle(
                                             fontSize: 13,
@@ -233,6 +264,7 @@ class _college_list extends State<bookmark_list> {
                     );
                   }),
             ),
+
           ],
         ),
       ),

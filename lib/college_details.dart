@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:ui';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:dot_pagination_swiper/dot_pagination_swiper.dart';
 import 'package:favorite_button/favorite_button.dart';
@@ -12,13 +13,6 @@ import 'package:tutoro/applyloan.dart';
 import 'package:tutoro/colors/colors.dart';
 
 
-final List<String> imgList = [
-  'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',
-  'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=94a1e718d89ca60a6337a6008341ca50&auto=format&fit=crop&w=1950&q=80',
-  'https://images.unsplash.com/photo-1523205771623-e0faa4d2813d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=89719a0d55dd05e2deae4120227e6efc&auto=format&fit=crop&w=1953&q=80',
-  'https://images.unsplash.com/photo-1508704019882-f9cf40e475b4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8c6e5e3aba713b17aa1fe71ab4f0ae5b&auto=format&fit=crop&w=1352&q=80',
-  'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80'
-];
 
 class college_details extends StatefulWidget{
   @override
@@ -46,7 +40,7 @@ class _college_details extends State<college_details> {
     Future.delayed(const Duration(seconds: 3), () {
       setState(() {
         print("222");
-        college_list_detail(college_id);
+        college_list_detail(college_id,user_id);
       });
     });
   }
@@ -77,12 +71,13 @@ class _college_details extends State<college_details> {
     });
   }
 
-  void college_list_detail(String collegeId) async {
+  void college_list_detail(String collegeId,String user_id) async {
     String postUrl = "https://tutoro.co.in/mobile-authenticate/college-detail.php";
     print("stringrequest");
     var request = new http.MultipartRequest(
         "POST", Uri.parse(postUrl));
     request.fields['collegeId'] = collegeId;
+    request.fields['UserId'] = user_id;
     request.send().then((response) {
       http.Response.fromStream(response).then((onValue) {
         try {
@@ -440,8 +435,23 @@ class _college_details extends State<college_details> {
           print("onValue${onValue.body}");
           Map mapRes = json.decode(onValue.body);
           var success= mapRes["commandResult"]["success"];
-          setState(() {
-          });
+          var msg = mapRes["commandResult"]["message"];
+          if(success == 1){
+            Fluttertoast.showToast(
+                msg: msg,
+                toastLength: Toast.LENGTH_LONG,
+                gravity: ToastGravity.CENTER,
+                timeInSecForIosWeb: 1
+            );
+          }
+          else {
+            Fluttertoast.showToast(
+                msg: msg,
+                toastLength: Toast.LENGTH_LONG,
+                gravity: ToastGravity.CENTER,
+                timeInSecForIosWeb: 1
+            );
+          }
         } catch (e) {
           print("response$e");
         }

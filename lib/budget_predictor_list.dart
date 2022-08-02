@@ -119,6 +119,16 @@ class _budget_d extends State<budget_detail> {
                   SizedBox(
                     height: 20,
                   ),
+
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 10),
+                      child: Text("The above fees mentioned in tution fee only for complete duration of MBBS",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                      fontSize: 15,
+                    ),),
+                  ),
+
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25.0,vertical: 10),
                     child: Row(
@@ -126,15 +136,15 @@ class _budget_d extends State<budget_detail> {
                       children: [
 
                         Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(top: 5),
                               child: Text("NEET Score",
                                 textAlign: TextAlign.start,
                                 style: TextStyle(
-                                fontSize: 20,
+                                fontSize: 18,
                                fontWeight: FontWeight.bold,
                               ),
                               ),
@@ -168,15 +178,15 @@ class _budget_d extends State<budget_detail> {
                         ),
 
                         Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(top: 5.0),
                               child: Text("Budget",
-                                textAlign: TextAlign.start,
+                                textAlign: TextAlign.center,
                                 style: TextStyle(
-                                fontSize: 20,
+                                fontSize: 18,
                                fontWeight: FontWeight.bold,
                               ),
                               ),

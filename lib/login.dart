@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tutoro/colors/colors.dart';
 import 'package:tutoro/create_account.dart';
@@ -264,26 +265,32 @@ class _login_body extends State<_login> {
                Padding(
                  padding: const EdgeInsets.symmetric(vertical: 0.0,horizontal: 10),
                  child: Center(
-                   child: Row(
+                   child: Column(
                      mainAxisAlignment: MainAxisAlignment.center,
                      crossAxisAlignment: CrossAxisAlignment.center,
                      children: [
                        Text("New to Tutoro?",
                          style: TextStyle(
                            fontSize: 13,
-                           color: Colors.grey,
+                           color: Colors.black54,
                          ),
                        ),
                        InkWell(
 
                          onTap: (){
                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => create_account()));
-
                            //
                          },
-                         child: Text(" Signup for Free",
+                         child: Text(" Signup",
                            style: TextStyle(
-                             fontSize: 15,
+                             fontSize: 17,
+                             // shadows: <Shadow>[
+                             //   Shadow(
+                             //     offset: Offset(2.0, 2.0),
+                             //     blurRadius: 3.0,
+                             //     color: Color.fromARGB(255, 128, 125, 125),
+                             //   ),
+                             // ],
                              fontWeight: FontWeight.bold,
                              color: Colors.black,
                            ),
@@ -314,28 +321,154 @@ class _login_body extends State<_login> {
           Navigator.pop(context);
           print("onValue${onValue.body}");
           Map mapRes = json.decode(onValue.body);
-          var blogdetail= mapRes["commandResult"]["data"]["otp"];
-          var user_id= mapRes["commandResult"]["data"]["user_id"];
           var success = mapRes["commandResult"]["success"];
           var msg = mapRes["commandResult"]["message"];
-          setState(() {
-            getdata = blogdetail;
-            prefs.setString("new_account", " ");
-            prefs.setString("mobile_number",mobile);
-            prefs.setInt("otp_found",getdata);
-            prefs.setString("user_id",user_id);
-          });
+
           if(success == 1){
+            var blogdetail= mapRes["commandResult"]["data"]["otp"];
+            var user_id= mapRes["commandResult"]["data"]["user_id"];
+            setState(() {
+              getdata = blogdetail;
+              prefs.setString("new_account", " ");
+              prefs.setString("mobile_number",mobile);
+              prefs.setInt("otp_found",getdata);
+              prefs.setString("user_id",user_id);
+            });
             userdata(user_id);
             Navigator.of(context).push(MaterialPageRoute(builder: (context) => otp_screen()));
           }
           else{
-            Fluttertoast.showToast(
-                msg: msg,
-                toastLength: Toast.LENGTH_LONG,
-                gravity: ToastGravity.CENTER,
-                timeInSecForIosWeb: 1
-            );
+
+            showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return Dialog(
+                    shape: RoundedRectangleBorder(
+                        borderRadius:
+                        BorderRadius.circular(8.0)), //this right here
+                    child: Container(
+                      height: 160,
+                      child: Column(
+                        //mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            width:340.0,
+                            height: 50,
+                            child: FlatButton(
+                              onPressed: (){},
+                              child: Text("Invalid Number",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.bold,
+                                 backgroundColor:  Color(0xffECAE0F),
+                                ),),
+                             color: Color(0xffECAE0F),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+
+                          Center(
+                            child: Text("Your login credentials is incorrect ",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 14,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              SizedBox(
+                                width: 110,
+                                height: 50,
+                                child: RaisedButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Text(
+                                    "Relogin",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  color:  Colors.white,
+                                ),
+                              ),
+
+                              SizedBox(
+                                width: 110,
+                                height: 50,
+                                child: RaisedButton(
+                                  onPressed: () {
+                                     Navigator.push(context, MaterialPageRoute(builder: (context) => create_account()));
+                                    // Navigator.pushNamed(context, Myroutes.practical_home);
+                                  },
+                                  child: Text(
+                                    "Register",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  color: Colors.white,
+                                ),
+                              ),
+                              // ),
+
+
+                            ],
+                          ),
+                          // SizedBox(
+                          //   width: 320.0,
+                          //   child: RaisedButton(
+                          //     onPressed: () {},
+                          //     child: Text(
+                          //       "Save",
+                          //       style: TextStyle(color: Colors.white),
+                          //     ),
+                          //     color: const Color(0xFF1BC0C5),
+                          //   ),
+                          // )
+                        ],
+                      ),
+                    ),
+                  );
+                });
+            // showDialog(
+            //     context: context,
+            //     builder: (BuildContext context) {
+            //       return AlertDialog(
+            //         title: Text("Mobile number not valid"),
+            //         content: Text("Please check number / Register Your number first"),
+            //         actions: <Widget>[
+            //           FlatButton(
+            //             child: Text("Close"),
+            //             onPressed: () {
+            //               Navigator.of(context).pop();
+            //             },
+            //           )
+            //         ],
+            //       );
+            //     }
+            // );
+
+
+            // Fluttertoast.showToast(
+            //     msg: msg,
+            //     toastLength: Toast.LENGTH_LONG,
+            //     gravity: ToastGravity.CENTER,
+            //     timeInSecForIosWeb: 1
+            // );
           }
           print("getdatata$getdata)");
 
@@ -357,26 +490,130 @@ class _login_body extends State<_login> {
     request.send().then((response) {
       http.Response.fromStream(response).then((onValue) {
         try {
+          Navigator.pop(context);
           print("onValue${onValue.body}");
           Map mapRes = json.decode(onValue.body);
-          var blogdetail= mapRes["commandResult"]["data"]["otp"];
           var success = mapRes["commandResult"]["success"];
           var msg = mapRes["commandResult"]["message"];
-          setState(() {
-            getdata = blogdetail;
-            prefs.setString("mobile_number",email);
-            prefs.setString("otp_found","$getdata");
-          });
+
           if(success == 1){
+            var blogdetail= mapRes["commandResult"]["data"]["otp"];
+            setState(() {
+              getdata = blogdetail;
+              prefs.setString("new_account", " ");
+              prefs.setString("mobile_number",email);
+              prefs.setInt("otp_found",getdata);
+              print("email_p$email");
+            });
             Navigator.of(context).push(MaterialPageRoute(builder: (context) => otp_screen()));
           }
           else{
-            Fluttertoast.showToast(
-                msg: msg,
-                toastLength: Toast.LENGTH_LONG,
-                gravity: ToastGravity.CENTER,
-                timeInSecForIosWeb: 1
-            );
+            showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return Dialog(
+                    shape: RoundedRectangleBorder(
+                        borderRadius:
+                        BorderRadius.circular(8.0)), //this right here
+                    child: Container(
+                      height: 160,
+                      child: Column(
+                        //mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            width:340.0,
+                            height: 50,
+                            child: FlatButton(
+                              onPressed: (){},
+                              child: Text("Invalid Email",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  backgroundColor:  Color(0xffECAE0F),
+                                ),),
+                              color: Color(0xffECAE0F),
+                            ),
+                          ),
+
+                          SizedBox(
+                            height: 15,
+                          ),
+
+                          Center(
+                            child: Text("Your login credentials is incorrect ",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 14,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              SizedBox(
+                                width: 110,
+                                height: 50,
+                                child: RaisedButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Text(
+                                    "Relogin",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  color:  Colors.white,
+                                ),
+                              ),
+
+                              SizedBox(
+                                width: 110,
+                                height: 50,
+                                child: RaisedButton(
+                                  onPressed: () {
+                                    Navigator.push(context, MaterialPageRoute(builder: (context) => create_account()));
+                                    // Navigator.pushNamed(context, Myroutes.practical_home);
+                                  },
+                                  child: Text(
+                                    "Register",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  color: Colors.white,
+                                ),
+                              ),
+                              // ),
+
+
+                            ],
+                          ),
+                          // SizedBox(
+                          //   width: 320.0,
+                          //   child: RaisedButton(
+                          //     onPressed: () {},
+                          //     child: Text(
+                          //       "Save",
+                          //       style: TextStyle(color: Colors.white),
+                          //     ),
+                          //     color: const Color(0xFF1BC0C5),
+                          //   ),
+                          // )
+                        ],
+                      ),
+                    ),
+                  );
+                });
           }
           print("getdatata$getdata)");
 

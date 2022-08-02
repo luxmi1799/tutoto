@@ -253,7 +253,7 @@ class _login_body extends State<_login> {
                         },
                         child: Text("Login",
                           style: TextStyle(
-                            fontSize: 15,
+                            fontSize: 18,
                             fontWeight: FontWeight.bold,
                             color: Colors.black,
                           ),
@@ -287,15 +287,17 @@ class _login_body extends State<_login> {
           Navigator.pop(context);
           print("onValue${onValue.body}");
           Map mapRes = json.decode(onValue.body);
-          var blogdetail= mapRes["commandResult"]["data"]["otp"];
+
           var success = mapRes["commandResult"]["success"];
           var msg = mapRes["commandResult"]["message"];
-          setState(() {
-            getdata = blogdetail;
-            prefs.setString("email",email);
-            prefs.setString("name",name);
-          });
+
           if(success == 1){
+            var blogdetail= mapRes["commandResult"]["data"]["otp"];
+            setState(() {
+              getdata = blogdetail;
+              prefs.setString("email",email);
+              prefs.setString("name",name);
+            });
             Navigator.pop(context);
             Navigator.of(context).push(MaterialPageRoute(builder: (context) => home()));
           }
